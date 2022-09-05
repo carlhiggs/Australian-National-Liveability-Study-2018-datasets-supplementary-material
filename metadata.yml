@@ -1,0 +1,205 @@
+title: "Australian National Liveability Study 2018 Datasets" 
+
+team:
+   - name: Carl Higgs
+     affiliation: 1*
+     orcid: 0000-0002-5903-9095 
+     role: Researcher
+     e-mail: carl.higgs@rmit.edu.au
+   - name: Julianna Rozek
+     affiliation: 1
+     orcid: 0000-0002-4356-8646
+     role: Researcher
+   - name: Rebecca Roberts
+     affiliation: 1
+     orcid: 0000-0001-6287-9020
+     role: Researcher
+   - name: Alan Both
+     affiliation: 1
+     orcid: 0000-0003-4021-9632
+     role: Researcher
+   - name: Jonathan Arundel
+     affiliation: 1
+     orcid: 0000-0002-0833-5433
+     role: Researcher
+   - name: Melanie Lowe
+     affiliation: 2
+     orcid: 0000-0002-9703-1895
+     role: Researcher
+   - name: Paula Hooper
+     affiliation: 3
+     orcid: 0000-0003-4459-2901
+     role: Researcher
+   - name: Karen Villanueva
+     affiliation: 1
+     orcid: 0000-0002-7721-1880
+     role: Researcher
+   - name: Koen Simons
+     affiliation: 2
+     orcid: 0000-0002-6534-2277
+     role: Researcher
+   - name: Suzanne Mavoa
+     affiliation: 2
+     orcid: 0000-0002-6071-2988
+     role: Researcher
+   - name: Lucy Gunn
+     affiliation: 1
+     orcid: 0000-0002-9309-3626
+     role: Researcher
+   - name: Hannah Badland
+     affiliation: 1
+     orcid: 0000-0002-8936-2715
+     role: Researcher
+   - name: Melanie Davern
+     affiliation: 1
+     orcid: 0000-0002-3790-0024
+     role: Researcher
+   - name: Billie Giles-Corti
+     affiliation: 1
+     orcid: 0000-0003-0102-0225
+     role: Chief Investigator
+
+affiliations:
+  - code:    1
+    name:    Centre for Urban Research, RMIT University
+    address: Melbourne, Australia
+  - code:    2
+    name:    University of Melbourne
+    address: Melbourne, Australia
+  - code:    3
+    name:    University of Western Australia
+    address: Perth, Australia
+
+keywords: [Built environment and health, Epidemiology, Urban liveability, Walkability]   
+
+abstract: | 
+    The Australian National Liveability Study was conducted by the Healthy Liveable Cities group at RMIT from 2016 to 2022, as a continuation of a research programme commenced in the McCaughey VicHealth Community Wellbeing Unit at the University of Melbourne where the group was previously located.  This particular project space on figshare has been created to archive some of the outputs of The Australian National Liveability Study 2018 program which drew upon and expanded a scripted workflow for creating urban liveability indicators and a composite liveability index for address points, with flexible aggregation to larger area scales.  This process was developed initially for an Urban Liveability Index (Higgs et al., 2018, https://doi.org/10.25439/rmt.15001386.v2; and Higgs et al., 2019, https://doi.org/10.1186/s12942-019-0178-8) for Melbourne, before being expanded for Australia's capital cities (Arundel et al., 2017; https://apo.org.au/node/113921) and Australia's 21 largest cities to support linkage of environmental exposures for the Australian Early Development Census (Villanueva et al., 2022; https://doi.org/10.3390/ijerph19095549) and area summaries for the Australian Urban Observatory (Davern et al., 2020; https://doi.org/10.25439/rmt.12380576.v1).
+    
+    The final Australian National Liveability Study 2018 datasets comprise a suite of policy relevant spatial indicators of local neighbourhood liveability and amenity access estimated for residential address points across Australia's 21 largest cities, and summarised at range of larger area scales (Mesh Block, Statistical Areas 1-4, Suburb, LGA, and overall city summaries). The indicators and measures included encompass topics including community and health services, employment, food, housing, public open space, transportation, walkability and overall liveability. The datasets were produced through analysis of built environment and social data from multiple sources including OpenStreetMap the Australian Bureau of Statistics, and public transport agency GTFS feed data. These are provided in CSV format under an Open Data Commons Open Database licence. The 2018 Australian National Liveability data will be of interest to planners, population health and urban researchers with an interest in the spatial distribution of built environment exposures and outcomes for data linkage, modelling and mapping purposes.
+
+start-date: 2018-01-01
+end-date: 2022-05-08
+
+# Data URL, DOI and licence
+data:
+  - dataset: hlc_ntnl_liveability_2018_address_points_indicators_epsg7845.csv
+    doi: https://doi.org/10.25439/rmt.15001230
+    licence: ODbL
+    role: Liveability indicators for residential locations (address points in urban Mesh Blocks with dwellings at 2016 census)
+  - dataset: hlc_ntnl_liveability_2018_address_points_distance_closest_epsg7845.csv
+    doi: https://doi.org/10.25439/rmt.15001230
+    licence: ODbL
+    role: Estimates for distance in metres along pedestrian network to the closest of a range of destination types for residential locations (address points in urban Mesh Blocks with dwellings at 2016 census)
+  - dataset: hlc_ntnl_liveability_2018_address_points_distance_arrays.csv
+    doi: https://doi.org/10.25439/rmt.15001230
+    licence: ODbL
+    role: Arrays of estimates for distance in metres along pedestrian network to all destinations (within 3200m and the closest) across a range of destination types , for residential locations (address points in urban Mesh Blocks with dwellings at 2016 census)
+  - dataset: hlc_ntnl_liveability_2018_Mesh_Block_2016.csv
+    doi: https://doi.org/10.25439/rmt.15001230
+    licence: ODbL
+    role: Mesh Block averages of residential liveability indicators and distance to closest estimates, with dwelling and person counts as well as area linkage codes to support aggregation to larger area scales (optionally with weighting; recommended)
+  - dataset: hlc_ntnl_liveability_2018_sa1_2016.csv
+    doi: https://doi.org/10.25439/rmt.15001230
+    licence: ODbL
+    role: Liveability indicators for dwellings, aggregated for Statistical Areas Level 1 (SA1)
+  - dataset: hlc_ntnl_liveability_2018_sa2_2016.csv
+    doi: https://doi.org/10.25439/rmt.15001230
+    licence: ODbL
+    role: Liveability indicators for dwellings, aggregated for Statistical Areas Level 2 (SA2)
+  - dataset: hlc_ntnl_liveability_2018_sa3_2016.csv
+    doi: https://doi.org/10.25439/rmt.15001230
+    licence: ODbL
+    role: Liveability indicators for dwellings, aggregated for Statistical Areas Level 3 (SA3)
+  - dataset: hlc_ntnl_liveability_2018_sa4_2016.csv
+    doi: https://doi.org/10.25439/rmt.15001230
+    licence: ODbL
+    role: Liveability indicators for dwellings, aggregated for Statistical Areas Level 4 (SA4)
+  - dataset: hlc_ntnl_liveability_2018_ssc_2016.csv
+    doi: https://doi.org/10.25439/rmt.15001230
+    licence: ODbL
+    role: Liveability indicators for dwellings, aggregated for Suburbs
+  - dataset: hlc_ntnl_liveability_2018_lga_2016.csv
+    doi: https://doi.org/10.25439/rmt.15001230
+    licence: ODbL
+    role: Liveability indicators for dwellings, aggregated for Local Government Areas
+  - dataset: hlc_ntnl_liveability_2018_region.csv
+    doi: https://doi.org/10.25439/rmt.15001230
+    licence: ODbL
+    role: Liveability indicators for dwellings, aggregated for cities
+  - dataset: hlc_ntnl_liveability_2018_gtfs_20191008_20191205_daytime_tidy_transit_headway_analysis.csv
+    doi: https://doi.org/10.25439/rmt.15001230
+    licence: CC BY SA 4.0
+    role: GTFS transport stops headway analysis of day time weekday public transport service frequency between 8 October 2019 to 5 December 2019, with WKT geometry
+  - dataset: hlc_ntnl_liveability_2018_aos_public_osm.csv
+    doi: https://doi.org/10.25439/rmt.15001230
+    licence: ODbL
+    role: Areas of open space with at least partial public access, as identified using open street map, with WKT geometry for public geometry, water geometry and overall geometry as well as JSON attributes (including public area) and list of co-located amenities within 100m (including public toilets)
+  - dataset: hlc_ntnl_liveability_2018_od_aos_jsonb.csv
+    doi: https://doi.org/10.25439/rmt.15001230
+    licence: ODbL
+    role: JSON list of identifiers and distances of areas of open space for residential address points identified as having areas of open space accessible within 3200m.  This dataset is indexed by the residential address point identifier, supporting linkage with attributes from the main address indicator dataset.
+  
+locations: 
+   - region:    Adelaide, Australia
+     bbox:      [[[138.44598213716083, -35.349215154596855], [138.94637092369524, -35.33388656273774], [138.90902666332553, -34.55005481676975], [138.41240914001398, -34.56529928316498], [138.44598213716083, -35.349215154596855]]]
+     timepoint: [2018,2019]
+   - region:    Albury - Wodonga, Australia
+     bbox:      [[[146.82993553758618, -36.21943168457877], [147.04259086873486, -36.20162914079577], [147.01786973270742, -36.008843305099646], [146.80561182343283, -36.026622632755654], [146.82993553758618, -36.21943168457877]]]
+     timepoint: [2018,2019]
+   - region:    Ballarat, Australia
+     bbox:      [[[143.69663589135223, -37.67189340701294], [143.9361242759184, -37.6569921753805], [143.9172723082427, -37.46739898686607], [143.67823466145825, -37.482281993437724], [143.69663589135223, -37.67189340701294]]]
+     timepoint: [2018,2019]
+   - region:    Bendigo, Australia
+     bbox:      [[[144.19526564912172, -36.84765762258256], [144.40606210060162, -36.833739094903066], [144.386044455283, -36.63942261947314], [144.17564991128475, -36.653323219403916], [144.19526564912172, -36.84765762258256]]]
+     timepoint: [2018,2019]
+   - region:    Brisbane, Australia
+     bbox:      [[[152.46548737523543, -28.15652648768148], [153.4811382711439, -28.019494163101793], [153.2742730358054, -26.83188473977481], [152.26909093488365, -26.96751297372372], [152.46548737523543, -28.15652648768148]]]
+     timepoint: [2018,2019]
+   - region:    Cairns, Australia
+     bbox:      [[[145.68135750807213, -17.043954655944475], [145.7948428634317, -17.03372783009555], [145.76475826510955, -16.725612496181014], [145.6515590259542, -16.735804193173408], [145.68135750807213, -17.043954655944475]]]
+     timepoint: [2018,2019]
+   - region:    Canberra, Australia
+     bbox:      [[[149.0387969873978, -35.48646024057889], [149.25059893747226, -35.465479687841764], [149.20271750617383, -35.14311276340299], [148.991567760707, -35.16404641744238], [149.0387969873978, -35.48646024057889]]]
+     timepoint: [2018,2019]
+   - region:    Darwin, Australia
+     bbox:      [[[130.81338278318918, -12.52133932126639], [131.04786458710367, -12.526967023308314], [131.0522690525503, -12.342588570786084], [130.8181367976409, -12.336973612392775], [130.81338278318918, -12.52133932126639]]]
+     timepoint: [2018,2019]
+   - region:    Geelong, Australia
+     bbox:      [[[144.2684474388571, -38.36007583602345], [144.67470362360544, -38.33335526076835], [144.63769583691843, -37.989590064622035], [144.23283534347595, -38.01625260440825], [144.2684474388571, -38.36007583602345]]]
+     timepoint: [2018,2019]
+   - region:    Gold Coast - Tweed Heads, Australia
+     bbox:      [[[153.3042906839067, -28.451569690298943], [153.61162810359122, -28.409165450120337], [153.48165882488468, -27.673769813957964], [153.1762937962245, -27.71590856162429], [153.3042906839067, -28.451569690298943]]]
+     timepoint: [2018,2019]
+   - region:    Hobart, Australia
+     bbox:      [[[147.07309591375721, -43.09699391622893], [147.71183574330198, -43.04690111954347], [147.65170102519627, -42.64205403972385], [147.0157211828845, -42.6920390930534], [147.07309591375721, -43.09699391622893]]]
+     timepoint: [2018,2019]
+   - region:    Launceston, Australia
+     bbox:      [[[147.05398574761335, -41.51776919286061], [147.2167767540066, -41.50493286106136], [147.19154951501386, -41.32485462591983], [147.0290647336857, -41.33767795418625], [147.05398574761335, -41.51776919286061]]]
+     timepoint: [2018,2019]
+   - region:    Mackay, Australia
+     bbox:      [[[149.13918126413182, -21.198422491101343], [149.2426388640671, -21.186636706933758], [149.2175899592728, -20.99361006727908], [149.11429906979288, -21.005372789705532], [149.13918126413182, -21.198422491101343]]]
+     timepoint: [2018,2019]
+   - region:    Melbourne, Australia
+     bbox:      [[[144.48969406050185, -38.45799994064167], [145.79513423257504, -38.36669177162322], [145.65775557863682, -37.201643453543014], [144.36737212382764, -37.292273275965485], [144.48969406050185, -38.45799994064167]]]
+     timepoint: [2018,2019]
+   - region:    Newcastle - Maitland, Australia
+     bbox:      [[[151.3457159009476, -33.15583763942342], [151.8660185763883, -33.094099254175354], [151.7905150175444, -32.64798088993183], [151.2723545399701, -32.709513920149845], [151.3457159009476, -33.15583763942342]]]
+     timepoint: [2018,2019]
+   - region:    Perth, Australia
+     bbox:      [[[115.38075571409067, -32.64142346696732], [116.0860058287177, -32.72872881990614], [116.28011994847546, -31.57174466055225], [115.58229484116389, -31.485207469120727], [115.38075571409067, -32.64142346696732]]]
+     timepoint: [2018,2019]
+   - region:    Sunshine Coast, Australia
+     bbox:      [[[152.92950045008266, -26.871824016836527], [153.18970701729353, -26.836153400691], [153.10173261859975, -26.320961159120326], [152.84268263939072, -26.356469111090615], [152.92950045008266, -26.871824016836527]]]
+     timepoint: [2018,2019]
+   - region:    Sydney, Australia
+     bbox:      [[[150.37511463226642, -34.33002648914616], [151.76712511517286, -34.17203433001096], [151.59026349919736, -33.12753063008356], [150.21178559673473, -33.28432428583176], [150.37511463226642, -34.33002648914616]]]
+     timepoint: [2018,2019]
+   - region:    Toowoomba, Australia
+     bbox:      [[[151.85061894744888, -27.72255230051847], [152.01074700101822, -27.702080088118755], [151.95856168377566, -27.379255993500433], [151.79888504104667, -27.39967108573803], [151.85061894744888, -27.72255230051847]]]
+     timepoint: [2018,2019]
+   - region:    Townsville, Australia
+     bbox:      [[[146.597728947458, -19.4254651956833], [146.86882880010072, -19.399313462320524], [146.8437905355204, -19.16771860232492], [146.57321100583675, -19.19380634221397], [146.597728947458, -19.4254651956833]]]
+     timepoint: [2018,2019]
+   - region:    Wollongong, Australia
+     bbox:      [[[150.7386399760657, -34.70950196816913], [151.08067933441586, -34.67125648987749], [150.99847524859507, -34.17193011887917], [150.6580427682065, -34.21003963871241], [150.7386399760657, -34.70950196816913]]]
+     timepoint: [2018,2019]

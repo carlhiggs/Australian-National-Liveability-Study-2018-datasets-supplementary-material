@@ -1,0 +1,15 @@
+#,Variable,Description,Data type
+1,aos_id,Numeric identifier for areas of open space,integer
+2,attributes,"JSON list of key-value attribute pairs for individual open spaces associated with this larger area of open space, including: os_id (open space identifier); area_ha (area in hectares); in_school (whether the open space is located in a school, and not considered public); is_school (if this open space is a school, and therefore not a public open space); roundness (a morphological statistic of the ratio of area to the minimum bounding circle containing the open space); public_access (whether the open space has been identified as being publicly accessible); water_feature (whether the open space is associated with water features, or 'blue space'); within_public (whether this open space is nested within a larger area which has been identified as being publicly accessible); linear_feature (a morphological classification based on meeting a set of linear feature criteria, used to identify and segment potentially large, linear spaces like rivers and creeks); minimum_bounding_circle_area (a morphological statistic for minimum bounding circle area, in square metres); minimum_bounding_circle_diameter (a morphological statistic for minimum bounding circle diameter)",JSON
+3,numgeom,"Number of geometries associated with this area of open space (ie. the count of individual open spaces, associated with and located within this larger identified contiguous area of open space)",integer
+4,aos_ha_public,The area in hectares which is publicly accessible within this area of open space,double precision
+5,aos_ha_not_public,The area in hectares which is not public accessible within this area of open space,double precision
+6,aos_ha,The overall area in hectares of this area of open space,double precision
+7,aos_ha_water,The area in hectares which has been identified as being water or water-like in this area of open space,double precision
+8,has_water_feature,Whether the area of open space has been identified as having a water feature,boolean
+9,water_percent,The percentage of the area of open space that is associated with water,numeric
+10,locale,"The study region (or city; lower case, underscores instead of spaces) where this area of open space is located",Text
+11,co_location_100m,"Other destinations (eg public toilets, public transport stops, cafes, supermarkets) located within 100 metres of this area of open space",Text[]
+12,geom_public,Well Known Text geometry representation for the publicly accessible portion of this area of open space (EPSG 7845),wkt
+13,geom_water,"Well Known Text geometry representation for portion of this area of open space identified as water, or water-like (EPSG 7845)",wkt
+14,geom,Well Known Text geometry representation for the overall area of open space (EPSG 7845),wkt

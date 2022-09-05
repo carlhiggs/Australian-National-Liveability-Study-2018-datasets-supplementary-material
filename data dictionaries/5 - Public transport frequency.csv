@@ -1,0 +1,9 @@
+#,Variable,Description,Data type
+1,WKT,Geometry representation in Well Known Text format using spatial reference of WGS 84 (EPSG 4326),WKT
+2,fid,Sequential numeric index,integer
+3,stop_id,Stop ID number ,text
+4,mode,Mode of transport,text
+5,state,State the GTFS feed relates to,text
+6,authority,Public transportation agency,text
+7,publication_date,Date of publication of GTFS feed,integer (yyyymmdd)
+8,headway,"Headway (minutes) for day time (7 am to 7 pm) trips on weekdays between 8 October and 5 December 2019, estimated through analysis using Tidy Transit in R",integer

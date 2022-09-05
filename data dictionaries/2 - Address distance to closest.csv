@@ -1,0 +1,109 @@
+#,Variable,Description,Data type
+1,gnaf_pid,Unique identifier using PSMA Open G-NAF 2018 data,character varying(15)
+2,count_objectid,Count of co-located G-NAF points (only first unique location retained),integer
+3,point_x,Easting (metres; EPSG 7845),double precision
+4,point_y,Northing (metres; EPSG 7845),double precision
+5,study_region,City name,text
+6,mb_code_2016,Mesh Block (ASGS 2016) identifier,text
+7,mb_category_name_2016,Mesh Block category,text
+8,sa1_maincode_2016,Statistical Area 1 (SA1) maincode identifier,text
+9,sa2_name_2016,SA2 name,text
+10,sa3_name_2016,SA3 name,text
+11,sa4_name_2016,SA4 name,text
+12,gccsa_name_2016,Greater Capital City Statistical Area name,text
+13,state_name_2016,State name,text
+14,ssc_name_2016,Suburb name,text
+15,lga_name_2016,LGA name,text
+16,ucl_name_2016,Urban centre and locality name,text
+17,sos_name_2016,Section of state name ,text
+18,dist_m_activity_centres,Distance to closest activity centre,integer
+19,dist_m_alcohol_offlicence,"Distance to closest offlice alcohol outlet (HLC, 2017-19)",integer
+20,dist_m_alcohol_onlicence,"Distance to closest onlicence alcohol outlet (HLC, 2017-19)",integer
+21,dist_m_alcohol_osm,"Distance to closest alcohol outlet (OSM, October 2018)",integer
+22,dist_m_all_schools,"Distance to closest schools (all; ACARA, 2018)",integer
+23,dist_m_art_centre_osm,"Distance to closest art centre (OSM, October 2018)",integer
+24,dist_m_art_gallery_osm,"Distance to closest art gallery (OSM, October 2018)",integer
+25,dist_m_bakery_osm,"Distance to closest bakery (OSM, October 2018)",integer
+26,dist_m_bar_osm,"Distance to closest bar (OSM, October 2018)",integer
+27,dist_m_cafe_osm,"Distance to closest cafe (OSM, October 2018)",integer
+28,dist_m_childcare_all,"Distance to closest child care (all, ACEQUA 2018)",integer
+29,dist_m_childcare_all_exc,"Distance to closest child care (exceeding requirements, ACEQUA 2018)",integer
+30,dist_m_childcare_all_meet,"Distance to closest child care (meeting requirements, ACEQUA 2018)",integer
+31,dist_m_childcare_oshc,"Distance to closest child care (outside school hours, ACEQUA 2018)",integer
+32,dist_m_childcare_oshc_exc,"Distance to closest child care (outside school hours exceeding requirements, ACEQUA 2018)",integer
+33,dist_m_childcare_oshc_meet,"Distance to closest child care (outside school hours meeting requirements, ACEQUA 2018)",integer
+34,dist_m_childcare_preschool,"Distance to closest child care (pre-school, ACEQUA 2018)",integer
+35,dist_m_childcare_preschool_exc,"Distance to closest child care (pre-school exceeding requirements, ACEQUA 2018)",integer
+36,dist_m_childcare_preschool_meet,"Distance to closest child care (pre-school meeting requirements, ACEQUA 2018)",integer
+37,dist_m_cinema_osm,"Distance to closest cinema (OSM, October 2018)",integer
+38,dist_m_community_centre_osm,"Distance to closest community centre (OSM, October 2018)",integer
+39,dist_m_convenience_osm,"Distance to closest convenience store (OSM, October 2018)",integer
+40,dist_m_deli_osm,"Distance to closest deli (OSM, October 2018)",integer
+41,dist_m_disability_employment,Distance to closest disability employment service ,integer
+42,dist_m_fast_food,Distance to closest fast food (in house 2017),integer
+43,dist_m_fastfood_osm,"Distance to closest fast food (OSM, October 2018)",integer
+44,dist_m_food_court_osm,"Distance to closest food court (OSM, October 2018)",integer
+45,dist_m_food_health_osm,"Distance to closest health food (OSM, October 2018)",integer
+46,dist_m_food_other_osm,"Distance to closest other food (OSM, October 2018)",integer
+47,dist_m_fruit_veg_osm,"Distance to closest fruit and veg (OSM, October 2018)",integer
+48,dist_m_gtfs_2018_stop_30_mins_final,Distance to closest transport stop with frequent daytime service,integer
+49,dist_m_gtfs_2018_stops,Distance to closest public transport stop,integer
+50,dist_m_gtfs_2018_stops_bus,Distance to closest bus stop,integer
+51,dist_m_gtfs_2018_stops_ferry,Distance to closest ferry terminal,integer
+52,dist_m_gtfs_2018_stops_train,Distance to closest train station,integer
+53,dist_m_gtfs_2018_stops_tram,Distance to closest tram stop,integer
+54,dist_m_gtfs_20191008_20191205_bus_0015,Distance to closest bus stop with usual daytime weekday service frequency of 15 mins or better,integer
+55,dist_m_gtfs_20191008_20191205_bus_0030,Distance to closest bus stop with usual daytime weekday service frequency of 30 mins or better,integer
+56,dist_m_gtfs_20191008_20191205_bus_0045,Distance to closest bus stop with usual daytime weekday service frequency of 45 mins or better,integer
+57,dist_m_gtfs_20191008_20191205_bus_any,Distance to closest bus stop,integer
+58,dist_m_gtfs_20191008_20191205_ferry_0015,Distance to closest ferry stop with usual daytime weekday service frequency of 15 mins or better,integer
+59,dist_m_gtfs_20191008_20191205_ferry_0030,Distance to closest ferry stop with usual daytime weekday service frequency of 30 mins or better,integer
+60,dist_m_gtfs_20191008_20191205_ferry_0045,Distance to closest ferry stop with usual daytime weekday service frequency of 45 mins or better,integer
+61,dist_m_gtfs_20191008_20191205_ferry_any,Distance to closest ferry stop,integer
+62,dist_m_gtfs_20191008_20191205_revised_all,Distance to closest public transport stop,integer
+63,dist_m_gtfs_20191008_20191205_revised_frequent30,Distance to closest public transport stop with an average weekday service frequency of 30 minutes or less,integer
+64,dist_m_gtfs_20191008_20191205_train_0015,Distance to closest train stop with usual daytime weekday service frequency of 15 mins or better,integer
+65,dist_m_gtfs_20191008_20191205_train_0030,Distance to closest train stop with usual daytime weekday service frequency of 30 mins or better,integer
+66,dist_m_gtfs_20191008_20191205_train_0045,Distance to closest train stop with usual daytime weekday service frequency of 45 mins or better,integer
+67,dist_m_gtfs_20191008_20191205_train_any,Distance to closest train stop,integer
+68,dist_m_gtfs_20191008_20191205_tram_0015,Distance to closest tram stop with usual daytime weekday service frequency of 15 mins or better,integer
+69,dist_m_gtfs_20191008_20191205_tram_0030,Distance to closest tram stop with usual daytime weekday service frequency of 30 mins or better,integer
+70,dist_m_gtfs_20191008_20191205_tram_0045,Distance to closest tram stop with usual daytime weekday service frequency of 45 mins or better,integer
+71,dist_m_gtfs_20191008_20191205_tram_any,Distance to closest tram stop,integer
+72,dist_m_hlc_2016_community_centres,Distance to closest community centre (2016),integer
+73,dist_m_libraries,"Distance to closest libraries (multiple sources, in-house, 2015-18)",integer
+74,dist_m_market_osm,"Distance to closest market (OSM, October 2018)",integer
+75,dist_m_meat_seafood_osm,"Distance to closest meat / seafood (OSM, October 2018)",integer
+76,dist_m_museum_osm,"Distance to closest museum (OSM, October 2018)",integer
+77,dist_m_newsagent_osm,"Distance to closest newsagent (OSM, October 2018)",integer
+78,dist_m_nhsd_2017_aged_care_residential,Distance to closest aged care residential service,integer
+79,dist_m_nhsd_2017_dentist,Distance to closest dentist (NHSD 2017),integer
+80,dist_m_nhsd_2017_gp,Distance to closest general practice/GP/doctor (NHSD 2017),integer
+81,dist_m_nhsd_2017_hospital,Distance to closest hospital (NHSD 2017),integer
+82,dist_m_nhsd_2017_mc_family_health,"Distance to closest maternal, child and family health (NHSD 2017)",integer
+83,dist_m_nhsd_2017_other_community_health_care,Distance to closest 'other community health care' destination (not pharmacy or maternal and child health),integer
+84,dist_m_nhsd_2017_pharmacy,Distance to closest pharmacy (NHSD 2017),integer
+85,dist_m_P_12_Schools,"Distance to closest schools (K - 12; ACARA, 2018)",integer
+86,dist_m_P_12_Schools_catholic,"Distance to closest schools (K - 12, Catholic; ACARA, 2018)",integer
+87,dist_m_P_12_Schools_gov,"Distance to closest schools (K - 12, Government; ACARA, 2018)",integer
+88,dist_m_P_12_Schools_indep,"Distance to closest schools (K - 12, Independent; ACARA, 2018)",integer
+89,dist_m_petrolstation_osm,"Distance to closest petrol station (OSM, October 2018)",integer
+90,dist_m_pharmacy_osm,"Distance to closest pharmacy (OSM, October 2018)",integer
+91,dist_m_place_of_worship_osm,"Distance to closest place of worship (OSM, October 2018)",integer
+92,dist_m_playgrounds,Distance to closest playground (in house 2018),integer
+93,dist_m_postoffice_osm,"Distance to post office (OSM, October 2018)",integer
+94,dist_m_primary_schools,"Distance to closest schools (primary; ACARA, 2018)",integer
+95,dist_m_primary_schools_catholic,"Distance to closest schools (primary, Catholic; ACARA, 2018)",integer
+96,dist_m_primary_schools_gov,"Distance to closest schools (primary, Government; ACARA, 2018)",integer
+97,dist_m_primary_schools_indep,"Distance to closest schools (primary, Independent; ACARA, 2018)",integer
+98,dist_m_pub_osm,"Distance to closest pub (OSM, October 2018)",integer
+99,dist_m_public_swimming_pool_osm,"Distance to closest public swimming pool (OSM, October 2018)",integer
+100,dist_m_restaurant_osm,"Distance to closest restaurant (OSM, October 2018)",integer
+101,dist_m_secondary_schools,"Distance to closest schools (secondary; ACARA, 2018)",integer
+102,dist_m_secondary_schools_catholic,"Distance to closest schools (secondary, Catholic; ACARA, 2018)",integer
+103,dist_m_secondary_schools_gov,"Distance to closest schools (secondary, Government; ACARA, 2018)",integer
+104,dist_m_secondary_schools_indep,"Distance to closest schools (secondary, Independent; ACARA, 2018)",integer
+105,dist_m_special_schools,"Distance to closest schools (special; ACARA, 2018)",integer
+106,dist_m_supermarket,Distance to closest supermarket (in house 2017),integer
+107,dist_m_supermarket_osm,"Distance to closest supermarket (OSM, October 2018)",integer
+108,dist_m_theatre_osm,"Distance to closest theatre (OSM, October 2018)",integer

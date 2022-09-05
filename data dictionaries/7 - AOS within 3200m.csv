@@ -1,0 +1,4 @@
+#,Variable,Description,Data type
+1,gnaf_pid,Numeric identifier for areas of open space,integer
+2,attributes,"JSON list of key-value attribute pairs for area of open space ID (aos_id) and distance (distance) for all areas of open space identified as being accessible within 3200 metres.  This allows for post hoc querying of open space, for example by identifying the set of areas of open space meeting some set of criteria (eg. publicly accessible area larger than 1.5 hectares, or having some amenity such as a public toilet co-located within 100m) and then querying this data to identify the residential address points having such an area of open space accessible within some relevant threshold distance (e.g. 400 metres).",JSON
+3,locale,"The study region (or city; lower case, underscores instead of spaces) where this area of open space is located",Text

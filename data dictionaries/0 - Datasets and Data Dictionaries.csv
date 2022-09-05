@@ -1,0 +1,31 @@
+File and description,Records,Format,Size,Data dictionary
+"hlc_ntnl_liveability_2018_address_points_indicators_epsg7845.csv
+Liveability indicators for residential locations (address points in urban Mesh Blocks with dwellings at 2016 census)","6,536,400",CSV,5.1 Gb,1 - Address point indicators.csv
+"hlc_ntnl_liveability_2018_address_points_distance_closest_epsg7845.csv
+Estimates for distance in metres along pedestrian network to the closest of a range of destination types for residential locations (address points in urban Mesh Blocks with dwellings at 2016 census)","6,536,400",CSV,3.9 Gb,2 - Address distance to closest.csv
+"hlc_ntnl_liveability_2018_address_points_distance_arrays.csv
+Arrays of estimates for distance in metres along pedestrian network to all destinations (within 3200m and the closest) across a range of destination types , for residential locations (address points in urban Mesh Blocks with dwellings at 2016 census)","6,536,400",CSV,11.6 Gb,3 - Address destination array.csv
+"hlc_ntnl_liveability_2018_Mesh_Block_2016.csv
+Mesh Block averages of residential liveability indicators and distance to closest estimates, with dwelling and person counts as well as area linkage codes to support aggregation to larger area scales (optionally with weighting; recommended)","183,075",CSV,427 Mb,4 - Area aggregate indicators.csv
+"hlc_ntnl_liveability_2018_sa1_2016.csv
+Liveability indicators for dwellings, aggregated for Statistical Areas Level 1 (SA1)","39,966",CSV,104 Mb,4 - Area aggregate indicators.csv
+"hlc_ntnl_liveability_2018_sa2_2016.csv
+Liveability indicators for dwellings, aggregated for Statistical Areas Level 2 (SA2)","1,498",CSV,4.2 Mb,4 - Area aggregate indicators.csv
+"hlc_ntnl_liveability_2018_sa3_2016.csv
+Liveability indicators for dwellings, aggregated for Statistical Areas Level 3 (SA3)",223,CSV,661 kb,4 - Area aggregate indicators.csv
+"hlc_ntnl_liveability_2018_sa4_2016.csv
+Liveability indicators for dwellings, aggregated for Statistical Areas Level 4 (SA4)",63,CSV,187 kb,4 - Area aggregate indicators.csv
+"hlc_ntnl_liveability_2018_ssc_2016.csv
+Liveability indicators for dwellings, aggregated for Suburbs","3,101",CSV,8.49 Mb,4 - Area aggregate indicators.csv
+"hlc_ntnl_liveability_2018_lga_2016.csv
+Liveability indicators for dwellings, aggregated for Local Government Areas",170,CSV,502 kb,4 - Area aggregate indicators.csv
+"hlc_ntnl_liveability_2018_region.csv
+Liveability indicators for dwellings, aggregated for cities",21,CSV,63.4 kb,4 - Area aggregate indicators.csv
+"hlc_ntnl_liveability_2018_gtfs_20191008_20191205_daytime_tidy_transit_headway_analysis.csv
+GTFS transport stops headway analysis of day time weekday public transport service frequency between 8 October 2019 to 5 December 2019, with WKT geometry","111,593",CSV,10.2 Mb,5 - Public transport frequency.csv
+"hlc_ntnl_liveability_2018_aos_public_osm.csv
+Areas of open space with at least partial public access, as identified using open street map, with WKT geometry for public geometry, water geometry and overall geometry as well as JSON attributes (including public area) and list of co-located amenities within 100m (including public toilets)","69,891",CSV,230 Mb,6 - Public open space.csv
+"hlc_ntnl_liveability_2018_od_aos_jsonb.csv
+JSON list of identifiers and distances of areas of open space for residential address points identified as having areas of open space accessible within 3200m.  This dataset is indexed by the residential address point identifier, supporting linkage with attributes from the main address indicator dataset.","6,535,982",CSV,19.4 Gb,7 - AOS within 3200m.csv
+-,-,-,-,8 - Data sources.csv
+-,-,-,-,9 - OSM Destination Definitions.csv

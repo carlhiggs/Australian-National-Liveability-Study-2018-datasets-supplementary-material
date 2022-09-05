@@ -1,0 +1,79 @@
+destination,category,key,value,global_freq_2018_nov,pre-condition,"description, where available"
+supermarket_osm,Supermarket,shop,supermarket,"343,085",OR,A large store for groceries and other goods.
+supermarket_osm,Supermarket,supermarket,,95,OR,
+supermarket_osm,Supermarket,amenity,supermarket,37,OR,
+supermarket_osm,Supermarket,building,supermarket,"8,251",OR,A building built as a supermarket
+supermarket_osm,Supermarket,shop,grocery,"1,137",OR,
+bakery_osm,Bakery,shop,bakery,"154,061",OR,A shop selling bread
+bakery_osm,Bakery,shop,pastry,"6,436",OR,A shop where sweet bakery products are produced and sold
+meat_seafood_osm,Meat / Seafood,shop,butcher,"60,510",OR,A shop selling meat or meat products.
+meat_seafood_osm,Meat / Seafood,shop,seafood,"11,651",OR,A shop selling fish/seafood.
+meat_seafood_osm,Meat / Seafood,shop,fishmonger,"1,029",OR,
+fruit_veg_osm,Fruit and Veg,shop,greengrocer,"33,791",OR,A shop which sells fruits and vegetables
+fruit_veg_osm,Fruit and Veg,shop,fruit,50,OR,
+fruit_veg_osm,Fruit and Veg,shop,fruits,22,OR,
+fruit_veg_osm,Fruit and Veg,shop,vegetables,10,OR,
+deli_osm,Deli,shop,deli,"12,735",OR,A delicatessen store
+deli_osm,Deli,shop,cheese,"2,415",OR,A shop mainly selling cheese.
+convenience_osm,Convenience,shop,convenience,"457,453",OR,A small local shop carrying a small subset of the items you would find in a supermarket.
+petrolstation_osm,Convenience,amenity,fuel,"398,945",OR,A retail facility for refueling cars
+newsagent_osm,Convenience,shop,kiosk,"72,391",OR,"A small shop on the pavement that sells magazines, tobacco, newspapers, sweets and stamps."
+newsagent_osm,Convenience,shop,newsagent,"19,245",OR,A shop selling newspapers and magazines.
+newsagent_osm,Convenience,shop,newsagency,10,OR,
+newsagent_osm,Convenience,amenity,newsagency,3,OR,
+food_other_osm,Other food,shop,food,"1,956",OR,A shop selling food
+food_health_osm,Health food,shop,health_food,816,OR,"A health food shop; selling wholefoods, vitamins, nutrition supplements and meat and dairy alternatives"
+market_osm,Market,amenity,marketplace,52267,OR,A marketplace where trade is regulated.
+market_osm,Market,amenity,market,206,OR,
+market_osm,Market,amenity,market_place,41,OR,
+market_osm,Market,amenity,public_market,22,OR,
+market_osm,Market,shop,marketplace,248,OR,
+market_osm,Market,shop,market,246,OR,
+community_centre_osm,Community centre,community_centre,,"3,392",OR,To describe the type of a community centre
+community_centre_osm,Community centre,amenity,community_centre,"86,020",OR,"A place mostly used for local events, festivities and group activities."
+community_centre_osm,Community centre,amenity,social_centre,"2,082",OR,"A centre of fraternities, sororities, professional societies, union halls and other nonprofit organization."
+place_of_worship_osm,Place of Worship,amenity,place_of_worship,"1,036,820",OR,A place where religious services are conducted
+place_of_worship_osm,Place of Worship,place_of_worship,,"2,357",OR,
+place_of_worship_osm,Place of Worship,building,church,"243,577",OR,A building that was built as a church.
+place_of_worship_osm,Place of Worship,building,chapel,"49,037",OR,Building built as chapel
+place_of_worship_osm,Place of Worship,building,mosque,"32,690",OR,A building that was built as a mosque.
+place_of_worship_osm,Place of Worship,building,temple,"7,382",OR,A building that was built as a temple.
+place_of_worship_osm,Place of Worship,building,shrine,"1,872",OR,A building that was built as a shrine.
+museum_osm,Museum,tourism,museum,"73,881",OR,A museum
+theatre_osm,Theatre,amenity,theatre,"31,943",OR,A place where live theatrical performances are held.
+cinema_osm,Cinema,amenity,cinema,"24,284",OR,"A movie theater, a place showing movies."
+art_gallery_osm,Art gallery,tourism,gallery,"5,503",OR,An area or building that displays a variety of visual art exhibitions.
+art_centre_osm,Art centre,amenity,arts_centre,"17,542",OR,An arts centre. A venue where a variety of arts are performed or conducted
+artwork_osm,Artwork,tourism,artwork,"97,466",OR,A public piece of art
+fountain_osm,Fountain,amenity,fountain,"100,217",OR,A fountain for cultural / decorational / recreational purposes.
+viewpoint_osm,Viewpoint,tourism,viewpoint,"139,617",OR,"A place worth visiting, often high, with a good view of surrounding countryside or notable buildings."
+picnic_site_osm,Picnic site,tourism,picnic_site,"114,350",OR,"A locality that is pleasant and suitable for outdoors eating, with a number of facilities to aid a picnic."
+pharmacy_osm,Pharmacy,amenity,pharmacy,"253,978",OR,A shop where a pharmacist sells medications
+pharmacy_osm,Pharmacy,amenity,chemist,15,OR,
+pharmacy_osm,Pharmacy,shop,pharmacy,53,OR,
+pharmacy_osm,Pharmacy,shop,chemist,"2,495",OR,"A shop selling articles of personal hygiene, cosmetics, and household cleaning products."
+restaurant_osm,restaurant,amenity,restaurant,"924,972",OR,"A restaurant sells full sit-down meals with servers, and may sell alcohol."
+cafe_osm,cafe,amenity,cafe,"356,890",OR,A generally informal place with sit-down facilities selling beverages and light meals and/or snacks.
+eatery_osm,eatery,cuisine,,"394,005",OR,For describing the type of food served at an eating place
+food_court_osm,food_court,amenity,food_court,"6,309",OR,A place with sit-down facilities shared by multiple self-service food vendors.
+fastfood_osm,Fast food,amenity,fast_food,"326,229",OR,A place concentrating on very fast counter-only service and take-away food.
+pub_osm,Pub,amenity,pub,"151,404",OR,A pub
+bar_osm,Bar,amenity,bar,"156,117",OR,"An establishment that sells alcoholic drinks to be consumed on the premises, characterised by a noisy and vibrant atmosphere. They usually do not sell food to be eaten as a meal. The music is usually loud and you often have to stand."
+nightclub_osm,Nightclub,amenity,nightclub,"18,994",OR,A place to dance and drink at night.
+gambling_osm,Gambling,amenity,casino,"5,327",OR,A gambling venue with at least one table game.
+gambling_osm,Gambling,amenity,gambling,"2,300",OR,"A place for gambling, not being a bookmaker, lottery shop, casino, or adult gaming centre."
+gambling_osm,Gambling,shop,bookmaker,"7,350",OR,A shop that takes bets on sporting and other events at agreed upon odds.
+gambling_osm,Gambling,gambling,,"1,678",OR,
+alcohol_osm,Alcohol outlet,shop,alcohol,"47,756",OR,A shop selling alcoholic drinks
+tobacco_osm,Tobacconist,shop,tobacco,"12,150",OR,"A shop selling tobacco, and possibly other convenience items"
+tobacco_osm,Tobacconist,shop,tobacconist,20,OR,
+postoffice_osm,Post office,amenity,post_office,"156,584",OR,A place where letters and parcels may be sent or collected.
+public_swimming_pool_osm,Public swimming pool,leisure,sports_centre,184?490,AND,A sports centre is a distinct facility where sports take place within an enclosed area.
+public_swimming_pool_osm,Public swimming pool,leisure,swimming_pool,"978,090",OR,A swimming pool (water area only)
+public_swimming_pool_osm,Public swimming pool,amenity,swimming_pool,"18,885",OR,"DISCOURAGED, use leisure=swimming_pool instead"
+public_swimming_pool_osm,Public swimming pool,landuse,swimming_pool,26,OR,
+public_swimming_pool_osm,Public swimming pool,sport,swimming_pool,24,OR,
+public_swimming_pool_osm,Public swimming pool,sport,swimming,"84,522",OR,A place where people do swimming
+public_swimming_pool_osm,Public swimming pool,water,swimming_pool,83,OR,
+public_swimming_pool_osm,Public swimming pool,swimming_pool,yes,726,OR,Shows whether a feature has a swimming pool or not
+public_swimming_pool_osm,Public swimming pool,access,private,,NOT,

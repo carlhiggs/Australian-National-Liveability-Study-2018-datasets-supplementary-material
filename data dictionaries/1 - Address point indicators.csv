@@ -1,0 +1,104 @@
+#,Variable,Description,Data type
+1,gnaf_pid,Unique identifier using PSMA Open G-NAF 2018 data,character varying(15)
+2,count_objectid,Count of co-located G-NAF points (only first unique location retained),integer
+3,point_x,Easting (metres; EPSG 7845),double precision
+4,point_y,Northing (metres; EPSG 7845),double precision
+5,study_region,City name,text
+6,mb_code_2016,Mesh Block (ASGS 2016) identifier,text
+7,mb_category_name_2016,Mesh Block category,text
+8,sa1_maincode_2016,Statistical Area 1 (SA1) maincode identifier,text
+9,sa2_name_2016,SA2 name,text
+10,sa3_name_2016,SA3 name,text
+11,sa4_name_2016,SA4 name,text
+12,gccsa_name_2016,Greater Capital City Statistical Area name,text
+13,state_name_2016,State name,text
+14,ssc_name_2016,Suburb name,text
+15,lga_name_2016,LGA name,text
+16,ucl_name_2016,Urban centre and locality name,text
+17,sos_name_2016,Section of state name ,text
+18,uli_city,"Urban Liveability Index, relative to locations within this city",double precision
+19,uli_national,"Urban Liveability Index, relative to locations across Australia's 21 largest cities",double precision
+20,li_community_culture_leisure,"Score for access to community, culture and leisure destinations (community centre and library within 1000m, and museum/art gallery and cinema/theater within 3200m) (/1)",double precision
+21,li_early_years,Score for access to child care (any meeting ACECQA recommendations) within 800 metres and childcare (outside school hours meeting recommendations) within 1600 metres (/1),double precision
+22,li_education,Score for access to primary and secondary public schools within 1600 metres (/1),double precision
+23,li_health_services,"Score for access to health services (GP, pharmacy, maternal, child and family health care, aged care facility and other community health care) within 1000 metres (/1)",double precision
+24,li_sport_rec,"Score for access to an area of open space with sport/recreation facilities within 1000 metres, and a public swimming pool within 1200 metres (/1)",double precision
+25,li_food,"Score for access to a supermarket and fresh fruit and vegetables within 1000 metres, and meat/seafood within 3200 metres (/1)",double precision
+26,li_convenience,"Score for access to convenience destinations (convenience store and petrol station within 1000 metres, and a newsagent within 3200 metres) (/1)",double precision
+27,li_pt_regular_400m,Within 400 m of public transport with an average weekday service frequency of 30 minutes or less between 7am and 7pm within 400 metres,double precision
+28,li_public_os_large_400m,Within 400 m of public open space larger than 1.5 Ha ({threshold} threshold),double precision
+29,li_street_connectivity_1600m,Street connectivity,double precision
+30,li_dwelling_density_1600m,Dwelling density,double precision
+31,li_sa1_30_40_housing_stress,Percentage of SA1 households with income in the bottom 40% of the income distribution spending more than 30% of household income on housing costs,double precision
+32,li_sa1_sa3_local_employment,Percentage of employed persons working in the community (SA3) in which they live,double precision
+33,walkability_city,"Walkability index, combining street connectivity, dwelling density and daily living destinations, relative to locations within this city",double precision
+34,walkability_national,"Walkability index, combining street connectivity, dwelling density and daily living destinations, relative to locations across Australia's 21 largest cities",double precision
+35,daily_living_access_1600m,"Score for access to daily living destinations within 1600 metres (supermarket, convenience and any public transport stop)",double precision
+36,social_infrastructure_mix,Social infrastructure mix score (/16),double precision
+37,walk_02,Within 1000 metres of an activity centre with a supermarket,integer
+38,walk_12,At least 15 dwellings per hectare in local walkable neighbourhood,integer
+39,walk_13,At least 30 dwellings per hectare in local walkable neighbourhood,integer
+40,walk_16,Distance to closest activity centre,integer
+41,walk_17,Pedshed ratio,double precision
+42,walk_21,Local living destination types present,double precision
+43,trans_01,Access to bus stop < 400 m OR < 600 m of a tram stop OR < 800 m of a train station ({threshold} threshold),integer
+44,trans_02,Access to bus stop < 400 m ({threshold} threshold),integer
+45,trans_03,"Within 400 m walk from a neighbourhood or town centre, or a bus stop, or in a 800 m walk from a railway station ({threshold} threshold)",integer
+46,trans_04,Within 400 metres of an existing or planned public transport stop ({threshold} threshold),integer
+47,trans_05,"Within 400 m of a bus stop every 30 min, or 800 m of a train station every 15 min ({threshold} threshold)",integer
+48,trans_06,Within 400 m of public transport stop with a regular scheduled weekday service ({threshold} threshold),integer
+49,trans_07,Within 400 m of public transport with an average weekday service frequency of 30 minutes or less between 7am and 7pm within 400 metres,integer
+50,trans_08,Within 400 m of public transport with an average weekday service frequency of 25 minutes or less between 7am and 7pm within 400 metres,integer
+51,trans_09,Within 400 m of public transport with an average weekday service frequency of 20 minutes or less between 7am and 7pm within 400 metres,integer
+52,os_public_01,Within 400 m of public open space ({threshold} threshold),integer
+53,os_public_02,Within 400 m of public open space larger than 1.5 Ha ({threshold} threshold),integer
+54,os_public_03,Within 400 m of public open space ({threshold} threshold),integer
+55,os_public_04,Within 300 m of any public open space ({threshold} threshold),integer
+56,os_public_05,Within 400 m of any local park of size 0.4 to 1 Ha ({threshold} threshold),integer
+57,os_public_06,Within 800 m of any neighbourhood park of size 1 to 5 Ha ({threshold} threshold),integer
+58,os_public_07,Within 2 km of any district park of size 5 to 20 Ha ({threshold} threshold),integer
+59,os_public_08,Within 400 m of a neighbourhood recreation park larger than 0.5 Ha ({threshold} threshold),integer
+60,os_public_09,Within 2.5 km of a district recreation park larger than 5 Ha ({threshold} threshold),integer
+61,os_public_10,Within 400 m of a park larger than 0.5 Ha ({threshold} threshold),integer
+62,os_public_11,Within 2 km of a park >2 Ha ({threshold} threshold),integer
+63,os_public_12,Distance to closest public open space with a public toilet within 100 metres,integer
+64,os_public_14,"Distance to closest public open space (OSM, 2018) within 3200 metres",integer
+65,os_public_15,"Distance to closest public open space <=0.4 Ha (OSM, 2018) within 3200 metres",integer
+66,os_public_16,"Distance to closest public open space >0.4 Ha (OSM, 2018) within 3200 metres",integer
+67,os_public_17,"Distance to closest public open space >0.5 Ha (OSM, 2018) within 3200 metres",integer
+68,os_public_18,"Distance to closest public open space >1.5 Ha (OSM, 2018) within 3200 metres",integer
+69,os_public_19,"Distance to closest public open space >2 Ha (OSM, 2018) within 3200 metres",integer
+70,os_public_20,"Distance to closest public open space >0.4 to <=1 Ha (OSM, 2018) within 3200 metres",integer
+71,os_public_21,"Distance to closest public open space >1 to <= 5 Ha (OSM, 2018) within 3200 metres",integer
+72,os_public_22,"Distance to closest public open space >5 Ha to <=20 Ha (OSM, 2018) within 3200 metres",integer
+73,os_public_23,"Distance to closest public open space >5 Ha (OSM, 2018) within 3200 metres",integer
+74,os_public_24,"Distance to closest public open space >20 Ha (OSM, 2018) within 3200 metres",integer
+75,os_public_25,"Distance to closest public open space with a sport facility (OSM, 2018) within 3200 metres",integer
+76,hous_02,Renting as a proportion of total,double precision
+77,hous_04,Employed persons aged 15 and over using active transport as primary mode of travel to work ,double precision
+78,hous_05,Employed persons aged 15 and over using public transport as primary mode to travel to work,double precision
+79,hous_06,Employed persons aged 15 and over using private vehicle/s as primary mode to travel to work,double precision
+80,food_12,Count of supermarkets within 1600 m (OSM or 2017 in-house),bigint
+81,food_13,Count of fruit and vegetable grocers within 1600 m (OSM),bigint
+82,food_14,"Count of other specialty food stores (bakeries, butchers, fishmongers and delicatessens) within 1600 m (OSM and/or 2017 in-house)",bigint
+83,food_15,Count of healthier food outlets (supermarkets and fruit and vegetable grocers) within 1600 m (OSM and/or 2017 in-house),bigint
+84,food_16,Count of fast food outlets within 1600 m (OSM or 2017 in-house),bigint
+85,food_17,Percentage of food outlets within 1600 m that provide healthier food options (ie. supermarkets and fruit and vegetable grocers; OSM and/or 2017 in-house),double precision
+86,food_18,Ratio of food outlets within 1600 m that provide healthier food options (ie. supermarkets and fruit and vegetable grocers) to fast food outlets; OSM and/or 2017 in-house),double precision
+87,food_19,"Percentage of food outlets within 1600 m that provide fresh food options  (ie. supermarkets, fruit and vegetable grocers, bakeries, butchers, fishmongers and delicatessens; OSM and/or 2017 in-house)",double precision
+88,food_20,"Ratio of food outlets within 1600 m that provide fresh food options (ie. supermarkets, fruit and vegetable grocers, bakeries, butchers, fishmongers and delicatessens) to fast food outlets (OSM and/or 2017 in-house)",double precision
+89,food_21,"No food outlets within 1600 m (only considering supermarkets, fruit and vegetable grocers, and fast food as per healthier food measure;  OSM and/or 2017 in-house)",integer
+90,food_22,"No food outlets within 1600 m (including specialty food outlets: bakeries, butchers, fish mongers and delicatessens;  OSM and/or 2017 in-house)",integer
+91,food_23_hard,Within 1km of a supermarket (OSM or 2017 in-house) ({threshold} threshold),integer
+92,food_24,"Distance to closest fresh food outlet (bakery, fruit and vegetables grocer, delicatessen, and fish, meat, poultry outlet; OSM, 2018)",integer
+93,food_25,"Distance to closest healthy food outlet (supermarket or fruit and vegetables grocer; OSM, 2018)",integer
+94,food_26,"Distance to closest fast food outlet (HLC, 2017; OSM, 2018)",integer
+95,food_27,"Distance to closest dining establishment (cafe, restaurant, pub; OSM, 2018)",integer
+96,community_01,"Distance to closest community centre (HLC, 2016; OSM, 2018)",integer
+97,community_02,"Distance to closest cultural institution (museum, theatre, cinema, art gallery or art centre; OSM, 2018)",integer
+98,alc_01,Number of on-licenses within 400 m,bigint
+99,alc_02,Number of off-licenses within 800 m,bigint
+100,alc_03,"Distance to closest bar, pub or nightclub (OSM, 2018)",integer
+101,childcare_01,Within 1600 m of a children's day care which meets guidelines,integer
+102,childcare_02,Within 1600 m of a children's out of school hours care which meets guidelines,integer
+103,health_01,Within 1600 m of a GP,integer

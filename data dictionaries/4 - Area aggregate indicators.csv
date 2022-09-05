@@ -1,0 +1,221 @@
+Mesh Block,Other scales,Variable,Description,Data type,Aggregation scale
+1,,mb_code_2016,City name,text,Mesh Block
+2,1,study_region,Mesh Block (ASGS 2016) identifier,text,All scales
+3,,mb_category_name_2016,Mesh Block category,text,Mesh Block
+4,1,sa1_maincode_2016,Statistical Area 1 (SA1) maincode identifier,text,"Mesh Block, SA1"
+5,1,sa2_name_2016,SA2 name,text,"Mesh Block, SA2"
+6,1,sa3_name_2016,SA3 name,text,"Mesh Block, SA3"
+7,1,sa4_name_2016,SA4 name,text,"Mesh Block, SA4"
+8,,gccsa_name_2016,Greater Capital City Statistical Area name,text,Mesh Block
+9,,state_name_2016,State name,text,Mesh Block
+10,1,ssc_name_2016,Suburb name,text,"Mesh Block, SSC"
+11,1,lga_name_2016,LGA name,text,"Mesh Block, LGA"
+12,,ucl_name_2016,Urban centre and locality name,text,Mesh Block
+13,,sos_name_2016,Section of state name,text,Mesh Block
+14,2,dwelling,Dwelling count (Mesh Block dwelling count > 0 was an inclusion criteria for sampling),int,All scales
+15,3,person,Person count (persons usually resident),int,All scales
+16,4,sample_count,address points in area,int,All scales
+17,5,sample_count_per_ha,address point density per hectare,float,All scales
+18,6,area_ha,Area in hectares,float,All scales
+19,7,dwellings_per_ha,gross dwelling density,float,All scales
+,8,net_dwelling,net dwelling density (ie. for areas classified as residential at Mesh Block level),float,All scales larger than Mesh Block
+,9,net_area,net area (ie. for areas classified as residential at Mesh Block level),float,All scales larger than Mesh Block
+,10,net_density,net density (ie. for areas classified as residential at Mesh Block level),float,All scales larger than Mesh Block
+20,11,uli_city,"Average Urban Liveability Index, relative to locations within this city",float,All scales
+21,12,uli_national,"Average Urban Liveability Index, relative to locations across Australia's 21 largest cities",float,All scales
+22,13,li_community_culture_leisure,"Average score for access to community, culture and leisure destinations (community centre and library within 1000m, and museum/art gallery and cinema/theater within 3200m) (/1)",float,All scales
+23,14,li_early_years,Average score for access to child care (any meeting ACECQA recommendations) within 800 metres and childcare (outside school hours meeting recommendations) within 1600 metres (/1),float,All scales
+24,15,li_education,Average score for access to primary and secondary public schools within 1600 metres (/1),float,All scales
+25,16,li_health_services,"Average score for access to health services (GP, pharmacy, maternal, child and family health care, aged care facility and other community health care) within 1000 metres (/1)",float,All scales
+26,17,li_sport_rec,"Average score for access to an area of open space with sport/recreation facilities within 1000 metres, and a public swimming pool within 1200 metres (/1)",float,All scales
+27,18,li_food,"Average score for access to a supermarket and fresh fruit and vegetables within 1000 metres, and meat/seafood within 3200 metres (/1)",float,All scales
+28,19,li_convenience,"Average score for access to convenience destinations (convenience store and petrol station within 1000 metres, and a newsagent within 3200 metres) (/1)",float,All scales
+29,20,li_pt_regular_400m,Percentage of dwellings within 400m of public transport with an average weekday service frequency of 30 minutes or less between 7am and 7pm,float,All scales
+30,21,li_public_os_large_400m,Percentage of dwellings < 400 m of public open space > 1.5 ha,float,All scales
+31,22,li_street_connectivity_1600m,Average local street connectivity per square kilometre,float,All scales
+32,23,li_dwelling_density_1600m,Average local dwelling density per hectare (Ha) ,float,All scales
+33,24,li_sa1_30_40_housing_stress,Percentage of SA1 households with income in the bottom 40% of the income distribution spending more than 30% of household income on housing costs,float,All scales
+34,25,li_sa1_sa3_local_employment,Percentage of employed persons who live and work in the same community,float,All scales
+35,26,walkability_city,"Average walkability index, combining street connectivity, dwelling density and daily living destinations, relative to locations within this city",float,All scales
+36,27,walkability_national,"Average walkability index, combining street connectivity, dwelling density and daily living destinations, relative to locations across Australia's 21 largest cities",float,All scales
+37,28,daily_living_access_1600m,"Average number of daily living types present, measured as a score of 0-3, with 1 point for each category of convenience store/petrol station/newsagent, PT stop, supermarket within 1600m network distance",float,All scales
+38,29,social_infrastructure_mix,Average social infrastructure mix score (/16),float,All scales
+39,30,walk_02,Percentage of dwellings <1 km walking distance of an activity centre with a supermarket,float,All scales
+40,31,walk_02_policy,At least 80% of dwellings are within 1 km walking distance of an activity centre with a supermarket,boolean,All scales
+,32,walk_03_policy,Area has at least 15 dwellings per net developable hectare,boolean,All scales larger than Mesh Block
+,33,walk_05_policy,Area has at least 26 dwellings per net developable hectare,boolean,All scales larger than Mesh Block
+41,34,walk_12,Percentage of dwellings with local dwelling density of 15 dwellings per hectare or greater,float,All scales
+42,35,walk_12_policy,15 dwellings or more per hectare,boolean,All scales
+43,36,walk_13,Percentage of dwellings with local dwelling density of 30 dwellings per hectare or greater,float,All scales
+44,37,walk_13_policy,Local dwelling density of 30 dwellings or more per hectare,boolean,All scales
+45,38,walk_14_policy,Gross dwelling density of 15 dwellings or more per hectare,boolean,All scales
+46,39,walk_15_policy,Gross dwelling density of 30 dwellings or more per hectare,boolean,All scales
+45,40,walk_16,Average distance to closest activity centre (proxy measure: supermarket within a commercial zoned Mesh Block),float,All scales
+46,41,walk_17,"Average pedshed ratio, defined as the area of the 400 m pedestrian network from each residential dwelling buffered by 50m divided by the radial 400 m ""crow flies"" area (i.e. 50.2 Ha.)",float,All scales
+47,42,walk_21,Average number of local living types present (see paper of Mavoa et al),float,All scales
+48,43,trans_01,"Percentage of dwellings with access to bus stop within 400 m, a tram stop within 600m, or a train station within 800 m",float,All scales
+49,44,trans_01_policy,"95% or more of dwellings with access to bus stop within 400 m, a tram stop within 600m, or a train station within 800 m",boolean,All scales
+50,45,trans_02,Percentage of dwellings with access to bus stop < 400 m,float,All scales
+51,46,trans_02_policy,95% or more of dwellings with access to bus stop < 400 m,boolean,All scales
+52,47,trans_03,"Percentage of dwellings < 400m walk from a neighbourhood or town centre, or a bus stop, or in a 800m walk from a railway station.",float,All scales
+53,48,trans_03_policy,"60% or more of dwellings < 400m walk from a neighbourhood or town centre, or a bus stop, or in a 800m walk from a railway station.",boolean,All scales
+54,49,trans_04,Percentage of dwellings < 400 metres of an existing or planned public transport stop,float,All scales
+55,50,trans_04_policy,100% of dwellings < 400 metres of an existing or planned public transport stop,boolean,All scales
+56,51,trans_05,Percentage of dwellings < 400 m of a bus stop every 30 min OR < 800 m of a train station every 15 min,float,All scales
+57,52,trans_05_policy,100% of dwellings < 400 m of a bus stop every 30 min OR < 800 m of a train station every 15 min,boolean,All scales
+58,53,trans_06,Percentage of dwellings < 400 m of a public transport stop with a scheduled service at least every 30 minutes between 7am and 7pm on a normal weekday (= a combined measure of proximity and frequency),float,All scales
+59,54,trans_07,Percentage of dwellings within 400m of public transport with an average weekday service frequency of 30 minutes or less between 7am and 7pm,float,All scales
+60,55,trans_08,Percentage of dwellings within 400m of public transport with an average weekday service frequency of 25 minutes or less between 7am and 7pm,float,All scales
+61,56,trans_09,Percentage of dwellings within 400m of public transport with an average weekday service frequency of 20 minutes or less between 7am and 7pm,float,All scales
+62,57,os_public_01,Percentage of dwellings within 400 m or less distance of public open space,float,All scales
+63,58,os_public_02,Percentage of dwellings < 400 m of public open space > 1.5 ha,float,All scales
+64,59,os_public_03,Percentage of dwellings within 400 m or less distance of public open space,float,All scales
+65,60,os_public_03_policy,95% or more of dwellings within 400 m or less distance of public open space,boolean,All scales
+66,61,os_public_04,Percentage of dwellings within 300 m or less distance of any public open space,float,All scales
+67,62,os_public_04_policy,100% of dwellings within 300 m or less distance of any public open space,boolean,All scales
+68,63,os_public_05,Percentage of dwellings within 400 m or less distance of any local park (> 0.4 to <=1 ha),float,All scales
+69,64,os_public_05_policy,50% or more of dwellings within 400 m or less distance of any local park (> 0.4 to <=1 ha),boolean,All scales
+70,65,os_public_06,Percentage of dwellings within 800 m or less distance of any neighbourhood park (>1 ha to <= 5ha),float,All scales
+71,66,os_public_06_policy,50% or more of dwellings within 800 m or less distance of any neighbourhood park (>1 ha to <= 5ha),boolean,All scales
+72,67,os_public_07,Percentage of dwellings within 2 km or less of any district park (>5 ha to <=20 ha),float,All scales
+73,68,os_public_07_policy,50% or more of dwellings within 2 km or less of any district park (>5 ha to <=20 ha),boolean,All scales
+74,69,os_public_08,Percentage of dwellings within 400 m or less distance of a neighbourhood recreation park (>0.5 ha),float,All scales
+75,70,os_public_08_policy,90% or more of dwellings within 400 m or less distance of a neighbourhood recreation park (>0.5 ha),boolean,All scales
+76,71,os_public_09,Percentage of dwellings within 2.5 km or less distance of a district recreation park (>5 ha),float,All scales
+77,72,os_public_09_policy,90% or more of dwellings within 2.5 km or less distance of a district recreation park (>5 ha),boolean,All scales
+78,73,os_public_10,Percentage of dwellings within 400 m or less distance of a park larger than 0.5 Ha,float,All scales
+79,74,os_public_10_policy,50% or more of dwellings within 400 m or less distance of a park larger than 0.5 Ha,boolean,All scales
+80,75,os_public_11,Percentage of dwellings within 2 km or less distance of a park larger than 2 Ha,float,All scales
+81,76,os_public_11_policy,50% or more of dwellings within 2 km or less distance of a park larger than 2 Ha,boolean,All scales
+82,77,os_public_12,Average distance to closest POS with a public toilet within 100 metres,float,All scales
+83,78,os_public_14,"Average distance to closest public open space (OSM, 2018)",float,All scales
+84,79,os_public_15,"Average distance to closest public open space <=0.4 Ha (OSM, 2018) within 3200 metres",float,All scales
+85,80,os_public_16,"Average distance to closest public open space >0.4 Ha (OSM, 2018) within 3200 metres",float,All scales
+86,81,os_public_17,"Average distance to closest public open space >0.5 Ha (OSM, 2018) within 3200 metres",float,All scales
+87,82,os_public_18,"Average distance to closest public open space >1.5 Ha (OSM, 2018) within 3200 metres",float,All scales
+88,83,os_public_19,"Average distance to closest public open space >2 Ha (OSM, 2018) within 3200 metres",float,All scales
+89,84,os_public_20,"Average distance to closest public open space >0.4 to <=1 Ha (OSM, 2018) within 3200 metres",float,All scales
+90,85,os_public_21,"Average distance to closest public open space >1 to <= 5 Ha (OSM, 2018) within 3200 metres",float,All scales
+91,86,os_public_22,"Average distance to closest public open space >5 Ha to <=20 Ha (OSM, 2018) within 3200 metres",float,All scales
+92,87,os_public_23,"Average distance to closest public open space >5 Ha (OSM, 2018) within 3200 metres",float,All scales
+93,88,os_public_24,"Average distance to closest public open space >20 Ha (OSM, 2018) within 3200 metres",float,All scales
+94,89,os_public_25,"Average distance to closest public open space with a sport facility (OSM, 2018) within 3200 metres",float,All scales
+95,90,hous_02,Percentage of dwellings renting as a proportion of total,float,All scales
+96,91,hous_04,Percentage of employed persons aged 15 and over using active transport to travel to work,float,All scales
+97,92,hous_05,Percentage of employed persons aged 15 and over using public transport to travel to work,float,All scales
+98,93,hous_06,Percentage of employed persons aged 15 and over using private vehicle/s to travel to work,float,All scales
+99,94,food_12,Average count of supermarkets within 1.6km,float,All scales
+100,95,food_13,Average count of fruit and vegetable grocers within 1.6km,float,All scales
+101,96,food_14,"Average count of specialty food stores (bakeries, butchers, fishmongers and delicatessens) within 1.6km",float,All scales
+102,97,food_15,"Average count of healther food outlets (supermarkets and fruit and vegetable grocers) within 1.6 km (OSM, or 2017 in-house)",float,All scales
+103,98,food_16,"Average count of fast food outlets within 1.6km (OSM, or 2017 in-house)",float,All scales
+104,99,food_17,Average percentage of food outlets within 1.6km that provide healthier food options (ie. supermarkets and fruit and vegetable grocers; OSM and/or 2017 in-house),float,All scales
+105,100,food_18,Average ratio of food outlets within 1.6km that provide healthier food options (ie. supermarkets and fruit and vegetable grocers) to fast food outlets; OSM and/or 2017 in-house),float,All scales
+106,101,food_19,"Average percentage of food outlets within 1.6km that provide fresh food options  (ie. supermarkets, fruit and vegetable grocers, bakeries, butchers, fishmongers and delicatessens; OSM and/or 2017 in-house)",float,All scales
+107,102,food_20,"Average ratio of food outlets within 1.6km that provide fresh food options (ie. supermarkets, fruit and vegetable grocers, bakeries, butchers, fishmongers and delicatessens) to fast food outlets (OSM and/or 2017 in-house)",float,All scales
+108,103,food_21,Percentage of dwellings with no availability of healthy or unhealthy food within 1.6km,float,All scales
+109,104,food_22,Percentage of dwellings with no food outlets within 1.6km,float,All scales
+110,105,food_23_hard,Percentage of dwellings within 1km of a supermarket,float,All scales
+111,106,food_24,"Average distance to closest fresh food outlet (bakery, fruit and vegetables grocer, delicatessen, and fish, meat, poultry outlet; OSM, 2018)",float,All scales
+112,107,food_25,"Average distance to closest healthy food outlet (supermarket or fruit and vegetables grocer; OSM, 2018)",float,All scales
+113,108,food_26,"Average distance to closest fast food outlet (HLC, 2017; OSM, 2018)",float,All scales
+114,109,food_27,"Average distance to closest dining establishment (cafe, restaurant, pub; OSM, 2018)",float,All scales
+115,110,community_01,"Average distance to closest community centre (HLC, 2016; OSM, 2018)",float,All scales
+116,111,community_02,"Average distance to closest cultural institution (museum, theatre, cinema, art gallery or art centre; OSM, 2018)",float,All scales
+117,112,alc_01,Average number of on-licenses within 400 m,float,All scales
+118,113,alc_02,Average number of off-licenses within 800 m,float,All scales
+119,114,alc_03,"Average distance to closest bar, pub or nightclub (OSM, 2018)",float,All scales
+120,115,childcare_01,Percentage of dwellings within 1600m of a children's day care which meets guidelines,float,All scales
+121,116,childcare_02,Percentage of dwellings within 1600m of a children's day care (OSHC) which meets guidelines,float,All scales
+122,117,health_01,Percentage of dwellings within 1600m of a GP,float,All scales
+123,118,dist_m_activity_centres,Average distance to closest activity centre,float,All scales
+124,119,dist_m_alcohol_offlicence,"Average distance to closest offlicence alcohol outlet (HLC, 2017-19)",float,All scales
+125,120,dist_m_alcohol_onlicence,"Average distance to closest onlicence alcohol outlet (HLC, 2017-19)",float,All scales
+126,121,dist_m_alcohol_osm,"Average distance to closest alcohol outlet (OSM, October 2018)",float,All scales
+127,122,dist_m_all_schools,"Average distance to closest schools (all; ACARA, 2018)",float,All scales
+128,123,dist_m_art_centre_osm,"Average distance to closest art centre (OSM, October 2018)",float,All scales
+129,124,dist_m_art_gallery_osm,"Average distance to closest art gallery (OSM, October 2018)",float,All scales
+130,125,dist_m_bakery_osm,"Average distance to closest bakery (OSM, October 2018)",float,All scales
+131,126,dist_m_bar_osm,"Average distance to closest bar (OSM, October 2018)",float,All scales
+132,127,dist_m_cafe_osm,"Average distance to closest cafe (OSM, October 2018)",float,All scales
+133,128,dist_m_childcare_all,"Average distance to closest child care (all, ACEQUA 2018)",float,All scales
+134,129,dist_m_childcare_all_exc,"Average distance to closest child care (exceeding requirements, ACEQUA 2018)",float,All scales
+135,130,dist_m_childcare_all_meet,"Average distance to closest child care (meeting requirements, ACEQUA 2018)",float,All scales
+136,131,dist_m_childcare_oshc,"Average distance to closest child care (outside school hours, ACEQUA 2018)",float,All scales
+137,132,dist_m_childcare_oshc_exc,"Average distance to closest child care (outside school hours exceeding requirements, ACEQUA 2018)",float,All scales
+138,133,dist_m_childcare_oshc_meet,"Average distance to closest child care (outside school hours meeting requirements, ACEQUA 2018)",float,All scales
+139,134,dist_m_childcare_preschool,"Average distance to closest child care (pre-school, ACEQUA 2018)",float,All scales
+140,135,dist_m_childcare_preschool_exc,"Average distance to closest child care (pre-school exceeding requirements, ACEQUA 2018)",float,All scales
+141,136,dist_m_childcare_preschool_meet,"Average distance to closest child care (pre-school meeting requirements, ACEQUA 2018)",float,All scales
+142,137,dist_m_cinema_osm,"Average distance to closest cinema (OSM, October 2018)",float,All scales
+143,138,dist_m_community_centre_osm,"Average distance to closest community centre (OSM, October 2018)",float,All scales
+144,139,dist_m_convenience_osm,"Average distance to closest convenience store (OSM, October 2018)",float,All scales
+145,140,dist_m_deli_osm,"Average distance to closest deli (OSM, October 2018)",float,All scales
+146,141,dist_m_disability_employment,Average distance to closest disabilty employment service ,float,All scales
+147,142,dist_m_fast_food,Average distance to closest fast food (in house 2017),float,All scales
+148,143,dist_m_fastfood_osm,"Average distance to closest fast food (OSM, October 2018)",float,All scales
+149,144,dist_m_food_court_osm,"Average distance to closest food court (OSM, October 2018)",float,All scales
+150,145,dist_m_food_health_osm,"Average distance to closest health food (OSM, October 2018)",float,All scales
+151,146,dist_m_food_other_osm,"Average distance to closest other food (OSM, October 2018)",float,All scales
+152,147,dist_m_fruit_veg_osm,"Average distance to closest fruit and veg (OSM, October 2018)",float,All scales
+153,148,dist_m_gtfs_2018_stop_30_mins_final,Average distance to closest transport stop with frequent daytime service,float,All scales
+154,149,dist_m_gtfs_2018_stops,Average distance to closest public transport stop,float,All scales
+155,150,dist_m_gtfs_2018_stops_bus,Average distance to closest bus stop,float,All scales
+156,151,dist_m_gtfs_2018_stops_ferry,Average distance to closest ferry terminal,float,All scales
+157,152,dist_m_gtfs_2018_stops_train,Average distance to closest train station,float,All scales
+158,153,dist_m_gtfs_2018_stops_tram,Average distance to closest tram stop,float,All scales
+159,154,dist_m_gtfs_20191008_20191205_bus_0015,Average distance to closest bus stop with usual daytime weekday service frequency of 15 mins or better,float,All scales
+160,155,dist_m_gtfs_20191008_20191205_bus_0030,Average distance to closest bus stop with usual daytime weekday service frequency of 30 mins or better,float,All scales
+161,156,dist_m_gtfs_20191008_20191205_bus_0045,Average distance to closest bus stop with usual daytime weekday service frequency of 45 mins or better,float,All scales
+162,157,dist_m_gtfs_20191008_20191205_bus_any,Average distance to closest bus stop,float,All scales
+163,158,dist_m_gtfs_20191008_20191205_ferry_0015,Average distance to closest ferry stop with usual daytime weekday service frequency of 15 mins or better,float,All scales
+164,159,dist_m_gtfs_20191008_20191205_ferry_0030,Average distance to closest ferry stop with usual daytime weekday service frequency of 30 mins or better,float,All scales
+165,160,dist_m_gtfs_20191008_20191205_ferry_0045,Average distance to closest ferry stop with usual daytime weekday service frequency of 45 mins or better,float,All scales
+166,161,dist_m_gtfs_20191008_20191205_ferry_any,Average distance to closest ferry stop,float,All scales
+167,162,dist_m_gtfs_20191008_20191205_revised_all,Average distance to closest public transport stop,float,All scales
+168,163,dist_m_gtfs_20191008_20191205_revised_frequent30,Average distance to closest public transport stop with an average weekday service frequency of 30 minutes or less,float,All scales
+169,164,dist_m_gtfs_20191008_20191205_train_0015,Average distance to closest train stop with usual daytime weekday service frequency of 15 mins or better,float,All scales
+170,165,dist_m_gtfs_20191008_20191205_train_0030,Average distance to closest train stop with usual daytime weekday service frequency of 30 mins or better,float,All scales
+171,166,dist_m_gtfs_20191008_20191205_train_0045,Average distance to closest train stop with usual daytime weekday service frequency of 45 mins or better,float,All scales
+172,167,dist_m_gtfs_20191008_20191205_train_any,Average distance to closest train stop,float,All scales
+173,168,dist_m_gtfs_20191008_20191205_tram_0015,Average distance to closest tram stop with usual daytime weekday service frequency of 15 mins or better,float,All scales
+174,169,dist_m_gtfs_20191008_20191205_tram_0030,Average distance to closest tram stop with usual daytime weekday service frequency of 30 mins or better,float,All scales
+175,170,dist_m_gtfs_20191008_20191205_tram_0045,Average distance to closest tram stop with usual daytime weekday service frequency of 45 mins or better,float,All scales
+176,171,dist_m_gtfs_20191008_20191205_tram_any,Average distance to closest tram stop,float,All scales
+177,172,dist_m_hlc_2016_community_centres,Average distance to closest community centre (2016),float,All scales
+178,173,dist_m_libraries,"Average distance to closest libraries (multiple sources, in-house, 2015-18)",float,All scales
+179,174,dist_m_market_osm,"Average distance to closest market (OSM, October 2018)",float,All scales
+180,175,dist_m_meat_seafood_osm,"Average distance to closest meat / seafood (OSM, October 2018)",float,All scales
+181,176,dist_m_museum_osm,"Average distance to closest museum (OSM, October 2018)",float,All scales
+182,177,dist_m_newsagent_osm,"Average distance to closest newsagent (OSM, October 2018)",float,All scales
+183,178,dist_m_nhsd_2017_aged_care_residential,Average distance to closest aged care residential service,float,All scales
+184,179,dist_m_nhsd_2017_dentist,Average distance to closest dentist (NHSD 2017),float,All scales
+185,180,dist_m_nhsd_2017_gp,Average distance to closest general practice/GP/doctor (NHSD 2017),float,All scales
+186,181,dist_m_nhsd_2017_hospital,Average distance to closest hospital (NHSD 2017),float,All scales
+187,182,dist_m_nhsd_2017_mc_family_health,"Average distance to closest maternal, child and family health (NHSD 2017)",float,All scales
+188,183,dist_m_nhsd_2017_other_community_health_care,Average distance to closest 'other community health care' destination (not pharmacy or maternal and child health),float,All scales
+189,184,dist_m_nhsd_2017_pharmacy,Average distance to closest pharmacy (NHSD 2017),float,All scales
+190,185,dist_m_P_12_Schools,"Average distance to closest schools (K - 12; ACARA, 2018)",float,All scales
+191,186,dist_m_P_12_Schools_catholic,"Average distance to closest schools (K - 12, Catholic; ACARA, 2018)",float,All scales
+192,187,dist_m_P_12_Schools_gov,"Average distance to closest schools (K - 12, Government; ACARA, 2018)",float,All scales
+193,188,dist_m_P_12_Schools_indep,"Average distance to closest schools (K - 12, Independent; ACARA, 2018)",float,All scales
+194,189,dist_m_petrolstation_osm,"Average distance to closest petrol station (OSM, October 2018)",float,All scales
+195,190,dist_m_pharmacy_osm,"Average distance to closest pharmacy (OSM, October 2018)",float,All scales
+196,191,dist_m_place_of_worship_osm,"Average distance to closest place of worship (OSM, October 2018)",float,All scales
+197,192,dist_m_playgrounds,Average distance to closest playground (in house 2018),float,All scales
+198,193,dist_m_postoffice_osm,"Average distance to post office (OSM, October 2018)",float,All scales
+199,194,dist_m_primary_schools,"Average distance to closest schools (primary; ACARA, 2018)",float,All scales
+200,195,dist_m_primary_schools_catholic,"Average distance to closest schools (primary, Catholic; ACARA, 2018)",float,All scales
+201,196,dist_m_primary_schools_gov,"Average distance to closest schools (primary, Government; ACARA, 2018)",float,All scales
+202,197,dist_m_primary_schools_indep,"Average distance to closest schools (primary, Independent; ACARA, 2018)",float,All scales
+203,198,dist_m_pub_osm,"Average distance to closest pub (OSM, October 2018)",float,All scales
+204,199,dist_m_public_swimming_pool_osm,"Average distance to closest public swimming pool (OSM, October 2018)",float,All scales
+205,200,dist_m_restaurant_osm,"Average distance to closest restaurant (OSM, October 2018)",float,All scales
+206,201,dist_m_secondary_schools,"Average distance to closest schools (secondary; ACARA, 2018)",float,All scales
+207,202,dist_m_secondary_schools_catholic,"Average distance to closest schools (secondary, Catholic; ACARA, 2018)",float,All scales
+208,203,dist_m_secondary_schools_gov,"Average distance to closest schools (secondary, Government; ACARA, 2018)",float,All scales
+209,204,dist_m_secondary_schools_indep,"Average distance to closest schools (secondary, Independent; ACARA, 2018)",float,All scales
+210,205,dist_m_special_schools,"Average distance to closest schools (special; ACARA, 2018)",float,All scales
+211,206,dist_m_supermarket,Average distance to closest supermarket (in house 2017),float,All scales
+212,207,dist_m_supermarket_osm,"Average distance to closest supermarket (OSM, October 2018)",float,All scales
+213,208,dist_m_theatre_osm,"Average distance to closest theatre (OSM, October 2018)",float,All scales
