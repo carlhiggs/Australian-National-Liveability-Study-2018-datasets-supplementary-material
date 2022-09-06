@@ -5,8 +5,8 @@ We operationalised  the Victorian Planning Authority definition of public open s
  
 The following provides a plain language description of stages of processing along with snippets of code and lists of values used, which in the actual project were defined in a configuration file stored external to code.  Collectively, the code and the parameters in the project configuration are used to define a set of spatial features termed 'Areas of Open Space', and identify a subset of AOS which the available information suggests may be considered 'public'.  When we ran the code, the parameters were drawn to complete the queries which used; those completed queries are used below to describe the creation of the OpenStreetMap-derived datasets of areas of open space and public open space. 
  
-In addition to the VPA definition of public open space, we identified key-value pairs used for classification of open space according to tagged characteristics using OpenStreetMap TagInfo, as well as tags listed on the historic ‘Green space access ITO map’ OpenStreetMap Wiki page 54 and following the Australian Tagging Guidelines 53. 
- 
+In addition to the VPA definition of public open space, we identified key-value pairs used fo classification of open space according to tagged characteristics using OpenStreetMap TagInfo, as well as tags listed on the historic [Green space access ITO map](https://wiki.openstreetmap.org/wiki/Green_space_access_ITO_map)’ OpenStreetMap Wiki page and following the [Australian Tagging Guidelines](https://wiki.openstreetmap.org/wiki/Australian_Tagging_Guidelines). 
+  
 1. First we identify areas that are clearly not open space (NOS) drawing on exclusion criteria based on key-value pair tags from OpenStreetMap (OSM) 
 ```sql 
 -- Create a 'Not Open Space' table 
@@ -543,4 +543,4 @@ SELECT DISTINCT ON (pos.aos_id) pos.*
 ```
  
  
- [^1]: Victorian Planning Authority. Metropolitan Open Space Network: Provision and Distribution.  (2017). <https://vpa.vic.gov.au/wp-content/uploads/2018/02/Open-Space-Network-Provision-and-Distribution-Reduced-Size.pdf>.
+[^1]: Victorian Planning Authority. Metropolitan Open Space Network: Provision and Distribution.  (2017). <https://vpa.vic.gov.au/wp-content/uploads/2018/02/Open-Space-Network-Provision-and-Distribution-Reduced-Size.pdf>.
