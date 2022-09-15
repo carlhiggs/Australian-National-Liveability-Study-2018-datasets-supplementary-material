@@ -568,7 +568,7 @@ BEGIN
   ELSIF (-5*(distance-threshold)/(threshold::float) < -100) 
 THEN RETURN 0;
   ELSE 
-RETURN 1 – 1/(1+exp(-5*(distance-threshold)/(threshold::float)));
+RETURN 1 - 1/(1+exp(-5*(distance-threshold)/(threshold::float)));
   END IF;
 END;
 $$
