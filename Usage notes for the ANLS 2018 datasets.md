@@ -547,7 +547,7 @@ FROM unnest(integers) integers
 $$ language sql;
 ```
 
-### A binary or ‘hard’ threshold indicator (e.g. of access given distance to a particular destination and a threshold for evaluating this)
+### A binary or hard threshold indicator (e.g. of access given distance to a particular destination and a threshold for evaluating this)
 ```sql
 CREATE OR REPLACE FUNCTION threshold_hard(distance int, threshold int, out int) 
 RETURNS NULL ON NULL INPUT
