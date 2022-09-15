@@ -187,7 +187,7 @@ COMMENT ON COLUMN li_2018_address_indicators.li_sport_rec IS $$Score for access 
 COMMENT ON COLUMN li_2018_address_indicators.li_food IS $$Score for access to a supermarket and fresh fruit and vegetables within 1000 metres, and meat/seafood within 3200 metres (/1)$$;
 COMMENT ON COLUMN li_2018_address_indicators.li_convenience IS $$Score for access to convenience destinations (convenience store and petrol station within 1000 metres, and a newsagent within 3200 metres) (/1)$$;
 COMMENT ON COLUMN li_2018_address_indicators.li_pt_regular_400m IS $$Within 400 m of public transport with an average weekday service frequency of 30 minutes or less between 7am and 7pm within 400 metres$$;
-COMMENT ON COLUMN li_2018_address_indicators.li_public_os_large_400m IS $$Within 400 m of public open space larger than 1.5 Ha ({threshold} threshold)$$;
+COMMENT ON COLUMN li_2018_address_indicators.li_public_os_large_400m IS $$Within 400 m of public open space larger than 1.5 Ha$$;
 COMMENT ON COLUMN li_2018_address_indicators.li_street_connectivity_1600m IS $$Street connectivity$$;
 COMMENT ON COLUMN li_2018_address_indicators.li_dwelling_density_1600m IS $$Dwelling density$$;
 COMMENT ON COLUMN li_2018_address_indicators.li_sa1_30_40_housing_stress IS $$Percentage of SA1 households with income in the bottom 40% of the income distribution spending more than 30% of household income on housing costs$$;
@@ -202,26 +202,26 @@ COMMENT ON COLUMN li_2018_address_indicators.walk_13 IS $$At least 30 dwellings 
 COMMENT ON COLUMN li_2018_address_indicators.walk_16 IS $$Distance to closest activity centre$$;
 COMMENT ON COLUMN li_2018_address_indicators.walk_17 IS $$Pedshed ratio$$;
 COMMENT ON COLUMN li_2018_address_indicators.walk_21 IS $$Local living destination types present$$;
-COMMENT ON COLUMN li_2018_address_indicators.trans_01 IS $$Access to bus stop < 400 m OR < 600 m of a tram stop OR < 800 m of a train station ({threshold} threshold)$$;
-COMMENT ON COLUMN li_2018_address_indicators.trans_02 IS $$Access to bus stop < 400 m ({threshold} threshold)$$;
-COMMENT ON COLUMN li_2018_address_indicators.trans_03 IS $$Within 400 m walk from a neighbourhood or town centre, or a bus stop, or in a 800 m walk from a railway station ({threshold} threshold)$$;
-COMMENT ON COLUMN li_2018_address_indicators.trans_04 IS $$Within 400 metres of an existing or planned public transport stop ({threshold} threshold)$$;
-COMMENT ON COLUMN li_2018_address_indicators.trans_05 IS $$Within 400 m of a bus stop every 30 min, or 800 m of a train station every 15 min ({threshold} threshold)$$;
-COMMENT ON COLUMN li_2018_address_indicators.trans_06 IS $$Within 400 m of public transport stop with a regular scheduled weekday service ({threshold} threshold)$$;
+COMMENT ON COLUMN li_2018_address_indicators.trans_01 IS $$Access to bus stop < 400 m OR < 600 m of a tram stop OR < 800 m of a train station$$;
+COMMENT ON COLUMN li_2018_address_indicators.trans_02 IS $$Access to bus stop < 400 m$$;
+COMMENT ON COLUMN li_2018_address_indicators.trans_03 IS $$Within 400 m walk from a neighbourhood or town centre, or a bus stop, or in a 800 m walk from a railway station$$;
+COMMENT ON COLUMN li_2018_address_indicators.trans_04 IS $$Within 400 metres of an existing or planned public transport stop$$;
+COMMENT ON COLUMN li_2018_address_indicators.trans_05 IS $$Within 400 m of a bus stop every 30 min, or 800 m of a train station every 15 min$$;
+COMMENT ON COLUMN li_2018_address_indicators.trans_06 IS $$Within 400 m of public transport stop with a regular scheduled weekday service$$;
 COMMENT ON COLUMN li_2018_address_indicators.trans_07 IS $$Within 400 m of public transport with an average weekday service frequency of 30 minutes or less between 7am and 7pm within 400 metres$$;
 COMMENT ON COLUMN li_2018_address_indicators.trans_08 IS $$Within 400 m of public transport with an average weekday service frequency of 25 minutes or less between 7am and 7pm within 400 metres$$;
 COMMENT ON COLUMN li_2018_address_indicators.trans_09 IS $$Within 400 m of public transport with an average weekday service frequency of 20 minutes or less between 7am and 7pm within 400 metres$$;
-COMMENT ON COLUMN li_2018_address_indicators.os_public_01 IS $$Within 400 m of public open space ({threshold} threshold)$$;
-COMMENT ON COLUMN li_2018_address_indicators.os_public_02 IS $$Within 400 m of public open space larger than 1.5 Ha ({threshold} threshold)$$;
-COMMENT ON COLUMN li_2018_address_indicators.os_public_03 IS $$Within 400 m of public open space ({threshold} threshold)$$;
-COMMENT ON COLUMN li_2018_address_indicators.os_public_04 IS $$Within 300 m of any public open space ({threshold} threshold)$$;
-COMMENT ON COLUMN li_2018_address_indicators.os_public_05 IS $$Within 400 m of any local park of size 0.4 to 1 Ha ({threshold} threshold)$$;
-COMMENT ON COLUMN li_2018_address_indicators.os_public_06 IS $$Within 800 m of any neighbourhood park of size 1 to 5 Ha ({threshold} threshold)$$;
-COMMENT ON COLUMN li_2018_address_indicators.os_public_07 IS $$Within 2 km of any district park of size 5 to 20 Ha ({threshold} threshold)$$;
-COMMENT ON COLUMN li_2018_address_indicators.os_public_08 IS $$Within 400 m of a neighbourhood recreation park larger than 0.5 Ha ({threshold} threshold)$$;
-COMMENT ON COLUMN li_2018_address_indicators.os_public_09 IS $$Within 2.5 km of a district recreation park larger than 5 Ha ({threshold} threshold)$$;
-COMMENT ON COLUMN li_2018_address_indicators.os_public_10 IS $$Within 400 m of a park larger than 0.5 Ha ({threshold} threshold)$$;
-COMMENT ON COLUMN li_2018_address_indicators.os_public_11 IS $$Within 2 km of a park >2 Ha ({threshold} threshold)$$;
+COMMENT ON COLUMN li_2018_address_indicators.os_public_01 IS $$Within 400 m of public open space$$;
+COMMENT ON COLUMN li_2018_address_indicators.os_public_02 IS $$Within 400 m of public open space larger than 1.5 Ha$$;
+COMMENT ON COLUMN li_2018_address_indicators.os_public_03 IS $$Within 400 m of public open space$$;
+COMMENT ON COLUMN li_2018_address_indicators.os_public_04 IS $$Within 300 m of any public open space$$;
+COMMENT ON COLUMN li_2018_address_indicators.os_public_05 IS $$Within 400 m of any local park of size 0.4 to 1 Ha$$;
+COMMENT ON COLUMN li_2018_address_indicators.os_public_06 IS $$Within 800 m of any neighbourhood park of size 1 to 5 Ha$$;
+COMMENT ON COLUMN li_2018_address_indicators.os_public_07 IS $$Within 2 km of any district park of size 5 to 20 Ha$$;
+COMMENT ON COLUMN li_2018_address_indicators.os_public_08 IS $$Within 400 m of a neighbourhood recreation park larger than 0.5 Ha$$;
+COMMENT ON COLUMN li_2018_address_indicators.os_public_09 IS $$Within 2.5 km of a district recreation park larger than 5 Ha$$;
+COMMENT ON COLUMN li_2018_address_indicators.os_public_10 IS $$Within 400 m of a park larger than 0.5 Ha$$;
+COMMENT ON COLUMN li_2018_address_indicators.os_public_11 IS $$Within 2 km of a park >2 Ha$$;
 COMMENT ON COLUMN li_2018_address_indicators.os_public_12 IS $$Distance to closest public open space with a public toilet within 100 metres$$;
 COMMENT ON COLUMN li_2018_address_indicators.os_public_14 IS $$Distance to closest public open space (OSM, 2018) within 3200 metres$$;
 COMMENT ON COLUMN li_2018_address_indicators.os_public_15 IS $$Distance to closest public open space <=0.4 Ha (OSM, 2018) within 3200 metres$$;
@@ -250,7 +250,7 @@ COMMENT ON COLUMN li_2018_address_indicators.food_19 IS $$Percentage of food out
 COMMENT ON COLUMN li_2018_address_indicators.food_20 IS $$Ratio of food outlets within 1600 m that provide fresh food options (ie. supermarkets, fruit and vegetable grocers, bakeries, butchers, fishmongers and delicatessens) to fast food outlets (OSM and/or 2017 in-house)$$;
 COMMENT ON COLUMN li_2018_address_indicators.food_21 IS $$No food outlets within 1600 m (only considering supermarkets, fruit and vegetable grocers, and fast food as per healthier food measure;  OSM and/or 2017 in-house)$$;
 COMMENT ON COLUMN li_2018_address_indicators.food_22 IS $$No food outlets within 1600 m (including specialty food outlets: bakeries, butchers, fish mongers and delicatessens;  OSM and/or 2017 in-house)$$;
-COMMENT ON COLUMN li_2018_address_indicators.food_23_hard IS $$Within 1km of a supermarket (OSM or 2017 in-house) ({threshold} threshold)$$;
+COMMENT ON COLUMN li_2018_address_indicators.food_23_hard IS $$Within 1km of a supermarket (OSM or 2017 in-house)$$;
 COMMENT ON COLUMN li_2018_address_indicators.food_24 IS $$Distance to closest fresh food outlet (bakery, fruit and vegetables grocer, delicatessen, and fish, meat, poultry outlet; OSM, 2018)$$;
 COMMENT ON COLUMN li_2018_address_indicators.food_25 IS $$Distance to closest healthy food outlet (supermarket or fruit and vegetables grocer; OSM, 2018)$$;
 COMMENT ON COLUMN li_2018_address_indicators.food_26 IS $$Distance to closest fast food outlet (HLC, 2017; OSM, 2018)$$;
@@ -507,19 +507,19 @@ COPY li_2018_mb_indicators FROM 'D:/projects/ntnl_li_2018/data/National Liveabil
 
 ### Add in comments to describe the data
 ```sql
-COMMENT ON TABLE  IS $$Estimates for distance in metres along pedestrian network to the closest of a range of destination types for residential locations (address points in urban Mesh Blocks with dwellings at 2016 census)$$;
-COMMENT ON TABLE  IS $$Arrays of estimates for distance in metres along pedestrian network to all destinations (within 3200m and the closest) across a range of destination types , for residential locations (address points in urban Mesh Blocks with dwellings at 2016 census)$$;
-COMMENT ON TABLE  IS $$Mesh Block averages of residential liveability indicators and distance to closest estimates, with dwelling and person counts as well as area linkage codes to support aggregation to larger area scales (optionally with weighting; recommended)$$;
-COMMENT ON TABLE  IS $$Liveability indicators for dwellings, aggregated for Statistical Areas Level 1 (SA1)$$;
-COMMENT ON TABLE  IS $$Liveability indicators for dwellings, aggregated for Statistical Areas Level 2 (SA2)$$;
-COMMENT ON TABLE  IS $$Liveability indicators for dwellings, aggregated for Statistical Areas Level 3 (SA3)$$;
-COMMENT ON TABLE  IS $$Liveability indicators for dwellings, aggregated for Statistical Areas Level 4 (SA4)$$;
-COMMENT ON TABLE  IS $$Liveability indicators for dwellings, aggregated for Suburbs$$;
-COMMENT ON TABLE  IS $$Liveability indicators for dwellings, aggregated for Local Government Areas$$;
-COMMENT ON TABLE  IS $$Liveability indicators for dwellings, aggregated for cities$$;
-COMMENT ON TABLE  IS $$GTFS transport stops headway analysis of day time weekday public transport service frequency between 8 October 2019 to 5 December 2019, with WKT geometry$$;
-COMMENT ON TABLE  IS $$Areas of open space with at least partial public access, as identified using open street map, with WKT geometry for public geometry, water geometry and overall geometry as well as JSON attributes (including public area) and list of co-located amenities within 100m (including public toilets)$$;
-COMMENT ON TABLE  IS $$JSON list of identifiers and distances of areas of open space for residential address points identified as having areas of open space accessible within 3200m. This dataset is indexed by the residential address point identifier, supporting linkage with attributes from the main address indicator dataset.$$;
+COMMENT ON TABLE li_2018_mb_indicators IS $$Estimates for distance in metres along pedestrian network to the closest of a range of destination types for residential locations (address points in urban Mesh Blocks with dwellings at 2016 census)$$;
+COMMENT ON TABLE li_2018_mb_indicators IS $$Arrays of estimates for distance in metres along pedestrian network to all destinations (within 3200m and the closest) across a range of destination types , for residential locations (address points in urban Mesh Blocks with dwellings at 2016 census)$$;
+COMMENT ON TABLE li_2018_mb_indicators IS $$Mesh Block averages of residential liveability indicators and distance to closest estimates, with dwelling and person counts as well as area linkage codes to support aggregation to larger area scales (optionally with weighting; recommended)$$;
+COMMENT ON TABLE li_2018_mb_indicators IS $$Liveability indicators for dwellings, aggregated for Statistical Areas Level 1 (SA1)$$;
+COMMENT ON TABLE li_2018_mb_indicators IS $$Liveability indicators for dwellings, aggregated for Statistical Areas Level 2 (SA2)$$;
+COMMENT ON TABLE li_2018_mb_indicators IS $$Liveability indicators for dwellings, aggregated for Statistical Areas Level 3 (SA3)$$;
+COMMENT ON TABLE li_2018_mb_indicators IS $$Liveability indicators for dwellings, aggregated for Statistical Areas Level 4 (SA4)$$;
+COMMENT ON TABLE li_2018_mb_indicators IS $$Liveability indicators for dwellings, aggregated for Suburbs$$;
+COMMENT ON TABLE li_2018_mb_indicators IS $$Liveability indicators for dwellings, aggregated for Local Government Areas$$;
+COMMENT ON TABLE li_2018_mb_indicators IS $$Liveability indicators for dwellings, aggregated for cities$$;
+COMMENT ON TABLE li_2018_mb_indicators IS $$GTFS transport stops headway analysis of day time weekday public transport service frequency between 8 October 2019 to 5 December 2019, with WKT geometry$$;
+COMMENT ON TABLE li_2018_mb_indicators IS $$Areas of open space with at least partial public access, as identified using open street map, with WKT geometry for public geometry, water geometry and overall geometry as well as JSON attributes (including public area) and list of co-located amenities within 100m (including public toilets)$$;
+COMMENT ON TABLE li_2018_mb_indicators IS $$JSON list of identifiers and distances of areas of open space for residential address points identified as having areas of open space accessible within 3200m. This dataset is indexed by the residential address point identifier, supporting linkage with attributes from the main address indicator dataset.$$;
 ```
 
 ## Additional custom SQL functions
