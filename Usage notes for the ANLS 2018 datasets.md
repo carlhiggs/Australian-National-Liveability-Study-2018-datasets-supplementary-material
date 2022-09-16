@@ -507,20 +507,296 @@ COPY li_2018_mb_indicators FROM 'D:/projects/ntnl_li_2018/data/National Liveabil
 
 ### Add in comments to describe the data
 ```sql
-COMMENT ON TABLE li_2018_mb_indicators IS $$Estimates for distance in metres along pedestrian network to the closest of a range of destination types for residential locations (address points in urban Mesh Blocks with dwellings at 2016 census)$$;
-COMMENT ON TABLE li_2018_mb_indicators IS $$Arrays of estimates for distance in metres along pedestrian network to all destinations (within 3200m and the closest) across a range of destination types , for residential locations (address points in urban Mesh Blocks with dwellings at 2016 census)$$;
 COMMENT ON TABLE li_2018_mb_indicators IS $$Mesh Block averages of residential liveability indicators and distance to closest estimates, with dwelling and person counts as well as area linkage codes to support aggregation to larger area scales (optionally with weighting; recommended)$$;
-COMMENT ON TABLE li_2018_mb_indicators IS $$Liveability indicators for dwellings, aggregated for Statistical Areas Level 1 (SA1)$$;
-COMMENT ON TABLE li_2018_mb_indicators IS $$Liveability indicators for dwellings, aggregated for Statistical Areas Level 2 (SA2)$$;
-COMMENT ON TABLE li_2018_mb_indicators IS $$Liveability indicators for dwellings, aggregated for Statistical Areas Level 3 (SA3)$$;
-COMMENT ON TABLE li_2018_mb_indicators IS $$Liveability indicators for dwellings, aggregated for Statistical Areas Level 4 (SA4)$$;
-COMMENT ON TABLE li_2018_mb_indicators IS $$Liveability indicators for dwellings, aggregated for Suburbs$$;
-COMMENT ON TABLE li_2018_mb_indicators IS $$Liveability indicators for dwellings, aggregated for Local Government Areas$$;
-COMMENT ON TABLE li_2018_mb_indicators IS $$Liveability indicators for dwellings, aggregated for cities$$;
-COMMENT ON TABLE li_2018_mb_indicators IS $$GTFS transport stops headway analysis of day time weekday public transport service frequency between 8 October 2019 to 5 December 2019, with WKT geometry$$;
-COMMENT ON TABLE li_2018_mb_indicators IS $$Areas of open space with at least partial public access, as identified using open street map, with WKT geometry for public geometry, water geometry and overall geometry as well as JSON attributes (including public area) and list of co-located amenities within 100m (including public toilets)$$;
-COMMENT ON TABLE li_2018_mb_indicators IS $$JSON list of identifiers and distances of areas of open space for residential address points identified as having areas of open space accessible within 3200m. This dataset is indexed by the residential address point identifier, supporting linkage with attributes from the main address indicator dataset.$$;
 ```
+
+
+## Loading the SA2 indicator data
+
+### Initialise SA2 indicators table, defining variables and their data types
+
+
+<details>
+  <summary>
+    Click to view code
+  </summary>
+
+```sql
+CREATE TABLE li_2018_sa2_indicators 
+(
+sa2_name_2016	text,
+study_region	text,
+dwelling	int,
+person	int,
+sample_count	int,
+sample_count_per_ha	float,
+area_ha	float,
+dwellings_per_ha	float,
+net_dwelling	float,
+net_area	    float,
+net_density 	float,
+uli_city	float,
+uli_national	float,
+li_community_culture_leisure	float,
+li_early_years	float,
+li_education	float,
+li_health_services	float,
+li_sport_rec	float,
+li_food	float,
+li_convenience	float,
+li_pt_regular_400m	float,
+li_public_os_large_400m	float,
+li_street_connectivity_1600m	float,
+li_dwelling_density_1600m	float,
+li_sa1_30_40_housing_stress	float,
+li_sa1_sa3_local_employment	float,
+walkability_city	float,
+walkability_national	float,
+daily_living_access_1600m	float,
+social_infrastructure_mix	float,
+walk_02	float,
+walk_02_policy	boolean,
+walk_03_policy	boolean,
+walk_05_policy	boolean,
+walk_12	float,
+walk_12_policy	boolean,
+walk_13	float,
+walk_13_policy	boolean,
+walk_14_policy	boolean,
+walk_15_policy	boolean,
+walk_16	float,
+walk_17	float,
+walk_21	float,
+trans_01	float,
+trans_01_policy	boolean,
+trans_02	float,
+trans_02_policy	boolean,
+trans_03	float,
+trans_03_policy	boolean,
+trans_04	float,
+trans_04_policy	boolean,
+trans_05	float,
+trans_05_policy	boolean,
+trans_06	float,
+trans_07	float,
+trans_08	float,
+trans_09	float,
+os_public_01	float,
+os_public_02	float,
+os_public_03	float,
+os_public_03_policy	boolean,
+os_public_04	float,
+os_public_04_policy	boolean,
+os_public_05	float,
+os_public_05_policy	boolean,
+os_public_06	float,
+os_public_06_policy	boolean,
+os_public_07	float,
+os_public_07_policy	boolean,
+os_public_08	float,
+os_public_08_policy	boolean,
+os_public_09	float,
+os_public_09_policy	boolean,
+os_public_10	float,
+os_public_10_policy	boolean,
+os_public_11	float,
+os_public_11_policy	boolean,
+os_public_12	float,
+os_public_14	float,
+os_public_15	float,
+os_public_16	float,
+os_public_17	float,
+os_public_18	float,
+os_public_19	float,
+os_public_20	float,
+os_public_21	float,
+os_public_22	float,
+os_public_23	float,
+os_public_24	float,
+os_public_25	float,
+hous_02	float,
+hous_04	float,
+hous_05	float,
+hous_06	float,
+food_12	float,
+food_13	float,
+food_14	float,
+food_15	float,
+food_16	float,
+food_17	float,
+food_18	float,
+food_19	float,
+food_20	float,
+food_21	float,
+food_22	float,
+food_23_hard	float,
+food_24	float,
+food_25	float,
+food_26	float,
+food_27	float,
+community_01	float,
+community_02	float,
+alc_01	float,
+alc_02	float,
+alc_03	float,
+childcare_01	float,
+childcare_02	float,
+health_01	float,
+dist_m_activity_centres	float,
+dist_m_alcohol_offlicence	float,
+dist_m_alcohol_onlicence	float,
+dist_m_alcohol_osm	float,
+dist_m_all_schools	float,
+dist_m_art_centre_osm	float,
+dist_m_art_gallery_osm	float,
+dist_m_bakery_osm	float,
+dist_m_bar_osm	float,
+dist_m_cafe_osm	float,
+dist_m_childcare_all	float,
+dist_m_childcare_all_exc	float,
+dist_m_childcare_all_meet	float,
+dist_m_childcare_oshc	float,
+dist_m_childcare_oshc_exc	float,
+dist_m_childcare_oshc_meet	float,
+dist_m_childcare_preschool	float,
+dist_m_childcare_preschool_exc	float,
+dist_m_childcare_preschool_meet	float,
+dist_m_cinema_osm	float,
+dist_m_community_centre_osm	float,
+dist_m_convenience_osm	float,
+dist_m_deli_osm	float,
+dist_m_disability_employment	float,
+dist_m_fast_food	float,
+dist_m_fastfood_osm	float,
+dist_m_food_court_osm	float,
+dist_m_food_health_osm	float,
+dist_m_food_other_osm	float,
+dist_m_fruit_veg_osm	float,
+dist_m_gtfs_2018_stop_30_mins_final	float,
+dist_m_gtfs_2018_stops	float,
+dist_m_gtfs_2018_stops_bus	float,
+dist_m_gtfs_2018_stops_ferry	float,
+dist_m_gtfs_2018_stops_train	float,
+dist_m_gtfs_2018_stops_tram	float,
+dist_m_gtfs_20191008_20191205_bus_0015	float,
+dist_m_gtfs_20191008_20191205_bus_0030	float,
+dist_m_gtfs_20191008_20191205_bus_0045	float,
+dist_m_gtfs_20191008_20191205_bus_any	float,
+dist_m_gtfs_20191008_20191205_ferry_0015	float,
+dist_m_gtfs_20191008_20191205_ferry_0030	float,
+dist_m_gtfs_20191008_20191205_ferry_0045	float,
+dist_m_gtfs_20191008_20191205_ferry_any	float,
+dist_m_gtfs_20191008_20191205_revised_all	float,
+dist_m_gtfs_20191008_20191205_revised_frequent30	float,
+dist_m_gtfs_20191008_20191205_train_0015	float,
+dist_m_gtfs_20191008_20191205_train_0030	float,
+dist_m_gtfs_20191008_20191205_train_0045	float,
+dist_m_gtfs_20191008_20191205_train_any	float,
+dist_m_gtfs_20191008_20191205_tram_0015	float,
+dist_m_gtfs_20191008_20191205_tram_0030	float,
+dist_m_gtfs_20191008_20191205_tram_0045	float,
+dist_m_gtfs_20191008_20191205_tram_any	float,
+dist_m_hlc_2016_community_centres	float,
+dist_m_libraries	float,
+dist_m_market_osm	float,
+dist_m_meat_seafood_osm	float,
+dist_m_museum_osm	float,
+dist_m_newsagent_osm	float,
+dist_m_nhsd_2017_aged_care_residential	float,
+dist_m_nhsd_2017_dentist	float,
+dist_m_nhsd_2017_gp	float,
+dist_m_nhsd_2017_hospital	float,
+dist_m_nhsd_2017_mc_family_health	float,
+dist_m_nhsd_2017_other_community_health_care	float,
+dist_m_nhsd_2017_pharmacy	float,
+dist_m_P_12_Schools	float,
+dist_m_P_12_Schools_catholic	float,
+dist_m_P_12_Schools_gov	float,
+dist_m_P_12_Schools_indep	float,
+dist_m_petrolstation_osm	float,
+dist_m_pharmacy_osm	float,
+dist_m_place_of_worship_osm	float,
+dist_m_playgrounds	float,
+dist_m_postoffice_osm	float,
+dist_m_primary_schools	float,
+dist_m_primary_schools_catholic	float,
+dist_m_primary_schools_gov	float,
+dist_m_primary_schools_indep	float,
+dist_m_pub_osm	float,
+dist_m_public_swimming_pool_osm	float,
+dist_m_restaurant_osm	float,
+dist_m_secondary_schools	float,
+dist_m_secondary_schools_catholic	float,
+dist_m_secondary_schools_gov	float,
+dist_m_secondary_schools_indep	float,
+dist_m_special_schools	float,
+dist_m_supermarket	float,
+dist_m_supermarket_osm	float,
+dist_m_theatre_osm	float
+);
+```
+</details>
+
+## Copy the data from CSV
+```sql
+COPY li_2018_sa2_indicators FROM 'D:/projects/ntnl_li_2018/data/National Liveability 2018 - Final Outputs/For dissemination/hlc_ntnl_liveability_2018_sa2_2016.csv' WITH DELIMITER ',' CSV HEADER;
+```
+
+
+### Add in comments to describe the data
+```sql
+COMMENT ON TABLE li_2018_sa2_indicators IS $$Liveability indicators for dwellings, aggregated for Statistical Areas Level 2 (SA2)$$;
+```
+
+
+
+### 
+```sql
+COMMENT ON TABLE li_2018_address_dest_closest IS $$Estimates for distance in metres along pedestrian network to the closest of a range of destination types for residential locations (address points in urban Mesh Blocks with dwellings at 2016 census)$$;
+```
+
+```sql
+COMMENT ON TABLE li_2018_address_dest_array IS $$Arrays of estimates for distance in metres along pedestrian network to all destinations (within 3200m and the closest) across a range of destination types , for residential locations (address points in urban Mesh Blocks with dwellings at 2016 census)$$;
+```
+
+```sql
+COMMENT ON TABLE li_2018_sa1_indicators IS $$Liveability indicators for dwellings, aggregated for Statistical Areas Level 1 (SA1)$$;
+```
+
+```sql
+COMMENT ON TABLE li_2018_sa3_indicators IS $$Liveability indicators for dwellings, aggregated for Statistical Areas Level 3 (SA3)$$;
+```
+
+```sql
+COMMENT ON TABLE li_2018_sa4_indicators IS $$Liveability indicators for dwellings, aggregated for Statistical Areas Level 4 (SA4)$$;
+```
+
+```sql
+COMMENT ON TABLE li_2018_ssc_indicators IS $$Liveability indicators for dwellings, aggregated for Suburbs$$;
+```
+
+```sql
+COMMENT ON TABLE li_2018_lga_indicators IS $$Liveability indicators for dwellings, aggregated for Local Government Areas$$;
+```
+
+```sql
+COMMENT ON TABLE li_2018_city_indicators IS $$Liveability indicators for dwellings, aggregated for cities$$;
+```
+
+```sql
+COMMENT ON TABLE li_2018_gtfs IS $$GTFS transport stops headway analysis of day time weekday public transport service frequency between 8 October 2019 to 5 December 2019, with WKT geometry$$;
+```
+
+```sql
+COMMENT ON TABLE li_2018_public_open_space IS $$Areas of open space with at least partial public access, as identified using open street map, with WKT geometry for public geometry, water geometry and overall geometry as well as JSON attributes (including public area) and list of co-located amenities within 100m (including public toilets)$$;
+```
+
+```sql
+COMMENT ON TABLE li_2018_aos_jsonb IS $$JSON list of identifiers and distances of areas of open space for residential address points identified as having areas of open space accessible within 3200m. This dataset is indexed by the residential address point identifier, supporting linkage with attributes from the main address indicator dataset.$$;
+```
+
+
+
 
 ## Additional custom SQL functions
 PostgreSQL allows the definition of custom functions which can be used to query the data and derive new indicators, particularly when using the destination distances array dataset.  We defined the following queries to assist in indicator creation, and data users can also use them to further manipulate the data provided once restored as an SQL database.  To evaluate the count of destinations accessible within a given threshold distance in metres, 
