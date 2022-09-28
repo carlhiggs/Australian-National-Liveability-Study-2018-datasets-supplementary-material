@@ -5,7 +5,11 @@ We have provided our data and data dictionaries in a plain text CSV format for a
 
 This document provides examples for loading all provided datasets and illustrate how to get started using the data in a PostgreSQL database.  Users may draw on this code freely, updating any file paths with corresponding locations of their own downloaded data.  
 
-## Create and connect to a new database for the Australian National Liveability Study
+## Contents
+[Setting up the data](#setting-up-the-data)
+
+## Setting up the data
+### Create and connect to a new database for the Australian National Liveability Study
 First, a new database called anls_2018 is created and then connected to he PostGIS extension may optionally be created; this would allow the residential address indicator coordinates to be interpreted as a Point geometry datatype, and link up the area aggregate indicators with their corresponding boundary geometries from the Australian Statistical Geography Standard retrieved from the Australian Bureau of Statistics for mapping.  
 
 ```sql
@@ -15,10 +19,10 @@ CREATE EXTENSION IF NOT EXISTS postgis;
 SELECT postgis_full_version(); 
 ```
 
-## Loading the address indicator data
+### Loading the address indicator data
 To load data, empty table(s) are created for the datasets to be loaded into first; the column names and data types of the data to be loaded from the CSV source file are defined (e.g., drawing on the variable names and data types in the supplied data dictionary files).  Then, the data itself may be copied from the CSV file into the newly created table.
 
-### Initialise Address indicators table, defining variables and their data types
+#### Initialise Address indicators table, defining variables and their data types
 In the create table statement, you declare all the columns and their data types.  This can be quite verbose to list all of these (125 variables for the address indicators table, or more than 200 in the area aggregation tables which also contain distance to closest measures), so i have set the code to be collapsable in such cases below.
 <details>
   <summary>
@@ -135,22 +139,22 @@ health_01	integer
 ```
 </details>
 
-### Copy the data from CSV.  
+#### Copy the data from CSV.  
 Note the file is large (> 1Gb), and some versions of PostgreSQL (eg 13) have issues copying data from large files (see https://stackoverflow.com/questions/53523051/error-could-not-stat-file-xx-csv-unknown-error).There are work arounds, but most elegant is probably to install PostgreSQL 14 (the current version at time of writing in August 2022) or newer.
 ```sql
 COPY li_2018_address_indicators FROM 'D:/projects/ntnl_li_2018/data/National Liveability 2018 - Final Outputs/For dissemination/hlc_ntnl_liveability_2018_address_points_indicators_epsg7845.csv' WITH DELIMITER ',' CSV HEADER;
 ```
-### Add in a geometry column
+#### Add in a geometry column
 ```sql
 ALTER TABLE li_2018_address_indicators ADD COLUMN geom geometry(Point, 7845);
 UPDATE li_2018_address_indicators SET geom = ST_SetSRID(ST_MakePoint(point_x, point_y), 7845);
 ```
-### Create indexes
+#### Create indexes
 ```sql
 ALTER TABLE li_2018_address_indicators ADD PRIMARY KEY (gnaf_pid);
 CREATE INDEX li_2018_address_indicators_geom_idx ON li_2018_address_indicators USING GIST (geom);
 ```
-### Optionally describe the data
+#### Optionally describe the data
 You can add in comments to describe the data, drawing on and incorporating the data dictionary descriptions.  You may want to use dollar quoting (ie. using dollar signs "$$" instead of quote marks "'") to avoid use of apostrophes in descriptions causing errors (it may look like the comment has ended, and then the remaining characters can't be interpreted raising an error).
 
 <details>
@@ -268,9 +272,9 @@ COMMENT ON COLUMN li_2018_address_indicators.health_01 IS $$Within 1600 m of a G
 
 To view the list of tables in the database with comments when using psql, type `\dt+`, or to view comments for the table we just created, type `\d+ li_2018_address_indicators`.
 
-## Loading the Mesh Block indicator data
+### Loading the Mesh Block indicator data
 
-### Initialise Mesh Block indicators table, defining variables and their data types
+#### Initialise Mesh Block indicators table, defining variables and their data types
 
 <details>
   <summary>
@@ -499,21 +503,21 @@ dist_m_theatre_osm	float
 ```
 </details>
 
-## Copy the data from CSV
+### Copy the data from CSV
 ```sql
 COPY li_2018_mb_indicators FROM 'D:/projects/ntnl_li_2018/data/National Liveability 2018 - Final Outputs/For dissemination/hlc_ntnl_liveability_2018_Mesh_Block_2016.csv' WITH DELIMITER ',' CSV HEADER;
 ```
 
 
-### Add in comments to describe the data
+#### Add in comments to describe the data
 ```sql
 COMMENT ON TABLE li_2018_mb_indicators IS $$Mesh Block averages of residential liveability indicators and distance to closest estimates, with dwelling and person counts as well as area linkage codes to support aggregation to larger area scales (optionally with weighting; recommended)$$;
 ```
 
 
-## Loading the SA2 indicator data
+### Loading the SA2 indicator data
 
-### Initialise SA2 indicators table, defining variables and their data types
+#### Initialise SA2 indicators table, defining variables and their data types
 
 
 <details>
@@ -737,20 +741,20 @@ dist_m_theatre_osm	float
 ```
 </details>
 
-## Copy the data from CSV
+### Copy the data from CSV
 ```sql
 COPY li_2018_sa2_indicators FROM 'D:/projects/ntnl_li_2018/data/National Liveability 2018 - Final Outputs/For dissemination/hlc_ntnl_liveability_2018_sa2_2016.csv' WITH DELIMITER ',' CSV HEADER;
 ```
 
 
-### Add in comments to describe the data
+#### Add in comments to describe the data
 ```sql
 COMMENT ON TABLE li_2018_sa2_indicators IS $$Liveability indicators for dwellings, aggregated for Statistical Areas Level 2 (SA2)$$;
 ```
 
 
 
-### 
+#### 
 ```sql
 COMMENT ON TABLE li_2018_address_dest_closest IS $$Estimates for distance in metres along pedestrian network to the closest of a range of destination types for residential locations (address points in urban Mesh Blocks with dwellings at 2016 census)$$;
 ```
@@ -798,10 +802,10 @@ COMMENT ON TABLE li_2018_aos_jsonb IS $$JSON list of identifiers and distances o
 
 
 
-## Additional custom SQL functions
+### Additional custom SQL functions
 PostgreSQL allows the definition of custom functions which can be used to query the data and derive new indicators, particularly when using the destination distances array dataset.  We defined the following queries to assist in indicator creation, and data users can also use them to further manipulate the data provided once restored as an SQL database.  To evaluate the count of destinations accessible within a given threshold distance in metres, 
 
-### Returning counts of destinations accessible within a given threshold distance in metres
+#### Returning counts of destinations accessible within a given threshold distance in metres
 To evaluate the count of destinations accessible within a given threshold distance in metres, the following function may be used to query the destination array data set with the query provided with arguments for (destination,  threshold), for example to identify the count of supermarkets within 800m for each address: `SELECT gnaf_pid, count_in_threshold(dist_m_supermarket,800) FROM dest_array_distances`. The results of a query like this could be used for subsequent analysis or mapping if it were used to create a new indicator dataset as a table or update the values of a new column added to the existing address level indicator dataset. 
 
 ```sql
@@ -812,7 +816,7 @@ WHERE b < threshold
 $$ language sql;
 ```
 
-### Return minimum value of an integer array (ie. the distance to the closest accessible destination recorded of a particular type)
+#### Return minimum value of an integer array (ie. the distance to the closest accessible destination recorded of a particular type)
 
 The distance to the closest accessible destination recorded of a particular type may be calculated using  the following function, for example, by querying SELECT array_min(dist_m_supermarket)FROM dest_array_distances.  Given knowledge of the distance to closest destination of a particular type, access can be evaluated against a recommended distance threshold to return a binary score (0 or 1) or a continuous score (0 to 1), as described in [Higgs et al. (2019)](https://doi.org/10.1186/s12942-019-0178-8) and using functions defined below.
 
@@ -823,14 +827,14 @@ FROM unnest(integers) integers
 $$ language sql;
 ```
 
-### A binary or hard threshold indicator (e.g. of access given distance to a particular destination and a threshold for evaluating this)
+#### A binary or hard threshold indicator (e.g. of access given distance to a particular destination and a threshold for evaluating this)
 ```sql
 CREATE OR REPLACE FUNCTION threshold_hard(distance int, threshold int, out int) 
 RETURNS NULL ON NULL INPUT
 AS $$ SELECT (distance < threshold)::int $$
 LANGUAGE SQL;
 ```
-### A soft threshold indicator (e.g. of access given distance and threshold)
+#### A soft threshold indicator (e.g. of access given distance and threshold)
 ```sql
 CREATE OR REPLACE FUNCTION threshold_soft(distance int, threshold int) returns float AS 
 $$
