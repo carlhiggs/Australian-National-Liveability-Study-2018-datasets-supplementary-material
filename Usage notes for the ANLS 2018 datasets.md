@@ -6,10 +6,21 @@ We have provided our data and data dictionaries in a plain text CSV format for a
 This document provides examples for loading all provided datasets and illustrate how to get started using the data in a PostgreSQL database.  Users may draw on this code freely, updating any file paths with corresponding locations of their own downloaded data.  
 
 ## Contents
-[Setting up the data](#setting-up-the-data)
+[Create and connect to a new database for the Australian National Liveability Study](#create-and-connect-to-a-new-database-for-the-australian-national-liveability-study)
+[Loading the indicator datasets](#loading-the-indicators-datasets)
+- Address points](#loading-the-address-indicator-data)
+- [Mesh Blocks](#loading-the-mesh-block-indicator-data)
+- [Mesh Blocks](#loading-the-mesh-block-indicator-data)
+- [Stastistical Area 1](#loading-the-mesh-block-indicator-data)
+- [Stastistical Area 2](#loading-the-mesh-block-indicator-data)
+- [Stastistical Area 3](#loading-the-mesh-block-indicator-data)
+- [Stastistical Area 4](#loading-the-mesh-block-indicator-data)
+- [Suburb](#loading-the-mesh-block-indicator-data)
+- [Local Government Area](#loading-the-mesh-block-indicator-data)
+- [City (overall summary)](#loading-the-mesh-block-indicator-data)
 
-## Setting up the data
-### Create and connect to a new database for the Australian National Liveability Study
+
+## Create and connect to a new database for the Australian National Liveability Study
 First, a new database called anls_2018 is created and then connected to he PostGIS extension may optionally be created; this would allow the residential address indicator coordinates to be interpreted as a Point geometry datatype, and link up the area aggregate indicators with their corresponding boundary geometries from the Australian Statistical Geography Standard retrieved from the Australian Bureau of Statistics for mapping.  
 
 ```sql
@@ -18,6 +29,8 @@ CREATE DATABASE anls_2018;
 CREATE EXTENSION IF NOT EXISTS postgis; 
 SELECT postgis_full_version(); 
 ```
+
+## Loading the indicators datasets
 
 ### Loading the address indicator data
 To load data, empty table(s) are created for the datasets to be loaded into first; the column names and data types of the data to be loaded from the CSV source file are defined (e.g., drawing on the variable names and data types in the supplied data dictionary files).  Then, the data itself may be copied from the CSV file into the newly created table.
