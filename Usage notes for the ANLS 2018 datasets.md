@@ -27,8 +27,8 @@ Alternatively, the CSV format data files can also be loaded directly into any of
   - [Suburbs](#loading-the-suburb-indicator-data)
   - [Local Government Areas](#loading-the-local-government-area-indicator-data)
   - [City (overall summaries)](#loading-the-city-indicator-data-overall-city-summaries)
-  - [Other Tables](#other-tables)
-    - [Distance to closest destination in metres for residential addresses](#distance-to-closest-destination-in-metres-for-residential-addresses)
+- [Loading supplementary datasets](#loading-supplementary-datasets)
+  - [Distance to closest destination in metres for residential addresses](#distance-to-closest-destination-in-metres-for-residential-addresses)
 - [Additional custom SQL functions](#Additional-custom-SQL-functions)
 
 ## Create and connect to a new database for the Australian National Liveability Study
@@ -4088,9 +4088,9 @@ Display information (including size and description) for this particular table: 
 Display custom data dictionary by running `SELECT * FROM dictionary('li_2018_city_indicators');`
 
 
-###  Other Tables
+##  Loading supplementary datasets
 
-#### Distance to closest destination in metres for residential addresses
+### Distance to closest destination in metres for residential addresses
 
 <details>
   <summary>
