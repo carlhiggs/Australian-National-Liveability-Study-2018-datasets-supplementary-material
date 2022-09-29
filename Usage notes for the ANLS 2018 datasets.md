@@ -11,13 +11,13 @@ This document provides examples for loading all provided datasets and illustrate
   - [General process and tips](#general-process-and-tips)
   - [Address points](#loading-the-address-indicator-data)
   - [Mesh Blocks](#loading-the-mesh-block-indicator-data)
-  - [Stastistical Area 1](#loading-the-statistical-area-1-(sa1)-indicator-data)
-  - [Stastistical Area 2](#loading-the-statistical-area-2-(sa2)-indicator-data)
-  - [Stastistical Area 3](#loading-the-statistical-area-3-(sa3)-indicator-data)
-  - [Stastistical Area 4](#loading-the-statistical-area-4-(sa4)-indicator-data)
+  - [Stastistical Area 1](#loading-the-statistical-area-1-sa1-indicator-data)
+  - [Stastistical Area 2](#loading-the-statistical-area-2-sa2-indicator-data)
+  - [Stastistical Area 3](#loading-the-statistical-area-3-sa3-indicator-data)
+  - [Stastistical Area 4](#loading-the-statistical-area-4-sa4-indicator-data)
   - [Suburb](#loading-the-suburb-indicator-data)
   - [Local Government Area](#loading-the-local-government-area-indicator-data)
-  - [City (overall summary)](#loading-the-city-indicator-data-(overall-city-summaries))
+  - [City (overall summary)](#loading-the-city-indicator-data-overall-city-summaries)
 - [Additional custom SQL functions](#Additional-custom-SQL-functions)
 
 ## Create and connect to a new database for the Australian National Liveability Study
@@ -4077,7 +4077,7 @@ Display information (including size and description) for this particular table: 
 Display custom data dictionary by running `SELECT * FROM dictionary('li_2018_city_indicators');`
 
 
-####  Other Tables
+###  Other Tables
 
 ```sql
 COMMENT ON TABLE li_2018_address_dest_closest IS $$Estimates for distance in metres along pedestrian network to the closest of a range of destination types for residential locations (address points in urban Mesh Blocks with dwellings at 2016 census)$$;
@@ -4101,10 +4101,10 @@ COMMENT ON TABLE li_2018_aos_jsonb IS $$JSON list of identifiers and distances o
 ```
 
 
-### Additional custom SQL functions
+## Additional custom SQL functions
 PostgreSQL allows the definition of custom functions which can be used to query the data and derive new indicators, particularly when using the destination distances array dataset.  We defined the following queries to assist in indicator creation, and data users can also use them to further manipulate the data provided once restored as an SQL database.  To evaluate the count of destinations accessible within a given threshold distance in metres, 
 
-#### Returning counts of destinations accessible within a given threshold distance in metres
+### Returning counts of destinations accessible within a given threshold distance in metres
 To evaluate the count of destinations accessible within a given threshold distance in metres, the following function may be used to query the destination array data set with the query provided with arguments for (destination,  threshold), for example to identify the count of supermarkets within 800m for each address: `SELECT gnaf_pid, count_in_threshold(dist_m_supermarket,800) FROM dest_array_distances`. The results of a query like this could be used for subsequent analysis or mapping if it were used to create a new indicator dataset as a table or update the values of a new column added to the existing address level indicator dataset. 
 
 ```sql
@@ -4115,7 +4115,7 @@ WHERE b < threshold
 $$ language sql;
 ```
 
-#### Return minimum value of an integer array (ie. the distance to the closest accessible destination recorded of a particular type)
+### Return minimum value of an integer array (ie. the distance to the closest accessible destination recorded of a particular type)
 
 The distance to the closest accessible destination recorded of a particular type may be calculated using  the following function, for example, by querying SELECT array_min(dist_m_supermarket)FROM dest_array_distances.  Given knowledge of the distance to closest destination of a particular type, access can be evaluated against a recommended distance threshold to return a binary score (0 or 1) or a continuous score (0 to 1), as described in [Higgs et al. (2019)](https://doi.org/10.1186/s12942-019-0178-8) and using functions defined below.
 
@@ -4126,14 +4126,14 @@ FROM unnest(integers) integers
 $$ language sql;
 ```
 
-#### A binary or hard threshold indicator (e.g. of access given distance to a particular destination and a threshold for evaluating this)
+### A binary or hard threshold indicator (e.g. of access given distance to a particular destination and a threshold for evaluating this)
 ```sql
 CREATE OR REPLACE FUNCTION threshold_hard(distance int, threshold int, out int) 
 RETURNS NULL ON NULL INPUT
 AS $$ SELECT (distance < threshold)::int $$
 LANGUAGE SQL;
 ```
-#### A soft threshold indicator (e.g. of access given distance and threshold)
+### A soft threshold indicator (e.g. of access given distance and threshold)
 ```sql
 CREATE OR REPLACE FUNCTION threshold_soft(distance int, threshold int) returns float AS 
 $$
