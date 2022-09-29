@@ -6,18 +6,17 @@ We have provided our data and data dictionaries in a plain text CSV format for a
 This document provides examples for loading all provided datasets and illustrate how to get started using the data in a PostgreSQL database.  Users may draw on this code freely, updating any file paths with corresponding locations of their own downloaded data.  
 
 ## Contents
-[Create and connect to a new database for the Australian National Liveability Study](#create-and-connect-to-a-new-database-for-the-australian-national-liveability-study)
-[Loading the indicator datasets](#loading-the-indicators-datasets)
-- Address points](#loading-the-address-indicator-data)
-- [Mesh Blocks](#loading-the-mesh-block-indicator-data)
-- [Mesh Blocks](#loading-the-mesh-block-indicator-data)
-- [Stastistical Area 1](#loading-the-mesh-block-indicator-data)
-- [Stastistical Area 2](#loading-the-mesh-block-indicator-data)
-- [Stastistical Area 3](#loading-the-mesh-block-indicator-data)
-- [Stastistical Area 4](#loading-the-mesh-block-indicator-data)
-- [Suburb](#loading-the-mesh-block-indicator-data)
-- [Local Government Area](#loading-the-mesh-block-indicator-data)
-- [City (overall summary)](#loading-the-mesh-block-indicator-data)
+1. [Create and connect to a new database for the Australian National Liveability Study](#create-and-connect-to-a-new-database-for-the-australian-national-liveability-study)
+2. [Loading the indicator datasets](#loading-the-indicators-datasets)
+  - [Address points](#loading-the-address-indicator-data)
+  - [Mesh Blocks](#loading-the-mesh-block-indicator-data)
+  - [Stastistical Area 1](#loading-the-sa1-indicator-data)
+  - [Stastistical Area 2](#loading-the-sa2-indicator-data)
+  - [Stastistical Area 3](#loading-the-sa3-indicator-data)
+  - [Stastistical Area 4](#loading-the-sa4-indicator-data)
+  - [Suburb](#loading-the-suburb-indicator-data)
+  - [Local Government Area](#loading-the-local-government-area-indicator-data)
+  - [City (overall summary)](#loading-the-city-indicator-data)
 
 
 ## Create and connect to a new database for the Australian National Liveability Study
@@ -32,11 +31,154 @@ SELECT postgis_full_version();
 
 ## Loading the indicators datasets
 
-### Loading the address indicator data
 To load data, empty table(s) are created for the datasets to be loaded into first; the column names and data types of the data to be loaded from the CSV source file are defined (e.g., drawing on the variable names and data types in the supplied data dictionary files).  Then, the data itself may be copied from the CSV file into the newly created table.
 
+In the create table statement, you declare all the columns and their data types.  This can be quite verbose to list all of these (125 variables for the address indicators table, or more than 200 in the area aggregation tables which also contain distance to closest measures), so the code has been set to be collapsable in such cases below.
+
+Note the file for residential address indicators is large (> 1Gb), and some versions of PostgreSQL (eg 13) have issues copying data from large files (see https://stackoverflow.com/questions/53523051/error-could-not-stat-file-xx-csv-unknown-error).  There are work arounds, but most elegant is probably to install PostgreSQL 14 (the current version at time of writing in August 2022) or newer.
+
+You can add in comments to describe the data, drawing on and incorporating the data dictionary descriptions.  You may want to use dollar quoting (ie. using dollar signs "$$" instead of quote marks "'") to avoid use of apostrophes in descriptions causing errors (it may look like the comment has ended, and then the remaining characters can't be interpreted raising an error).  
+
+To view the list of tables in the database with comments when using psql, type `\dt+`; this can effectively serve as a data dictionary for the loaded datasets.  To view a data dictionary displaying the data type and description for variables commented on a specific table, a custom function can help.  This can be created by copying and pasting the following code in psql:
+
+```sql
+CREATE OR REPLACE FUNCTION dictionary(commented_table text) 
+RETURNS TABLE (column_name text, data_type text, col_description text) AS 
+$$
+SELECT a.attname column,
+  pg_catalog.format_type(a.atttypid, a.atttypmod) type,
+  pg_catalog.col_description(a.attrelid, a.attnum) description
+FROM pg_catalog.pg_attribute a
+WHERE a.attrelid =commented_table::regclass::oid AND a.attnum > 0 AND NOT a.attisdropped
+ORDER BY a.attnum;
+$$ language sql;
+```
+
+So, to display a data dictionary for the address indicators table, you can use the query, `SELECT * FROM dictionary('li_2018_address_indicators');`.  Running this after using the code below to load the address indicators would display the following:
+
+<details>
+  <summary>
+    Click to view example data dictionary returned from using the above `dictionary(table)` function
+  </summary>
+
+```
+anls_2018=# SELECT * FROM dictionary('li_2018_address_indicators');
+         column_name          |       data_type       |
+                                                                     col_description  
+
+------------------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ gnaf_pid                     | character varying(15) | Unique identifier using PSMA Open G-NAF 2018 data
+ count_objectid               | integer               | Count of co-located G-NAF points (only first unique location retained)
+ point_x                      | double precision      | Easting (metres; EPSG 7845)
+ point_y                      | double precision      | Northing (metres; EPSG 7845)
+ study_region                 | text                  | City name
+ mb_code_2016                 | text                  | Mesh Block (ASGS 2016) identifier
+ mb_category_name_2016        | text                  | Mesh Block category
+ sa1_maincode_2016            | text                  | Statistical Area 1 (SA1) maincode identifier
+ sa2_name_2016                | text                  | SA2 name
+ sa3_name_2016                | text                  | SA3 name
+ sa4_name_2016                | text                  | SA4 name
+ gccsa_name_2016              | text                  | Greater Capital City Statistical Area name
+ state_name_2016              | text                  | State name
+ ssc_name_2016                | text                  | Suburb name
+ lga_name_2016                | text                  | LGA name
+ ucl_name_2016                | text                  | Urban centre and locality name sos_name_2016                | text                  | Section of state name
+ uli_city                     | double precision      | Urban Liveability Index, relative to locations within this city
+ uli_national                 | double precision      | Urban Liveability Index, relative to locations across Australia's 21 largest cities
+ li_community_culture_leisure | double precision      | Score for access to community, culture and leisure destinations (community centre and library within 1000m, and museum/art gallery and cinema/theater within 3200m) (/1)
+ li_early_years               | double precision      | Score for access to child care (any meeting ACECQA recommendations) within 800 metres and childcare (outside school hours meeting recommendations) within 1600 metres (/1)
+ li_education                 | double precision      | Score for access to primary and secondary public schools within 1600 metres (/1)
+ li_health_services           | double precision      | Score for access to health services (GP, pharmacy, maternal, child and family health care, aged care facility and other community health care) within 1000 metres (/1)
+ li_sport_rec                 | double precision      | Score for access to an area of open space with sport/recreation facilities within 1000 metres, and a public swimming pool within 1200 metres (/1)
+ li_food                      | double precision      | Score for access to a supermarket and fresh fruit and vegetables within 1000 metres, and meat/seafood within 3200 metres (/1)
+ li_convenience               | double precision      | Score for access to convenience destinations (convenience store and petrol station within 1000 metres, and a newsagent within 3200 metres) (/1)
+ li_pt_regular_400m           | double precision      | Within 400 m of public transport with an average weekday service frequency of 30 minutes or less between 7am and 7pm within 400 metres
+ li_public_os_large_400m      | double precision      | Within 400 m of public open space larger than 1.5 Ha
+ li_street_connectivity_1600m | double precision      | Street connectivity
+ li_dwelling_density_1600m    | double precision      | Dwelling density
+ li_sa1_30_40_housing_stress  | double precision      | Percentage of SA1 households with income in the bottom 40% of the income distribution spending more than 30% of household income on housing costs
+ li_sa1_sa3_local_employment  | double precision      | Percentage of employed persons working in the community (SA3) in which they live
+ walkability_city             | double precision      | Walkability index, combining street connectivity, dwelling density and daily living destinations, relative to locations within this city
+ walkability_national         | double precision      | Walkability index, combining street connectivity, dwelling density and daily living destinations, relative to locations across Australia's 21 largest cities
+ daily_living_access_1600m    | double precision      | Score for access to daily living destinations within 1600 metres (supermarket, convenience and any public transport stop)
+ social_infrastructure_mix    | double precision      | Social infrastructure mix score (/16)
+ walk_02                      | integer               | Within 1000 metres of an activity centre with a supermarket
+ walk_12                      | integer               | At least 15 dwellings per hectare in local walkable neighbourhood
+ walk_13                      | integer               | At least 30 dwellings per hectare in local walkable neighbourhood
+ walk_16                      | integer               | Distance to closest activity centre
+ walk_17                      | double precision      | Pedshed ratio
+ walk_21                      | double precision      | Local living destination types present
+ trans_01                     | integer               | Access to bus stop < 400 m OR < 600 m of a tram stop OR < 800 m of a train station
+ trans_02                     | integer               | Access to bus stop < 400 m
+ trans_03                     | integer               | Within 400 m walk from a neighbourhood or town centre, or a bus stop, or in a 800 m walk from a railway station
+ trans_04                     | integer               | Within 400 metres of an existing or planned public transport stop
+ trans_05                     | integer               | Within 400 m of a bus stop every 30 min, or 800 m of a train station every 15 min
+ trans_06                     | integer               | Within 400 m of public transport stop with a regular scheduled weekday service
+ trans_07                     | integer               | Within 400 m of public transport with an average weekday service frequency of 30 minutes or less between 7am and 7pm within 400 metres
+ trans_08                     | integer               | Within 400 m of public transport with an average weekday service frequency of 25 minutes or less between 7am and 7pm within 400 metres
+ trans_09                     | integer               | Within 400 m of public transport with an average weekday service frequency of 20 minutes or less between 7am and 7pm within 400 metres
+ os_public_01                 | integer               | Within 400 m of public open space
+ os_public_02                 | integer               | Within 400 m of public open space larger than 1.5 Ha
+ os_public_03                 | integer               | Within 400 m of public open space
+ os_public_04                 | integer               | Within 300 m of any public open space
+ os_public_05                 | integer               | Within 400 m of any local park of size 0.4 to 1 Ha
+ os_public_06                 | integer               | Within 800 m of any neighbourhood park of size 1 to 5 Ha
+ os_public_07                 | integer               | Within 2 km of any district park of size 5 to 20 Ha
+ os_public_08                 | integer               | Within 400 m of a neighbourhood recreation park larger than 0.5 Ha
+ os_public_09                 | integer               | Within 2.5 km of a district recreation park larger than 5 Ha
+ os_public_10                 | integer               | Within 400 m of a park larger than 0.5 Ha
+ os_public_11                 | integer               | Within 2 km of a park >2 Ha
+ os_public_12                 | integer               | Distance to closest public open space with a public toilet within 100 metres
+ os_public_14                 | integer               | Distance to closest public open space (OSM, 2018) within 3200 metres
+ os_public_15                 | integer               | Distance to closest public open space <=0.4 Ha (OSM, 2018) within 3200 metres
+ os_public_16                 | integer               | Distance to closest public open space >0.4 Ha (OSM, 2018) within 3200 metres
+ os_public_17                 | integer               | Distance to closest public open space >0.5 Ha (OSM, 2018) within 3200 metres
+ os_public_18                 | integer               | Distance to closest public open space >1.5 Ha (OSM, 2018) within 3200 metres
+ os_public_19                 | integer               | Distance to closest public open space >2 Ha (OSM, 2018) within 3200 metres
+ os_public_20                 | integer               | Distance to closest public open space >0.4 to <=1 Ha (OSM, 2018) within 3200 metres
+ os_public_21                 | integer               | Distance to closest public open space >1 to <= 5 Ha (OSM, 2018) within 3200 metres
+ os_public_22                 | integer               | Distance to closest public open space >5 Ha to <=20 Ha (OSM, 2018) within 3200 metres
+ os_public_23                 | integer               | Distance to closest public open space >5 Ha (OSM, 2018) within 3200 metres
+ os_public_24                 | integer               | Distance to closest public open space >20 Ha (OSM, 2018) within 3200 metres
+ os_public_25                 | integer               | Distance to closest public open space with a sport facility (OSM, 2018) within 3200 metres
+ hous_02                      | double precision      | Renting as a proportion of total
+ hous_04                      | double precision      | Employed persons aged 15 and over using active transport as primary mode of travel to work
+ hous_05                      | double precision      | Employed persons aged 15 and over using public transport as primary mode to travel to work
+ hous_06                      | double precision      | Employed persons aged 15 and over using private vehicle/s as primary mode to travel to work
+ food_12                      | bigint                | Count of supermarkets within 1600 m (OSM or 2017 in-house)
+ food_13                      | bigint                | Count of fruit and vegetable grocers within 1600 m (OSM)
+ food_14                      | bigint                | Count of other specialty food stores (bakeries, butchers, fishmongers and delicatessens) within 1600 m (OSM and/or 2017 in-house)
+ food_15                      | bigint                | Count of healthier food outlets (supermarkets and fruit and vegetable grocers) within 1600 m (OSM and/or 2017 in-house)
+ food_16                      | bigint                | Count of fast food outlets within 1600 m (OSM or 2017 in-house)
+ food_17                      | double precision      | Percentage of food outlets within 1600 m that provide healthier food options (ie. supermarkets and fruit and vegetable grocers; OSM and/or 2017 in-house)
+ food_18                      | double precision      | Ratio of food outlets within 1600 m that provide healthier food options (ie. supermarkets and fruit and vegetable grocers) to fast food outlets; OSM and/or 2017 in-house)
+ food_19                      | double precision      | Percentage of food outlets within 1600 m that provide fresh food options  (ie. supermarkets, fruit and vegetable grocers, bakeries, butchers, fishmongers and delicatessens; OSM and/or 2017 in-house)
+ food_20                      | double precision      | Ratio of food outlets within 1600 m that provide fresh food options (ie. supermarkets, fruit and vegetable grocers, bakeries, butchers, fishmongers and delicatessens) to fast food outlets (OSM and/or 2017 in-house)
+ food_21                      | integer               | No food outlets within 1600 m (only considering supermarkets, fruit and vegetable grocers, and fast food as per healthier food measure;  OSM and/or 2017 in-house)
+ food_22                      | integer               | No food outlets within 1600 m (including specialty food outlets: bakeries, butchers, fish mongers and delicatessens;  OSM and/or 2017 in-house)
+ food_23_hard                 | integer               | Within 1km of a supermarket (OSM or 2017 in-house)
+ food_24                      | integer               | Distance to closest fresh food outlet (bakery, fruit and vegetables grocer, delicatessen, and fish, meat, poultry outlet; OSM, 2018)
+ food_25                      | integer               | Distance to closest healthy food outlet (supermarket or fruit and vegetables grocer; OSM, 2018)
+ food_26                      | integer               | Distance to closest fast food outlet (HLC, 2017; OSM, 2018)
+ food_27                      | integer               | Distance to closest dining establishment (cafe, restaurant, pub; OSM, 2018)
+ community_01                 | integer               | Distance to closest community centre (HLC, 2016; OSM, 2018)
+ community_02                 | integer               | Distance to closest cultural institution (museum, theatre, cinema, art gallery or art centre; OSM, 2018)
+ alc_01                       | bigint                | Number of on-licenses within 400 m
+ alc_02                       | bigint                | Number of off-licenses within 800 m
+ alc_03                       | integer               | Distance to closest bar, pub or nightclub (OSM, 2018)
+ childcare_01                 | integer               | Within 1600 m of a children's day care which meets guidelines
+ childcare_02                 | integer               | Within 1600 m of a children's out of school hours care which meets guidelines
+ health_01                    | integer               | Within 1600 m of a GP
+ geom                         | geometry(Point,7845)  |
+(104 rows)
+```
+</detail>
+
+
+### Loading the address indicator data
+
 #### Initialise Address indicators table, defining variables and their data types
-In the create table statement, you declare all the columns and their data types.  This can be quite verbose to list all of these (125 variables for the address indicators table, or more than 200 in the area aggregation tables which also contain distance to closest measures), so i have set the code to be collapsable in such cases below.
+
 <details>
   <summary>
     Click to view code
@@ -153,7 +295,7 @@ health_01	integer
 </details>
 
 #### Copy the data from CSV.  
-Note the file is large (> 1Gb), and some versions of PostgreSQL (eg 13) have issues copying data from large files (see https://stackoverflow.com/questions/53523051/error-could-not-stat-file-xx-csv-unknown-error).There are work arounds, but most elegant is probably to install PostgreSQL 14 (the current version at time of writing in August 2022) or newer.
+
 ```sql
 COPY li_2018_address_indicators FROM 'D:/projects/ntnl_li_2018/data/National Liveability 2018 - Final Outputs/For dissemination/hlc_ntnl_liveability_2018_address_points_indicators_epsg7845.csv' WITH DELIMITER ',' CSV HEADER;
 ```
@@ -168,7 +310,6 @@ ALTER TABLE li_2018_address_indicators ADD PRIMARY KEY (gnaf_pid);
 CREATE INDEX li_2018_address_indicators_geom_idx ON li_2018_address_indicators USING GIST (geom);
 ```
 #### Optionally describe the data
-You can add in comments to describe the data, drawing on and incorporating the data dictionary descriptions.  You may want to use dollar quoting (ie. using dollar signs "$$" instead of quote marks "'") to avoid use of apostrophes in descriptions causing errors (it may look like the comment has ended, and then the remaining characters can't be interpreted raising an error).
 
 <details>
   <summary>
@@ -283,7 +424,7 @@ COMMENT ON COLUMN li_2018_address_indicators.health_01 IS $$Within 1600 m of a G
 ```
 </details>
 
-To view the list of tables in the database with comments when using psql, type `\dt+`, or to view comments for the table we just created, type `\d+ li_2018_address_indicators`.
+To view comments for the table we just created, type `\d+ li_2018_address_indicators`.
 
 ### Loading the Mesh Block indicator data
 
