@@ -4429,101 +4429,74 @@ dist_m_theatre_osm Integer[]
 CREATE INDEX li_2018_address_distances_3200m_cl_region_idx ON li_2018_address_distances_3200m_cl (study_region);
 
 -- add comments to describe table and data
-COMMENT ON TABLE li_2018_address_dist_cl_m IS $$Arrays of estimates for distance in metres along pedestrian network to all destinations (within 3200m and the closest) across a range of destination types , for residential locations (address points in urban Mesh Blocks with dwellings at 2016 census)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.gnaf_pid IS $$Unique identifier using PSMA Open G-NAF 2018 data$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.study_region IS $$City name$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.mb_code_2016 IS $$Mesh Block (ASGS 2016) identifier$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_activity_centres IS $$Distance to closest activity centre$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_alcohol_offlicence IS $$Distance to closest offlice alcohol outlet (HLC, 2017-19)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_alcohol_onlicence IS $$Distance to closest onlicence alcohol outlet (HLC, 2017-19)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_alcohol_osm IS $$Distance to closest alcohol outlet (OSM, October 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_all_schools IS $$Distance to closest schools (all; ACARA, 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_art_centre_osm IS $$Distance to closest art centre (OSM, October 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_art_gallery_osm IS $$Distance to closest art gallery (OSM, October 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_bakery_osm IS $$Distance to closest bakery (OSM, October 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_bar_osm IS $$Distance to closest bar (OSM, October 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_cafe_osm IS $$Distance to closest cafe (OSM, October 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_childcare_all IS $$Distance to closest child care (all, ACEQUA 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_childcare_all_exc IS $$Distance to closest child care (exceeding requirements, ACEQUA 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_childcare_all_meet IS $$Distance to closest child care (meeting requirements, ACEQUA 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_childcare_oshc IS $$Distance to closest child care (outside school hours, ACEQUA 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_childcare_oshc_exc IS $$Distance to closest child care (outside school hours exceeding requirements, ACEQUA 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_childcare_oshc_meet IS $$Distance to closest child care (outside school hours meeting requirements, ACEQUA 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_childcare_preschool IS $$Distance to closest child care (pre-school, ACEQUA 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_childcare_preschool_exc IS $$Distance to closest child care (pre-school exceeding requirements, ACEQUA 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_childcare_preschool_meet IS $$Distance to closest child care (pre-school meeting requirements, ACEQUA 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_cinema_osm IS $$Distance to closest cinema (OSM, October 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_community_centre_osm IS $$Distance to closest community centre (OSM, October 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_convenience_osm IS $$Distance to closest convenience store (OSM, October 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_deli_osm IS $$Distance to closest deli (OSM, October 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_disability_employment IS $$Distance to closest disability employment service $$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_fast_food IS $$Distance to closest fast food (in house 2017)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_fastfood_osm IS $$Distance to closest fast food (OSM, October 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_food_court_osm IS $$Distance to closest food court (OSM, October 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_food_health_osm IS $$Distance to closest health food (OSM, October 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_food_other_osm IS $$Distance to closest other food (OSM, October 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_fruit_veg_osm IS $$Distance to closest fruit and veg (OSM, October 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_2018_stop_30_mins_final IS $$Distance to closest transport stop with frequent daytime service$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_2018_stops IS $$Distance to closest public transport stop$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_2018_stops_bus IS $$Distance to closest bus stop$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_2018_stops_ferry IS $$Distance to closest ferry terminal$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_2018_stops_train IS $$Distance to closest train station$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_2018_stops_tram IS $$Distance to closest tram stop$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_bus_0015 IS $$Distance to closest bus stop with usual daytime weekday service frequency of 15 mins or better$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_bus_0030 IS $$Distance to closest bus stop with usual daytime weekday service frequency of 30 mins or better$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_bus_0045 IS $$Distance to closest bus stop with usual daytime weekday service frequency of 45 mins or better$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_bus_any IS $$Distance to closest bus stop$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_ferry_0015 IS $$Distance to closest ferry stop with usual daytime weekday service frequency of 15 mins or better$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_ferry_0030 IS $$Distance to closest ferry stop with usual daytime weekday service frequency of 30 mins or better$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_ferry_0045 IS $$Distance to closest ferry stop with usual daytime weekday service frequency of 45 mins or better$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_ferry_any IS $$Distance to closest ferry stop$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_revised_all IS $$Distance to closest public transport stop$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_revised_frequent30 IS $$Distance to closest public transport stop with an average weekday service frequency of 30 minutes or less$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_train_0015 IS $$Distance to closest train stop with usual daytime weekday service frequency of 15 mins or better$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_train_0030 IS $$Distance to closest train stop with usual daytime weekday service frequency of 30 mins or better$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_train_0045 IS $$Distance to closest train stop with usual daytime weekday service frequency of 45 mins or better$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_train_any IS $$Distance to closest train stop$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_tram_0015 IS $$Distance to closest tram stop with usual daytime weekday service frequency of 15 mins or better$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_tram_0030 IS $$Distance to closest tram stop with usual daytime weekday service frequency of 30 mins or better$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_tram_0045 IS $$Distance to closest tram stop with usual daytime weekday service frequency of 45 mins or better$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_tram_any IS $$Distance to closest tram stop$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_hlc_2016_community_centres IS $$Distance to closest community centre (2016)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_libraries IS $$Distance to closest libraries (multiple sources, in-house, 2015-18)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_market_osm IS $$Distance to closest market (OSM, October 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_meat_seafood_osm IS $$Distance to closest meat / seafood (OSM, October 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_museum_osm IS $$Distance to closest museum (OSM, October 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_newsagent_osm IS $$Distance to closest newsagent (OSM, October 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_nhsd_2017_aged_care_residential IS $$Distance to closest aged care residential service$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_nhsd_2017_dentist IS $$Distance to closest dentist (NHSD 2017)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_nhsd_2017_gp IS $$Distance to closest general practice/GP/doctor (NHSD 2017)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_nhsd_2017_hospital IS $$Distance to closest hospital (NHSD 2017)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_nhsd_2017_mc_family_health IS $$Distance to closest maternal, child and family health (NHSD 2017)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_nhsd_2017_other_community_health_care IS $$Distance to closest 'other community health care' destination (not pharmacy or maternal and child health)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_nhsd_2017_pharmacy IS $$Distance to closest pharmacy (NHSD 2017)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_P_12_Schools IS $$Distance to closest schools (K - 12; ACARA, 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_P_12_Schools_catholic IS $$Distance to closest schools (K - 12, Catholic; ACARA, 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_P_12_Schools_gov IS $$Distance to closest schools (K - 12, Government; ACARA, 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_P_12_Schools_indep IS $$Distance to closest schools (K - 12, Independent; ACARA, 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_petrolstation_osm IS $$Distance to closest petrol station (OSM, October 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_pharmacy_osm IS $$Distance to closest pharmacy (OSM, October 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_place_of_worship_osm IS $$Distance to closest place of worship (OSM, October 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_playgrounds IS $$Distance to closest playground (in house 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_postoffice_osm IS $$Distance to post office (OSM, October 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_primary_schools IS $$Distance to closest schools (primary; ACARA, 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_primary_schools_catholic IS $$Distance to closest schools (primary, Catholic; ACARA, 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_primary_schools_gov IS $$Distance to closest schools (primary, Government; ACARA, 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_primary_schools_indep IS $$Distance to closest schools (primary, Independent; ACARA, 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_pub_osm IS $$Distance to closest pub (OSM, October 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_public_swimming_pool_osm IS $$Distance to closest public swimming pool (OSM, October 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_restaurant_osm IS $$Distance to closest restaurant (OSM, October 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_secondary_schools IS $$Distance to closest schools (secondary; ACARA, 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_secondary_schools_catholic IS $$Distance to closest schools (secondary, Catholic; ACARA, 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_secondary_schools_gov IS $$Distance to closest schools (secondary, Government; ACARA, 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_secondary_schools_indep IS $$Distance to closest schools (secondary, Independent; ACARA, 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_special_schools IS $$Distance to closest schools (special; ACARA, 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_supermarket IS $$Distance to closest supermarket (in house 2017)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_supermarket_osm IS $$Distance to closest supermarket (OSM, October 2018)$$;
-COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_theatre_osm IS $$Distance to closest theatre (OSM, October 2018)$$;
+COMMENT ON TABLE li_2018_address_distances_3200m_cl IS $$Arrays of estimates for distance in metres along pedestrian network to all destinations (within 3200m and the closest) across a range of destination types , for residential locations (address points in urban Mesh Blocks with dwellings at 2016 census)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.gnaf_pid IS $$Unique identifier using PSMA Open G-NAF 2018 data$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.study_region IS $$City name$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.mb_code_2016 IS $$Mesh Block (ASGS 2016) identifier$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_activity_centres IS $$Distance to closest activity centre$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_alcohol_offlicence IS $$Distance to closest offlice alcohol outlet (HLC, 2017-19)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_alcohol_onlicence IS $$Distance to closest onlicence alcohol outlet (HLC, 2017-19)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_alcohol_osm IS $$Distance to closest alcohol outlet (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_all_schools IS $$Distance to closest schools (all; ACARA, 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_art_centre_osm IS $$Distance to closest art centre (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_art_gallery_osm IS $$Distance to closest art gallery (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_bakery_osm IS $$Distance to closest bakery (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_bar_osm IS $$Distance to closest bar (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_cafe_osm IS $$Distance to closest cafe (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_childcare_all IS $$Distance to closest child care (all, ACEQUA 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_childcare_all_exc IS $$Distance to closest child care (exceeding requirements, ACEQUA 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_childcare_all_meet IS $$Distance to closest child care (meeting requirements, ACEQUA 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_childcare_oshc IS $$Distance to closest child care (outside school hours, ACEQUA 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_childcare_oshc_exc IS $$Distance to closest child care (outside school hours exceeding requirements, ACEQUA 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_childcare_oshc_meet IS $$Distance to closest child care (outside school hours meeting requirements, ACEQUA 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_childcare_preschool IS $$Distance to closest child care (pre-school, ACEQUA 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_childcare_preschool_exc IS $$Distance to closest child care (pre-school exceeding requirements, ACEQUA 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_childcare_preschool_meet IS $$Distance to closest child care (pre-school meeting requirements, ACEQUA 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_cinema_osm IS $$Distance to closest cinema (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_community_centre_osm IS $$Distance to closest community centre (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_convenience_osm IS $$Distance to closest convenience store (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_deli_osm IS $$Distance to closest deli (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_disability_employment IS $$Distance to closest disability employment service $$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_fast_food IS $$Distance to closest fast food (in house 2017)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_fastfood_osm IS $$Distance to closest fast food (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_food_court_osm IS $$Distance to closest food court (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_food_health_osm IS $$Distance to closest health food (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_food_other_osm IS $$Distance to closest other food (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_fruit_veg_osm IS $$Distance to closest fruit and veg (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_libraries IS $$Distance to closest libraries (multiple sources, in-house, 2015-18)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_market_osm IS $$Distance to closest market (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_meat_seafood_osm IS $$Distance to closest meat / seafood (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_museum_osm IS $$Distance to closest museum (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_newsagent_osm IS $$Distance to closest newsagent (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_nhsd_2017_aged_care_residential IS $$Distance to closest aged care residential service$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_nhsd_2017_dentist IS $$Distance to closest dentist (NHSD 2017)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_nhsd_2017_gp IS $$Distance to closest general practice/GP/doctor (NHSD 2017)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_nhsd_2017_hospital IS $$Distance to closest hospital (NHSD 2017)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_nhsd_2017_mc_family_health IS $$Distance to closest maternal, child and family health (NHSD 2017)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_nhsd_2017_pharmacy IS $$Distance to closest pharmacy (NHSD 2017)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_P_12_Schools IS $$Distance to closest schools (K - 12; ACARA, 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_P_12_Schools_catholic IS $$Distance to closest schools (K - 12, Catholic; ACARA, 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_P_12_Schools_gov IS $$Distance to closest schools (K - 12, Government; ACARA, 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_P_12_Schools_indep IS $$Distance to closest schools (K - 12, Independent; ACARA, 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_petrolstation_osm IS $$Distance to closest petrol station (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_pharmacy_osm IS $$Distance to closest pharmacy (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_place_of_worship_osm IS $$Distance to closest place of worship (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_playgrounds IS $$Distance to closest playground (in house 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_postoffice_osm IS $$Distance to post office (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_primary_schools IS $$Distance to closest schools (primary; ACARA, 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_primary_schools_catholic IS $$Distance to closest schools (primary, Catholic; ACARA, 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_primary_schools_gov IS $$Distance to closest schools (primary, Government; ACARA, 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_primary_schools_indep IS $$Distance to closest schools (primary, Independent; ACARA, 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_pub_osm IS $$Distance to closest pub (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_restaurant_osm IS $$Distance to closest restaurant (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_secondary_schools IS $$Distance to closest schools (secondary; ACARA, 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_secondary_schools_catholic IS $$Distance to closest schools (secondary, Catholic; ACARA, 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_secondary_schools_gov IS $$Distance to closest schools (secondary, Government; ACARA, 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_secondary_schools_indep IS $$Distance to closest schools (secondary, Independent; ACARA, 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_special_schools IS $$Distance to closest schools (special; ACARA, 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_supermarket IS $$Distance to closest supermarket (in house 2017)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_supermarket_osm IS $$Distance to closest supermarket (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_theatre_osm IS $$Distance to closest theatre (OSM, October 2018)$$;
 ```
 </details>
 
@@ -4598,3 +4571,17 @@ $$
 LANGUAGE plpgsql
 RETURNS NULL ON NULL INPUT;  
 ```
+
+## Examples of basic analyses using the data
+
+### Using the destination array to query the closest destinations
+Note that the code for loading the array dataset above references the 100 record sample test file; for meaningfull results when using this dataset it will be required to load the 11.2GB dataset.  However, the smaller dataset provides a convenient subset for testing queries while getting to know how the data structure works.
+
+```sql
+SELECT study_region, 
+ROUND(AVG(array_min(dist_m_supermarket)),0) mean_distance_m,
+ROUND(stddev(array_min(dist_m_supermarket)),0) sd_distance_m
+FROM li_2018_address_distances_3200m_cl 
+GROUP BY study_region;
+```
+
