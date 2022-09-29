@@ -891,8 +891,8 @@ COMMENT ON COLUMN li_2018_mb_indicators.dist_m_special_schools IS $$Average dist
 COMMENT ON COLUMN li_2018_mb_indicators.dist_m_supermarket IS $$Average distance to closest supermarket (in house 2017)$$;
 COMMENT ON COLUMN li_2018_mb_indicators.dist_m_supermarket_osm IS $$Average distance to closest supermarket (OSM, October 2018)$$;
 COMMENT ON COLUMN li_2018_mb_indicators.dist_m_theatre_osm IS $$Average distance to closest theatre (OSM, October 2018)$$;
-
 ```
+</details>
 
 Display information (including size and description) for this particular table: `\dt+ li_2018_mb_indicators`
 Display custom data dictionary by running `SELECT * FROM dictionary('li_2018_mb_indicators');`
