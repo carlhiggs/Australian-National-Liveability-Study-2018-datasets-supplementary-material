@@ -15,9 +15,9 @@ This document provides examples for loading all provided datasets and illustrate
   - [Stastistical Area 2](#loading-the-statistical-area-2-sa2-indicator-data)
   - [Stastistical Area 3](#loading-the-statistical-area-3-sa3-indicator-data)
   - [Stastistical Area 4](#loading-the-statistical-area-4-sa4-indicator-data)
-  - [Suburb](#loading-the-suburb-indicator-data)
-  - [Local Government Area](#loading-the-local-government-area-indicator-data)
-  - [City (overall summary)](#loading-the-city-indicator-data-overall-city-summaries)
+  - [Suburbs](#loading-the-suburb-indicator-data)
+  - [Local Government Areas](#loading-the-local-government-area-indicator-data)
+  - [City (overall summaries)](#loading-the-city-indicator-data-overall-city-summaries)
 - [Additional custom SQL functions](#Additional-custom-SQL-functions)
 
 ## Create and connect to a new database for the Australian National Liveability Study
@@ -4078,6 +4078,251 @@ Display custom data dictionary by running `SELECT * FROM dictionary('li_2018_cit
 
 
 ###  Other Tables
+
+#### Distance to closest destination in metres for residential addresses
+
+<details>
+  <summary>
+    Click to view code
+  </summary>
+  
+```sql
+CREATE TABLE li_2018_address_dist_cl_m
+(
+gnaf_pid character varying(15) PRIMARY KEY,
+count_objectid integer,
+point_x double precision,
+point_y double precision,
+study_region text,
+mb_code_2016 text,
+mb_category_name_2016 text,
+sa1_maincode_2016 text,
+sa2_name_2016 text,
+sa3_name_2016 text,
+sa4_name_2016 text,
+gccsa_name_2016 text,
+state_name_2016 text,
+ssc_name_2016 text,
+lga_name_2016 text,
+ucl_name_2016 text,
+sos_name_2016 text,
+dist_m_activity_centres integer,
+dist_m_alcohol_offlicence integer,
+dist_m_alcohol_onlicence integer,
+dist_m_alcohol_osm integer,
+dist_m_all_schools integer,
+dist_m_art_centre_osm integer,
+dist_m_art_gallery_osm integer,
+dist_m_bakery_osm integer,
+dist_m_bar_osm integer,
+dist_m_cafe_osm integer,
+dist_m_childcare_all integer,
+dist_m_childcare_all_exc integer,
+dist_m_childcare_all_meet integer,
+dist_m_childcare_oshc integer,
+dist_m_childcare_oshc_exc integer,
+dist_m_childcare_oshc_meet integer,
+dist_m_childcare_preschool integer,
+dist_m_childcare_preschool_exc integer,
+dist_m_childcare_preschool_meet integer,
+dist_m_cinema_osm integer,
+dist_m_community_centre_osm integer,
+dist_m_convenience_osm integer,
+dist_m_deli_osm integer,
+dist_m_disability_employment integer,
+dist_m_fast_food integer,
+dist_m_fastfood_osm integer,
+dist_m_food_court_osm integer,
+dist_m_food_health_osm integer,
+dist_m_food_other_osm integer,
+dist_m_fruit_veg_osm integer,
+dist_m_gtfs_2018_stop_30_mins_final integer,
+dist_m_gtfs_2018_stops integer,
+dist_m_gtfs_2018_stops_bus integer,
+dist_m_gtfs_2018_stops_ferry integer,
+dist_m_gtfs_2018_stops_train integer,
+dist_m_gtfs_2018_stops_tram integer,
+dist_m_gtfs_20191008_20191205_bus_0015 integer,
+dist_m_gtfs_20191008_20191205_bus_0030 integer,
+dist_m_gtfs_20191008_20191205_bus_0045 integer,
+dist_m_gtfs_20191008_20191205_bus_any integer,
+dist_m_gtfs_20191008_20191205_ferry_0015 integer,
+dist_m_gtfs_20191008_20191205_ferry_0030 integer,
+dist_m_gtfs_20191008_20191205_ferry_0045 integer,
+dist_m_gtfs_20191008_20191205_ferry_any integer,
+dist_m_gtfs_20191008_20191205_revised_all integer,
+dist_m_gtfs_20191008_20191205_revised_frequent30 integer,
+dist_m_gtfs_20191008_20191205_train_0015 integer,
+dist_m_gtfs_20191008_20191205_train_0030 integer,
+dist_m_gtfs_20191008_20191205_train_0045 integer,
+dist_m_gtfs_20191008_20191205_train_any integer,
+dist_m_gtfs_20191008_20191205_tram_0015 integer,
+dist_m_gtfs_20191008_20191205_tram_0030 integer,
+dist_m_gtfs_20191008_20191205_tram_0045 integer,
+dist_m_gtfs_20191008_20191205_tram_any integer,
+dist_m_hlc_2016_community_centres integer,
+dist_m_libraries integer,
+dist_m_market_osm integer,
+dist_m_meat_seafood_osm integer,
+dist_m_museum_osm integer,
+dist_m_newsagent_osm integer,
+dist_m_nhsd_2017_aged_care_residential integer,
+dist_m_nhsd_2017_dentist integer,
+dist_m_nhsd_2017_gp integer,
+dist_m_nhsd_2017_hospital integer,
+dist_m_nhsd_2017_mc_family_health integer,
+dist_m_nhsd_2017_other_community_health_care integer,
+dist_m_nhsd_2017_pharmacy integer,
+dist_m_P_12_Schools integer,
+dist_m_P_12_Schools_catholic integer,
+dist_m_P_12_Schools_gov integer,
+dist_m_P_12_Schools_indep integer,
+dist_m_petrolstation_osm integer,
+dist_m_pharmacy_osm integer,
+dist_m_place_of_worship_osm integer,
+dist_m_playgrounds integer,
+dist_m_postoffice_osm integer,
+dist_m_primary_schools integer,
+dist_m_primary_schools_catholic integer,
+dist_m_primary_schools_gov integer,
+dist_m_primary_schools_indep integer,
+dist_m_pub_osm integer,
+dist_m_public_swimming_pool_osm integer,
+dist_m_restaurant_osm integer,
+dist_m_secondary_schools integer,
+dist_m_secondary_schools_catholic integer,
+dist_m_secondary_schools_gov integer,
+dist_m_secondary_schools_indep integer,
+dist_m_special_schools integer,
+dist_m_supermarket integer,
+dist_m_supermarket_osm integer,
+dist_m_theatre_osm integer
+);
+
+-- copy in data
+COPY li_2018_address_dist_cl_m FROM 'D:/projects/ntnl_li_2018/data/National Liveability 2018 - Final Outputs/For dissemination/hlc_ntnl_liveability_2018_address_points_distance_closest_epsg7845.csv' WITH DELIMITER ',' CSV HEADER;
+
+-- add in geometry column with spatial index
+ALTER TABLE li_2018_address_dist_cl_m ADD COLUMN geom geometry(Point, 7845);
+UPDATE li_2018_address_dist_cl_m SET geom = ST_SetSRID(ST_MakePoint(point_x, point_y), 7845);
+CREATE INDEX li_2018_address_indicators_geom_idx ON li_2018_address_indicators USING GIST (geom);
+
+-- add comments to describe table and data
+COMMENT ON TABLE li_2018_address_dist_cl_m IS $$Estimates for distance in metres along pedestrian network to the closest of a range of destination types for residential locations (address points in urban Mesh Blocks with dwellings at 2016 census)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.gnaf_pid IS $$Unique identifier using PSMA Open G-NAF 2018 data$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.count_objectid IS $$Count of co-located G-NAF points (only first unique location retained)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.point_x IS $$Easting (metres; EPSG 7845)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.point_y IS $$Northing (metres; EPSG 7845)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.study_region IS $$City name$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.mb_code_2016 IS $$Mesh Block (ASGS 2016) identifier$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.mb_category_name_2016 IS $$Mesh Block category$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.sa1_maincode_2016 IS $$Statistical Area 1 (SA1) maincode identifier$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.sa2_name_2016 IS $$SA2 name$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.sa3_name_2016 IS $$SA3 name$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.sa4_name_2016 IS $$SA4 name$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.gccsa_name_2016 IS $$Greater Capital City Statistical Area name$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.state_name_2016 IS $$State name$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.ssc_name_2016 IS $$Suburb name$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.lga_name_2016 IS $$LGA name$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.ucl_name_2016 IS $$Urban centre and locality name$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.sos_name_2016 IS $$Section of state name $$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_activity_centres IS $$Distance to closest activity centre$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_alcohol_offlicence IS $$Distance to closest offlice alcohol outlet (HLC, 2017-19)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_alcohol_onlicence IS $$Distance to closest onlicence alcohol outlet (HLC, 2017-19)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_alcohol_osm IS $$Distance to closest alcohol outlet (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_all_schools IS $$Distance to closest schools (all; ACARA, 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_art_centre_osm IS $$Distance to closest art centre (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_art_gallery_osm IS $$Distance to closest art gallery (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_bakery_osm IS $$Distance to closest bakery (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_bar_osm IS $$Distance to closest bar (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_cafe_osm IS $$Distance to closest cafe (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_childcare_all IS $$Distance to closest child care (all, ACEQUA 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_childcare_all_exc IS $$Distance to closest child care (exceeding requirements, ACEQUA 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_childcare_all_meet IS $$Distance to closest child care (meeting requirements, ACEQUA 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_childcare_oshc IS $$Distance to closest child care (outside school hours, ACEQUA 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_childcare_oshc_exc IS $$Distance to closest child care (outside school hours exceeding requirements, ACEQUA 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_childcare_oshc_meet IS $$Distance to closest child care (outside school hours meeting requirements, ACEQUA 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_childcare_preschool IS $$Distance to closest child care (pre-school, ACEQUA 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_childcare_preschool_exc IS $$Distance to closest child care (pre-school exceeding requirements, ACEQUA 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_childcare_preschool_meet IS $$Distance to closest child care (pre-school meeting requirements, ACEQUA 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_cinema_osm IS $$Distance to closest cinema (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_community_centre_osm IS $$Distance to closest community centre (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_convenience_osm IS $$Distance to closest convenience store (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_deli_osm IS $$Distance to closest deli (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_disability_employment IS $$Distance to closest disability employment service $$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_fast_food IS $$Distance to closest fast food (in house 2017)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_fastfood_osm IS $$Distance to closest fast food (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_food_court_osm IS $$Distance to closest food court (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_food_health_osm IS $$Distance to closest health food (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_food_other_osm IS $$Distance to closest other food (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_fruit_veg_osm IS $$Distance to closest fruit and veg (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_2018_stop_30_mins_final IS $$Distance to closest transport stop with frequent daytime service$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_2018_stops IS $$Distance to closest public transport stop$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_2018_stops_bus IS $$Distance to closest bus stop$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_2018_stops_ferry IS $$Distance to closest ferry terminal$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_2018_stops_train IS $$Distance to closest train station$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_2018_stops_tram IS $$Distance to closest tram stop$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_bus_0015 IS $$Distance to closest bus stop with usual daytime weekday service frequency of 15 mins or better$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_bus_0030 IS $$Distance to closest bus stop with usual daytime weekday service frequency of 30 mins or better$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_bus_0045 IS $$Distance to closest bus stop with usual daytime weekday service frequency of 45 mins or better$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_bus_any IS $$Distance to closest bus stop$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_ferry_0015 IS $$Distance to closest ferry stop with usual daytime weekday service frequency of 15 mins or better$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_ferry_0030 IS $$Distance to closest ferry stop with usual daytime weekday service frequency of 30 mins or better$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_ferry_0045 IS $$Distance to closest ferry stop with usual daytime weekday service frequency of 45 mins or better$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_ferry_any IS $$Distance to closest ferry stop$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_revised_all IS $$Distance to closest public transport stop$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_revised_frequent30 IS $$Distance to closest public transport stop with an average weekday service frequency of 30 minutes or less$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_train_0015 IS $$Distance to closest train stop with usual daytime weekday service frequency of 15 mins or better$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_train_0030 IS $$Distance to closest train stop with usual daytime weekday service frequency of 30 mins or better$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_train_0045 IS $$Distance to closest train stop with usual daytime weekday service frequency of 45 mins or better$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_train_any IS $$Distance to closest train stop$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_tram_0015 IS $$Distance to closest tram stop with usual daytime weekday service frequency of 15 mins or better$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_tram_0030 IS $$Distance to closest tram stop with usual daytime weekday service frequency of 30 mins or better$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_tram_0045 IS $$Distance to closest tram stop with usual daytime weekday service frequency of 45 mins or better$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_gtfs_20191008_20191205_tram_any IS $$Distance to closest tram stop$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_hlc_2016_community_centres IS $$Distance to closest community centre (2016)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_libraries IS $$Distance to closest libraries (multiple sources, in-house, 2015-18)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_market_osm IS $$Distance to closest market (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_meat_seafood_osm IS $$Distance to closest meat / seafood (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_museum_osm IS $$Distance to closest museum (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_newsagent_osm IS $$Distance to closest newsagent (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_nhsd_2017_aged_care_residential IS $$Distance to closest aged care residential service$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_nhsd_2017_dentist IS $$Distance to closest dentist (NHSD 2017)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_nhsd_2017_gp IS $$Distance to closest general practice/GP/doctor (NHSD 2017)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_nhsd_2017_hospital IS $$Distance to closest hospital (NHSD 2017)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_nhsd_2017_mc_family_health IS $$Distance to closest maternal, child and family health (NHSD 2017)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_nhsd_2017_other_community_health_care IS $$Distance to closest 'other community health care' destination (not pharmacy or maternal and child health)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_nhsd_2017_pharmacy IS $$Distance to closest pharmacy (NHSD 2017)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_P_12_Schools IS $$Distance to closest schools (K - 12; ACARA, 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_P_12_Schools_catholic IS $$Distance to closest schools (K - 12, Catholic; ACARA, 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_P_12_Schools_gov IS $$Distance to closest schools (K - 12, Government; ACARA, 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_P_12_Schools_indep IS $$Distance to closest schools (K - 12, Independent; ACARA, 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_petrolstation_osm IS $$Distance to closest petrol station (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_pharmacy_osm IS $$Distance to closest pharmacy (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_place_of_worship_osm IS $$Distance to closest place of worship (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_playgrounds IS $$Distance to closest playground (in house 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_postoffice_osm IS $$Distance to post office (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_primary_schools IS $$Distance to closest schools (primary; ACARA, 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_primary_schools_catholic IS $$Distance to closest schools (primary, Catholic; ACARA, 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_primary_schools_gov IS $$Distance to closest schools (primary, Government; ACARA, 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_primary_schools_indep IS $$Distance to closest schools (primary, Independent; ACARA, 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_pub_osm IS $$Distance to closest pub (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_public_swimming_pool_osm IS $$Distance to closest public swimming pool (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_restaurant_osm IS $$Distance to closest restaurant (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_secondary_schools IS $$Distance to closest schools (secondary; ACARA, 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_secondary_schools_catholic IS $$Distance to closest schools (secondary, Catholic; ACARA, 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_secondary_schools_gov IS $$Distance to closest schools (secondary, Government; ACARA, 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_secondary_schools_indep IS $$Distance to closest schools (secondary, Independent; ACARA, 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_special_schools IS $$Distance to closest schools (special; ACARA, 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_supermarket IS $$Distance to closest supermarket (in house 2017)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_supermarket_osm IS $$Distance to closest supermarket (OSM, October 2018)$$;
+COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_theatre_osm IS $$Distance to closest theatre (OSM, October 2018)$$;
+```
+</details>
+
+
+
+### draft comments
 
 ```sql
 COMMENT ON TABLE li_2018_address_dest_closest IS $$Estimates for distance in metres along pedestrian network to the closest of a range of destination types for residential locations (address points in urban Mesh Blocks with dwellings at 2016 census)$$;
