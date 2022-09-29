@@ -63,9 +63,7 @@ So, to display a data dictionary for the address indicators table, you can use t
 
 ```
 anls_2018=# SELECT * FROM dictionary('li_2018_address_indicators');
-         column_name          |       data_type       |
-                                                                     col_description  
-
+         column_name          |       data_type       |             col_description  
 ------------------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  gnaf_pid                     | character varying(15) | Unique identifier using PSMA Open G-NAF 2018 data
  count_objectid               | integer               | Count of co-located G-NAF points (only first unique location retained)
