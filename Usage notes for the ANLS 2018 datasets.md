@@ -6,8 +6,8 @@ We have provided our data and data dictionaries in a plain text CSV format for a
 This document provides examples for loading all provided datasets and illustrate how to get started using the data in a PostgreSQL database.  Users may draw on this code freely, updating any file paths with corresponding locations of their own downloaded data.  
 
 ## Contents
-1. [Create and connect to a new database for the Australian National Liveability Study](#create-and-connect-to-a-new-database-for-the-australian-national-liveability-study)
-2. [Loading the indicator datasets](#loading-the-indicators-datasets)
+- [Create and connect to a new database for the Australian National Liveability Study](#create-and-connect-to-a-new-database-for-the-australian-national-liveability-study)
+- [Loading the indicator datasets](#loading-the-indicators-datasets)
   - [Address points](#loading-the-address-indicator-data)
   - [Mesh Blocks](#loading-the-mesh-block-indicator-data)
   - [Stastistical Area 1](#loading-the-sa1-indicator-data)
