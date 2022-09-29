@@ -32,7 +32,7 @@ SELECT postgis_full_version();
 
 ## Loading the indicators datasets
 
-###General process and tips
+### General process and tips
 To load data, empty table(s) are created for the datasets to be loaded into first; the column names and data types of the data to be loaded from the CSV source file are defined (e.g., drawing on the variable names and data types in the supplied data dictionary files).  Then, the data itself may be copied from the CSV file into the newly created table.
 
 In the create table statement, you declare all the columns and their data types.  This can be quite verbose to list all of these (125 variables for the address indicators table, or more than 200 in the area aggregation tables which also contain distance to closest measures), so the code has been set to be collapsable in such cases below.
