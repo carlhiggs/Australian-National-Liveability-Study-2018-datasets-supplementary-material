@@ -58,7 +58,7 @@ So, to display a data dictionary for the address indicators table, you can use t
 
 <details>
   <summary>
-    Click to view example data dictionary returned from using the above dictionary(table) function
+    Click to view example data dictionary for address indicators returned from using the custom dictionary(table) function described above
   </summary>
 
 ```
@@ -423,7 +423,8 @@ COMMENT ON COLUMN li_2018_address_indicators.health_01 IS $$Within 1600 m of a G
 ```
 </details>
 
-To view comments for the table we just created, type `\d+ li_2018_address_indicators`.
+To view comments for the table we just created, type `\d+ li_2018_address_indicators`.   Alternatively, for a more concisely formatted data dictionary use the provided custom dictionary function to query by running:
+`SELECT * FROM dictionary('li_2018_address_indicators')`;
 
 ### Loading the Mesh Block indicator data
 
@@ -667,6 +668,7 @@ COPY li_2018_mb_indicators FROM 'D:/projects/ntnl_li_2018/data/National Liveabil
 COMMENT ON TABLE li_2018_mb_indicators IS $$Mesh Block averages of residential liveability indicators and distance to closest estimates, with dwelling and person counts as well as area linkage codes to support aggregation to larger area scales (optionally with weighting; recommended)$$;
 ```
 
+Display custom data dictionary by running `SELECT * FROM dictionary('li_2018_mb_indicators');`
 
 ### Loading the SA2 indicator data
 
