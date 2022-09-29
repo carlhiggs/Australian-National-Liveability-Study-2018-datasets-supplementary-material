@@ -58,7 +58,7 @@ So, to display a data dictionary for the address indicators table, you can use t
 
 <details>
   <summary>
-    Click to view example data dictionary returned from using the above `dictionary(table)` function
+    Click to view example data dictionary returned from using the above dictionary(table) function
   </summary>
 
 ```
@@ -82,7 +82,8 @@ anls_2018=# SELECT * FROM dictionary('li_2018_address_indicators');
  state_name_2016              | text                  | State name
  ssc_name_2016                | text                  | Suburb name
  lga_name_2016                | text                  | LGA name
- ucl_name_2016                | text                  | Urban centre and locality name sos_name_2016                | text                  | Section of state name
+ ucl_name_2016                | text                  | Urban centre and locality name 
+ sos_name_2016                | text                  | Section of state name
  uli_city                     | double precision      | Urban Liveability Index, relative to locations within this city
  uli_national                 | double precision      | Urban Liveability Index, relative to locations across Australia's 21 largest cities
  li_community_culture_leisure | double precision      | Score for access to community, culture and leisure destinations (community centre and library within 1000m, and museum/art gallery and cinema/theater within 3200m) (/1)
