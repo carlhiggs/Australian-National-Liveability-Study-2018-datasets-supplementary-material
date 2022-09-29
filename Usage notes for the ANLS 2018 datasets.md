@@ -673,6 +673,7 @@ COPY li_2018_mb_indicators FROM 'D:/projects/ntnl_li_2018/data/National Liveabil
   <summary>
     Click to view code
   </summary>
+
 ```sql
 COMMENT ON TABLE li_2018_mb_indicators IS $$Mesh Block averages of residential liveability indicators and distance to closest estimates, with dwelling and person counts as well as area linkage codes to support aggregation to larger area scales (optionally with weighting; recommended)$$;
 COMMENT ON COLUMN li_2018_mb_indicators.mb_code_2016 IS $$Mesh Block (ASGS 2016) identifier$$;
@@ -1132,6 +1133,7 @@ COPY li_2018_sa1_indicators FROM 'D:/projects/ntnl_li_2018/data/National Liveabi
   <summary>
     Click to view code
   </summary>
+
 ```sql
 COMMENT ON TABLE li_2018_sa1_indicators IS $$Liveability indicators for dwellings, aggregated for Statistical Areas Level 1 (SA1)$$;
 COMMENT ON COLUMN li_2018_sa1_indicators.sa1_maincode_2016 IS $$Statistical Area 1 (SA1) maincode identifier$$;
@@ -1585,6 +1587,7 @@ COPY li_2018_sa2_indicators FROM 'D:/projects/ntnl_li_2018/data/National Liveabi
   <summary>
     Click to view code
   </summary>
+
 ```sql
 COMMENT ON TABLE li_2018_sa2_indicators IS $$Liveability indicators for dwellings, aggregated for Statistical Areas Level 2 (SA2)$$;
 COMMENT ON COLUMN li_2018_sa2_indicators.sa2_name_2016 IS $$SA2 name$$;
@@ -2039,6 +2042,7 @@ COPY li_2018_sa3_indicators FROM 'D:/projects/ntnl_li_2018/data/National Liveabi
   <summary>
     Click to view code
   </summary>
+
 ```sql
 COMMENT ON TABLE li_2018_sa3_indicators IS $$Liveability indicators for dwellings, aggregated for Statistical Areas Level 3 (SA3)$$;
 COMMENT ON COLUMN li_2018_sa3_indicators.sa3_name_2016 IS $$SA3 name$$;
@@ -2492,6 +2496,7 @@ COPY li_2018_sa4_indicators FROM 'D:/projects/ntnl_li_2018/data/National Liveabi
   <summary>
     Click to view code
   </summary>
+
 ```sql
 COMMENT ON TABLE li_2018_sa4_indicators IS $$Liveability indicators for dwellings, aggregated for Statistical Areas Level 4 (SA4)$$;
 COMMENT ON COLUMN li_2018_sa4_indicators.sa4_name_2016 IS $$SA4 name$$;
@@ -2945,6 +2950,7 @@ COPY li_2018_suburb_indicators FROM 'D:/projects/ntnl_li_2018/data/National Live
   <summary>
     Click to view code
   </summary>
+
 ```sql
 COMMENT ON TABLE li_2018_suburb_indicators IS $$Liveability indicators for dwellings, aggregated for Suburbs$$;
 COMMENT ON COLUMN li_2018_suburb_indicators.ssc_name_2016 IS $$Suburb name$$;
@@ -3399,6 +3405,7 @@ COPY li_2018_lga_indicators FROM 'D:/projects/ntnl_li_2018/data/National Liveabi
   <summary>
     Click to view code
   </summary>
+
 ```sql
 COMMENT ON TABLE li_2018_lga_indicators IS $$Liveability indicators for dwellings, aggregated for Local Government Areas$$;
 COMMENT ON COLUMN li_2018_lga_indicators.lga_name_2016 IS $$LGA name$$;
@@ -3852,6 +3859,7 @@ COPY li_2018_city_indicators FROM 'D:/projects/ntnl_li_2018/data/National Liveab
   <summary>
     Click to view code
   </summary>
+
 ```sql
 COMMENT ON TABLE li_2018_city_indicators IS $$Liveability indicators for dwellings, aggregated for cities$$;
 COMMENT ON COLUMN li_2018_city_indicators.study_region IS $$City name$$;
