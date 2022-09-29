@@ -1,6 +1,6 @@
 Mesh Block,Other scales,Variable,Description,Data type,Aggregation scale
-1,,mb_code_2016,City name,text,Mesh Block
-2,1,study_region,Mesh Block (ASGS 2016) identifier,text,All scales
+1,,mb_code_2016,Mesh Block (ASGS 2016) identifier,text,Mesh Block
+2,1,study_region,City name,text,All scales
 3,,mb_category_name_2016,Mesh Block category,text,Mesh Block
 4,1,sa1_maincode_2016,Statistical Area 1 (SA1) maincode identifier,text,"Mesh Block, SA1"
 5,1,sa2_name_2016,SA2 name,text,"Mesh Block, SA2"

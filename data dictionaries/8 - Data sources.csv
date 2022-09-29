@@ -1,28 +1,33 @@
-Custodian,Year,Datasource description,Purpose
-Australian Burea of Statistics,2016,ASGS Volume 1 geopackage,"Mesh Block, SA1, SA2, SA3, SA4, GCCSA boundaries"
-Australian Burea of Statistics,2016,Mesh Block dwelling and person counts,Dwellings
-Australian Burea of Statistics,2016,Mesh Block - Suburb linkage csv,Suburb
-Australian Burea of Statistics,2016,Mesh Block - LGA linkage csv,LGA
-Australian Burea of Statistics,2016,SA1 urban centres and localities linkage,Section of State
-Australian Burea of Statistics,2016,ASGS Volume 3 geopackage,Suburb and LGA geometries
-Australian Burea of Statistics,2016,ASGS Volume 4 geopackage,SUA geoms
-Australian Burea of Statistics,2016,SEIFA IRSD 2016 (SA1 ),IRSD related statistics
-OpenStreetMap (Retrieved 1 October 2018),2018,"Pedestrian network, generated using OSMnx, using Overpass API using hybrid walk-cycle network",Accessibility analysis
-OpenStreetMap (Retrieved 1 October 2018),2018,"Intersections, generated using OSMnx with processed pedestrian network",Modelling street connectivity
-OpenStreetMap (Retrieved 1 October 2018),2018,"Destinations (see definitions, elsewhere)",Accessibility analysis
-OpenStreetMap (Retrieved 1 October 2018),2018,"Open Space (see definitions, elsewhere)",Accessibility analysis
-ACECQUA,2019,Australian Children's Education & Care Quality Authority child care centres (geocoded),Accessibility analysis
-ACARA,2019,"Australian Curriculum, Assessment and Reporting Authority (ACARA), Primary and secondary schools, by sector (geocoded)",Accessibility analysis
-NHSD,2017,National Health Services Directory (via AURIN Portal),Accessibility analysis
-HLC,2017,"Additional geocoded datasets curated by Health Liveable Cities group from multiple sources (supermarket major chains, 2017; Australian Libraries, 2016-18)",Accessibility analysis
-State Transport agencies GTFS feed data covering the period 8 October to 5 December for 2018/19 ,2018/19,https://data.gov.au/dataset/ds-nsw-30943035-80de-4fe2-b4d3-9de606147f31/details?q=GTFS,Accessibility and transport analysis
-State Transport agencies GTFS feed data covering the period 8 October to 5 December for 2018/19 ,2018/19,https://transitfeeds.com/p/action-buses/3/latest/download,Accessibility and transport analysis
-State Transport agencies GTFS feed data covering the period 8 October to 5 December for 2018/19 ,2018/19,https://transitfeeds.com/p/canberra-metro-operations/1181/latest/download,Accessibility and transport analysis
-State Transport agencies GTFS feed data covering the period 8 October to 5 December for 2018/19 ,2018/19,https://transitfeeds.com/p/translink/21/latest,Accessibility and transport analysis
-State Transport agencies GTFS feed data covering the period 8 October to 5 December for 2018/19 ,2018/19,https://www.data.qld.gov.au/dataset/general-transit-feed-specification-gtfs-qconnect,Accessibility and transport analysis
-State Transport agencies GTFS feed data covering the period 8 October to 5 December for 2018/19 ,2018/19,https://transitfeeds.com/p/ptv/497/latest/download,Accessibility and transport analysis
-State Transport agencies GTFS feed data covering the period 8 October to 5 December for 2018/19 ,2018/19,https://transitfeeds.com/p/metrotas/311/latest/download,Accessibility and transport analysis
-State Transport agencies GTFS feed data covering the period 8 October to 5 December for 2018/19 ,2018/19,https://transitfeeds.com/p/metrotas/312/latest,Accessibility and transport analysis
-State Transport agencies GTFS feed data covering the period 8 October to 5 December for 2018/19 ,2018/19,https://transitfeeds.com/p/adelaide-metro/1/latest/download,Accessibility and transport analysis
-State Transport agencies GTFS feed data covering the period 8 October to 5 December for 2018/19 ,2018/19,https://dipl.nt.gov.au/transport/transport-statistics-surveys-and-research/bus-timetable-data-and-geographic-information,Accessibility and transport analysis
-State Transport agencies GTFS feed data covering the period 8 October to 5 December for 2018/19 ,2018/19,https://transitfeeds.com/p/transperth/2/latest/download,Accessibility and transport analysis
+Custodian,Year,Datasource description,Purpose,URL
+Australian Burea of Statistics,2016,ASGS Volume 1 geopackage,"Boundaries (Mesh Block, Statistical Areas 1-4, Greater Capital City Statistical Areas)",https://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/1270.0.55.001July%202016?OpenDocument
+Australian Burea of Statistics,2016,Mesh Block dwelling and person counts,Dwelling counts,http://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/2074.02016?OpenDocument
+Australian Burea of Statistics,2016,Mesh Block - Suburb linkage csv,Suburb identifiers,https://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/1270.0.55.003July%202019?OpenDocument
+Australian Burea of Statistics,2016,Mesh Block - LGA linkage csv,Local Government Area identifiers,https://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/1270.0.55.003July%202019?OpenDocument
+Australian Burea of Statistics,2016,SA1 urban centres and localities linkage,Section of State,https://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/1270.0.55.004July%202016?OpenDocument
+Australian Burea of Statistics,2016,ASGS Volume 3 geopackage,Suburb and LGA geometries,https://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/1270.0.55.003July%202019?OpenDocument
+Australian Burea of Statistics,2016,ASGS Volume 4 geopackage,Significant Urban Area geometries,https://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/1270.0.55.004July%202016?OpenDocument
+Australian Burea of Statistics,2016,SEIFA IRSD 2016 (SA1 ),Index of Relative Socio-economic Disadvantage,https://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/2033.0.55.0012016?OpenDocument
+PSMA,2018,Geocoded National Address File (G-NAF),"Address locations, used in urban areas with dwellings",https://data.gov.au/data/dataset/e1a365fc-52f5-4798-8f0c-ed1d33d43b6d/resource/a7742388-5a9a-4459-b4de-675f18abaf2b/download/nov18_gnaf_pipeseparatedvalue_20181119200719.zip
+OpenStreetMap,,1 October 2018 planet dump file,,https://planet.openstreetmap.org/planet/2018/discussions-181001.osm.bz2
+OpenStreetMap,2018,"Pedestrian network, generated using OSMnx, using Overpass API using hybrid walk-cycle network",Accessibility analysis,
+OpenStreetMap,2018,"Intersections, generated using OSMnx with processed pedestrian network",Modelling street connectivity,https://planet.openstreetmap.org/planet/2018/discussions-181001.osm.bz2
+OpenStreetMap,2018,"Destinations (see definitions, elsewhere)",Accessibility analysis,https://planet.openstreetmap.org/planet/2018/discussions-181001.osm.bz2
+OpenStreetMap,2018,"Open Space (see definitions, elsewhere)",Accessibility analysis,https://planet.openstreetmap.org/planet/2018/discussions-181001.osm.bz2
+OpenStreetMap,2018,Points of interest (see Supplementary Table 1),Accessibility analysis,https://planet.openstreetmap.org/planet/2018/discussions-181001.osm.bz2
+OpenStreetMap,2018,Areas of open space,Accessibility analysis,https://planet.openstreetmap.org/planet/2018/discussions-181001.osm.bz2
+ACECQA,2019,Australian Children's Education & Care Quality Authority child care centres (geocoded),Accessibility analysis,https://www.acecqa.gov.au/resources/national-registers
+ACARA,2019,"Australian Curriculum, Assessment and Reporting Authority (ACARA), Primary and secondary schools, by sector (geocoded)",Accessibility analysis,https://asl.acara.edu.au/
+NHSD,2017,National Health Services Directory (via AURIN Portal),Accessibility analysis,https://portal.aurin.org.au/
+HLC,2017,"Additional geocoded datasets curated by Health Liveable Cities group from multiple sources (supermarket major chains, 2017; Australian Libraries, 2016-18)",Accessibility analysis,
+State Transport agencies GTFS feed data covering the period 8 October to 5 December for 2018/19 ,2018/19,TfNSW (NSW),Accessibility and transport analysis,https://opendata.transport.nsw.gov.au/dataset/timetables-complete-gtfs
+State Transport agencies GTFS feed data covering the period 8 October to 5 December for 2018/19 ,2018/19,Action Buses (ACT),Accessibility and transport analysis,https://transitfeeds.com/p/action-buses/3/latest/download
+State Transport agencies GTFS feed data covering the period 8 October to 5 December for 2018/19 ,2018/19,Canberra Metro (ACT),Accessibility and transport analysis,https://transitfeeds.com/p/canberra-metro-operations/1181/latest/download
+State Transport agencies GTFS feed data covering the period 8 October to 5 December for 2018/19 ,2018/19,TransLink (QLD),Accessibility and transport analysis,https://transitfeeds.com/p/translink/21/latest
+State Transport agencies GTFS feed data covering the period 8 October to 5 December for 2018/19 ,2018/19,Qconnect QLD),Accessibility and transport analysis,https://www.data.qld.gov.au/dataset/general-transit-feed-specification-gtfs-qconnect
+State Transport agencies GTFS feed data covering the period 8 October to 5 December for 2018/19 ,2018/19,PTV (Victoria),Accessibility and transport analysis,https://transitfeeds.com/p/ptv/497/latest/download
+State Transport agencies GTFS feed data covering the period 8 October to 5 December for 2018/19 ,2018/19,MetroTas (Tasmania),Accessibility and transport analysis,https://transitfeeds.com/p/metrotas/311/latest/download
+State Transport agencies GTFS feed data covering the period 8 October to 5 December for 2018/19 ,2018/19,MetroTas (Tasmania),Accessibility and transport analysis,https://transitfeeds.com/p/metrotas/312/latest
+State Transport agencies GTFS feed data covering the period 8 October to 5 December for 2018/19 ,2018/19,Adelaide Metro,Accessibility and transport analysis,https://transitfeeds.com/p/adelaide-metro/1/latest/download
+State Transport agencies GTFS feed data covering the period 8 October to 5 December for 2018/19 ,2018/19,"Department of
+Infrastructure, Planning and Logistics (NT)",Accessibility and transport analysis,https://dipl.nt.gov.au/transport/transport-statistics-surveys-and-research/bus-timetable-data-and-geographic-information
+State Transport agencies GTFS feed data covering the period 8 October to 5 December for 2018/19 ,2018/19,TransPerth,Accessibility and transport analysis,https://transitfeeds.com/p/transperth/2/latest/download
