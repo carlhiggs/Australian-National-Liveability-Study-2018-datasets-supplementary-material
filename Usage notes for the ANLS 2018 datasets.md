@@ -172,7 +172,7 @@ anls_2018=# SELECT * FROM dictionary('li_2018_address_indicators');
  geom                         | geometry(Point,7845)  |
 (104 rows)
 ```
-</detail>
+</details>
 
 
 ### Loading the address indicator data
