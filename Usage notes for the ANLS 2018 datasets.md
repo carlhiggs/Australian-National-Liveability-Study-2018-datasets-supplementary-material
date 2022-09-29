@@ -4062,7 +4062,6 @@ COMMENT ON COLUMN li_2018_city_indicators.dist_m_special_schools IS $$Average di
 COMMENT ON COLUMN li_2018_city_indicators.dist_m_supermarket IS $$Average distance to closest supermarket (in house 2017)$$;
 COMMENT ON COLUMN li_2018_city_indicators.dist_m_supermarket_osm IS $$Average distance to closest supermarket (OSM, October 2018)$$;
 COMMENT ON COLUMN li_2018_city_indicators.dist_m_theatre_osm IS $$Average distance to closest theatre (OSM, October 2018)$$;
-
 ```
 </details>
 
@@ -4070,9 +4069,8 @@ Display information (including size and description) for this particular table: 
 Display custom data dictionary by running `SELECT * FROM dictionary('li_2018_city_indicators');`
 
 
+####  Other Tables
 
-
-#### 
 ```sql
 COMMENT ON TABLE li_2018_address_dest_closest IS $$Estimates for distance in metres along pedestrian network to the closest of a range of destination types for residential locations (address points in urban Mesh Blocks with dwellings at 2016 census)$$;
 ```
@@ -4093,8 +4091,6 @@ COMMENT ON TABLE li_2018_public_open_space IS $$Areas of open space with at leas
 ```sql
 COMMENT ON TABLE li_2018_aos_jsonb IS $$JSON list of identifiers and distances of areas of open space for residential address points identified as having areas of open space accessible within 3200m. This dataset is indexed by the residential address point identifier, supporting linkage with attributes from the main address indicator dataset.$$;
 ```
-
-
 
 
 ### Additional custom SQL functions
