@@ -299,7 +299,7 @@ health_01 integer
 ```
 </details>
 
-#### Copy the data from CSV.  
+##### Copy the data from CSV.  
 
 ```sql
 COPY li_2018_address_indicators FROM 'D:/projects/ntnl_li_2018/data/National Liveability 2018 - Final Outputs/For dissemination/hlc_ntnl_liveability_2018_address_points_indicators_epsg7845.csv' WITH DELIMITER ',' CSV HEADER;
@@ -662,7 +662,7 @@ dist_m_theatre_osm float
 ```
 </details>
 
-### Copy the data from CSV
+#### Copy the data from CSV
 ```sql
 COPY li_2018_mb_indicators FROM 'D:/projects/ntnl_li_2018/data/National Liveability 2018 - Final Outputs/For dissemination/hlc_ntnl_liveability_2018_Mesh_Block_2016.csv' WITH DELIMITER ',' CSV HEADER;
 ```
@@ -1123,7 +1123,7 @@ dist_m_theatre_osm float
 ```
 </details>
 
-### Copy the data from CSV
+#### Copy the data from CSV
 ```sql
 COPY li_2018_sa1_indicators FROM 'D:/projects/ntnl_li_2018/data/National Liveability 2018 - Final Outputs/For dissemination/hlc_ntnl_liveability_2018_sa1_2016.csv' WITH DELIMITER ',' CSV HEADER;
 ```
@@ -1577,7 +1577,7 @@ dist_m_theatre_osm float
 ```
 </details>
 
-### Copy the data from CSV
+#### Copy the data from CSV
 ```sql
 COPY li_2018_sa2_indicators FROM 'D:/projects/ntnl_li_2018/data/National Liveability 2018 - Final Outputs/For dissemination/hlc_ntnl_liveability_2018_sa2_2016.csv' WITH DELIMITER ',' CSV HEADER;
 ```
@@ -2032,7 +2032,7 @@ dist_m_theatre_osm float
 ```
 </details>
 
-### Copy the data from CSV
+#### Copy the data from CSV
 ```sql
 COPY li_2018_sa3_indicators FROM 'D:/projects/ntnl_li_2018/data/National Liveability 2018 - Final Outputs/For dissemination/hlc_ntnl_liveability_2018_sa3_2016.csv' WITH DELIMITER ',' CSV HEADER;
 ```
@@ -2486,7 +2486,7 @@ dist_m_theatre_osm float
 ```
 </details>
 
-### Copy the data from CSV
+#### Copy the data from CSV
 ```sql
 COPY li_2018_sa4_indicators FROM 'D:/projects/ntnl_li_2018/data/National Liveability 2018 - Final Outputs/For dissemination/hlc_ntnl_liveability_2018_sa2_2016.csv' WITH DELIMITER ',' CSV HEADER;
 ```
@@ -2940,7 +2940,7 @@ dist_m_theatre_osm float
 ```
 </details>
 
-### Copy the data from CSV
+#### Copy the data from CSV
 ```sql
 COPY li_2018_suburb_indicators FROM 'D:/projects/ntnl_li_2018/data/National Liveability 2018 - Final Outputs/For dissemination/hlc_ntnl_liveability_2018_ssc_2016.csv' WITH DELIMITER ',' CSV HEADER;
 ```
@@ -3395,7 +3395,7 @@ dist_m_theatre_osm float
 ```
 </details>
 
-### Copy the data from CSV
+#### Copy the data from CSV
 ```sql
 COPY li_2018_lga_indicators FROM 'D:/projects/ntnl_li_2018/data/National Liveability 2018 - Final Outputs/For dissemination/hlc_ntnl_liveability_2018_lga_2016.csv' WITH DELIMITER ',' CSV HEADER;
 ```
@@ -3848,7 +3848,7 @@ dist_m_theatre_osm float
 ```
 </details>
 
-### Copy the data from CSV
+##### Copy the data from CSV
 ```sql
 COPY li_2018_city_indicators FROM 'D:/projects/ntnl_li_2018/data/National Liveability 2018 - Final Outputs/For dissemination/hlc_ntnl_liveability_2018_region.csv' WITH DELIMITER ',' CSV HEADER;
 ```
