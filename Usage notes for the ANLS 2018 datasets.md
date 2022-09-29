@@ -5,6 +5,15 @@ We have provided our data and data dictionaries in a plain text CSV format for a
 
 This document provides examples for loading all provided datasets and illustrate how to get started using the data in a PostgreSQL database.  Users may draw on this code freely, updating any file paths with corresponding locations of their own downloaded data.  
 
+Once data has been loaded into PostgreSQL, other programs can connect to your database to load the data.  The following links provide examples for specific programs on how to make a database connection and load data:
+- [QGIS](https://qgis.org/) (open source desktop GIS software): [Creating a stored database connection](https://docs.qgis.org/2.18/en/docs/user_manual/managing_data_source/opening_data.html#creating-a-stored-connection)
+- [Python](https://www.python.org/) with [Pandas](https://pandas.pydata.org/docs/reference/api/pandas.read_sql.html) (open source data analysis library)
+- [Python](https://www.python.org/) with [GeoPandas](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.from_postgis.html) (open source geospatial data analysis library)
+- [R](https://www.r-project.org/) with [sf](https://www.r-bloggers.com/2019/04/interact-with-postgis-from-r/) (open source geospatial data analysis library)
+- [Stata](https://qgis.org/) (statistical software): [Load, write, or view data from ODBC sources](https://www.stata.com/manuals13/dodbc.pdf)
+
+Alternatively, the CSV format data files can also be loaded directly into any of the above software for statistical or spatial analysis, linkage with other datasets, and mapping as required.
+
 ## Contents
 - [Create and connect to a new database for the Australian National Liveability Study](#create-and-connect-to-a-new-database-for-the-australian-national-liveability-study)
 - [Loading the indicator datasets](#loading-the-indicators-datasets)
@@ -18,6 +27,8 @@ This document provides examples for loading all provided datasets and illustrate
   - [Suburbs](#loading-the-suburb-indicator-data)
   - [Local Government Areas](#loading-the-local-government-area-indicator-data)
   - [City (overall summaries)](#loading-the-city-indicator-data-overall-city-summaries)
+  - [Other Tables](#other-tables)
+    - [Distance to closest destination in metres for residential addresses](#distance-to-closest-destination-in-metres-for-residential-addresses)
 - [Additional custom SQL functions](#Additional-custom-SQL-functions)
 
 ## Create and connect to a new database for the Australian National Liveability Study
