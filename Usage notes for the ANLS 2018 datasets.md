@@ -17,7 +17,7 @@ This document provides examples for loading all provided datasets and illustrate
   - [Stastistical Area 4](#loading-the-statistical-area-4-(sa4)-indicator-data)
   - [Suburb](#loading-the-suburb-indicator-data)
   - [Local Government Area](#loading-the-local-government-area-indicator-data)
-  - [City (overall summary)](#loading-the-city-indicator-data)
+  - [City (overall summary)](#loading-the-city-indicator-data-(overall-city-summaries))
 - [Additional custom SQL functions](#Additional-custom-SQL-functions)
 
 ## Create and connect to a new database for the Australian National Liveability Study
@@ -3624,7 +3624,7 @@ Display custom data dictionary by running `SELECT * FROM dictionary('li_2018_lga
 
 
 
-### Loading the overall city summary indicator data
+### Loading the city indicator data (overall city summaries)
 
 #### Initialise table defining variables and their data types
 
