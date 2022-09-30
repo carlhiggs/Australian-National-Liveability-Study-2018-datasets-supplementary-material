@@ -4500,13 +4500,56 @@ COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_theatre_osm IS $$Dis
 ```
 </details>
 
+### $GTFS transport stops headway analysis of day time weekday public transport service frequency between 8 October 2019 to 5 December 2019
+
+
+<details>
+  <summary>
+    Click to view code
+  </summary>
+  
+```sql
+CREATE TABLE li_2018_gtfs_2019
+(
+wkt text,
+fid integer PRIMARY KEY,
+stop_id text,
+mode text,
+state text,
+authority text,
+publication_date integer,
+headway float
+);
+
+-- copy in data
+\copy li_2018_gtfs_2019 FROM 'D:/projects/ntnl_li_2018/data/National Liveability 2018 - Final Outputs/For dissemination/hlc_ntnl_liveability_2018_gtfs_20191008_20191205_daytime_tidy_transit_headway_analysis.csv' WITH DELIMITER ',' CSV HEADER;
+
+-- Add in a geometry column
+ALTER TABLE li_2018_gtfs_2019 ADD COLUMN geom geometry(Point, 7845);
+UPDATE li_2018_gtfs_2019 SET geom = ST_Transform(ST_GeomFromText(wkt, 4326),7845);
+CREATE INDEX li_2018_gtfs_2019_geom_idx ON li_2018_gtfs_2019 USING GIST (geom);
+ALTER TABLE li_2018_gtfs_2019 DROP COLUMN wkt;
+
+-- Create index on headway
+CREATE INDEX li_2018_gtfs_2019_region_idx ON li_2018_gtfs_2019 (headway);
+
+-- add comments to describe table and data
+COMMENT ON TABLE li_2018_gtfs_2019 IS $$GTFS transport stops headway analysis of day time weekday public transport service frequency between 8 October 2019 to 5 December 2019, with WKT geometry$$;
+COMMENT ON COLUMN li_2018_gtfs_2019.fid IS $$Sequential numeric index$$;
+COMMENT ON COLUMN li_2018_gtfs_2019.stop_id IS $$Stop ID number $$;
+COMMENT ON COLUMN li_2018_gtfs_2019.mode IS $$Mode of transport$$;
+COMMENT ON COLUMN li_2018_gtfs_2019.state IS $$State the GTFS feed relates to$$;
+COMMENT ON COLUMN li_2018_gtfs_2019.authority IS $$Public transportation agency$$;
+COMMENT ON COLUMN li_2018_gtfs_2019.publication_date IS $$Date of publication of GTFS feed$$;
+COMMENT ON COLUMN li_2018_gtfs_2019.headway IS $$Headway (minutes) for day time (7 am to 7 pm) trips on weekdays between 8 October and 5 December 2019, estimated through analysis using Tidy Transit in R$$;
+```
+</details>
 
 
 ### draft comments
 
 
 ```sql
-COMMENT ON TABLE li_2018_gtfs IS $$GTFS transport stops headway analysis of day time weekday public transport service frequency between 8 October 2019 to 5 December 2019, with WKT geometry$$;
 ```
 
 ```sql
