@@ -30,6 +30,7 @@ Alternatively, the CSV format data files can also be loaded directly into any of
 - [Loading supplementary datasets](#loading-supplementary-datasets)
   - [Distance to closest destination in metres for residential addresses](#distance-to-closest-destination-in-metres-for-residential-addresses)
   - [Distance arrays (distance in metres to destinations within 3200m, and closest)](#distance-arrays-distance-in-metres-to-destinations-within-3200m-and-closest)
+  - [GTFS transport stops headway analysis](#gtfs-transport-stops-headway-analysis)
 - [Additional custom SQL functions](#Additional-custom-SQL-functions)
 
 ## Create and connect to a new database for the Australian National Liveability Study
@@ -4500,7 +4501,9 @@ COMMENT ON COLUMN li_2018_address_distances_3200m_cl.dist_m_theatre_osm IS $$Dis
 ```
 </details>
 
-### $GTFS transport stops headway analysis of day time weekday public transport service frequency between 8 October 2019 to 5 December 2019
+### GTFS transport stops headway analysis
+
+GTFS transport stops headway analysis of day time weekday public transport service frequency between 8 October 2019 to 5 December 2019
 
 
 <details>
@@ -4546,19 +4549,107 @@ COMMENT ON COLUMN li_2018_gtfs_2019.headway IS $$Headway (minutes) for day time 
 </details>
 
 
-### draft comments
+### Areas of open space
 
+Areas of open space with at least partial public access, as identified using open street map, with WKT geometry for public geometry, water geometry and overall geometry as well as JSON attributes (including public area) and list of co-located amenities within 100m (including public toilets).
 
+<details>
+  <summary>
+    Click to view code
+  </summary>
+  
 ```sql
-```
+CREATE TABLE li_2018_public_open_space
+(
+aos_id bigint PRIMARY KEY,
+attributes jsonb,
+numgeom bigint,
+aos_ha_public double precision,
+aos_ha_not_public double precision,
+aos_ha double precision,
+aos_ha_water double precision,
+has_water_feature boolean,
+water_percent numeric,
+locale text,
+co_location_100m jsonb,
+wkt_public text,
+wkt_water text,
+wkt text
+);
 
-```sql
+-- copy in data
+\copy li_2018_public_open_space FROM 'D:/projects/ntnl_li_2018/data/National Liveability 2018 - Final Outputs/For dissemination/hlc_ntnl_liveability_2018_aos_public_osm.tsv';
+CREATE INDEX li_2018_public_open_space_locale_idx ON li_2018_public_open_space (locale);
+CREATE INDEX li_2018_public_open_space_aos_jsb_idx ON li_2018_public_open_space USING GIN (attributes);
+CREATE INDEX li_2018_public_open_space_co_location_idx ON li_2018_public_open_space USING GIN (co_location_100m);
+
+-- Add in a geometry column
+ALTER TABLE li_2018_public_open_space ADD COLUMN geom_public geometry(Geometry, 7845);
+UPDATE li_2018_public_open_space SET geom_public = ST_GeomFromText(wkt_public, 7845);
+CREATE INDEX li_2018_public_open_space_geom_public_idx ON li_2018_public_open_space USING GIST (geom_public);
+ALTER TABLE li_2018_public_open_space ADD COLUMN geom_water geometry(Geometry, 7845);
+UPDATE li_2018_public_open_space SET geom_water = ST_GeomFromText(wkt_water, 7845);
+CREATE INDEX li_2018_water_open_space_geom_water_idx ON li_2018_public_open_space USING GIST (geom_water);
+ALTER TABLE li_2018_public_open_space ADD COLUMN geom geometry(Geometry, 7845);
+UPDATE li_2018_public_open_space SET geom = ST_GeomFromText(wkt, 7845);
+CREATE INDEX li_2018_public_open_space_geom_idx ON li_2018_public_open_space USING GIST (geom);
+ALTER TABLE li_2018_public_open_space DROP COLUMN wkt_public
+ALTER TABLE li_2018_public_open_space DROP COLUMN wkt_water
+ALTER TABLE li_2018_public_open_space DROP COLUMN wkt
+
+
+
+
+-- add comments to describe table and data
 COMMENT ON TABLE li_2018_public_open_space IS $$Areas of open space with at least partial public access, as identified using open street map, with WKT geometry for public geometry, water geometry and overall geometry as well as JSON attributes (including public area) and list of co-located amenities within 100m (including public toilets)$$;
+COMMENT ON COLUMN li_2018_public_open_space.aos_id IS $$Numeric identifier for areas of open space$$;
+COMMENT ON COLUMN li_2018_public_open_space.attributes IS $$JSON list of key-value attribute pairs for individual open spaces associated with this larger area of open space, including: os_id (open space identifier); area_ha (area in hectares); in_school (whether the open space is located in a school, and not considered public); is_school (if this open space is a school, and therefore not a public open space); roundness (a morphological statistic of the ratio of area to the minimum bounding circle containing the open space); public_access (whether the open space has been identified as being publicly accessible); water_feature (whether the open space is associated with water features, or 'blue space'); within_public (whether this open space is nested within a larger area which has been identified as being publicly accessible); linear_feature (a morphological classification based on meeting a set of linear feature criteria, used to identify and segment potentially large, linear spaces like rivers and creeks); minimum_bounding_circle_area (a morphological statistic for minimum bounding circle area, in square metres); minimum_bounding_circle_diameter (a morphological statistic for minimum bounding circle diameter)$$;
+COMMENT ON COLUMN li_2018_public_open_space.numgeom IS $$Number of geometries associated with this area of open space (ie. the count of individual open spaces, associated with and located within this larger identified contiguous area of open space)$$;
+COMMENT ON COLUMN li_2018_public_open_space.aos_ha_public IS $$The area in hectares which is publicly accessible within this area of open space$$;
+COMMENT ON COLUMN li_2018_public_open_space.aos_ha_not_public IS $$The area in hectares which is not public accessible within this area of open space$$;
+COMMENT ON COLUMN li_2018_public_open_space.aos_ha IS $$The overall area in hectares of this area of open space$$;
+COMMENT ON COLUMN li_2018_public_open_space.aos_ha_water IS $$The area in hectares which has been identified as being water or water-like in this area of open space$$;
+COMMENT ON COLUMN li_2018_public_open_space.has_water_feature IS $$Whether the area of open space has been identified as having a water feature$$;
+COMMENT ON COLUMN li_2018_public_open_space.water_percent IS $$The percentage of the area of open space that is associated with water$$;
+COMMENT ON COLUMN li_2018_public_open_space.locale IS $$The study region (or city; lower case, underscores instead of spaces) where this area of open space is located$$;
+COMMENT ON COLUMN li_2018_public_open_space.co_location_100m IS $$Other destinations (eg public toilets, public transport stops, cafes, supermarkets) located within 100 metres of this area of open space$$;
+COMMENT ON COLUMN li_2018_public_open_space.geom_public IS $$the publicly accessible portion of this area of open space (EPSG 7845)$$;
+COMMENT ON COLUMN li_2018_public_open_space.geom_water IS $$portion of this area of open space identified as water, or water-like (EPSG 7845)$$;
+COMMENT ON COLUMN li_2018_public_open_space.geom IS $$ overall area of open space (EPSG 7845)$$;
 ```
+</details>
 
+
+### JSON look-up for access to open space
+
+JSON list of identifiers and distances of areas of open space for residential address points identified as having areas of open space accessible within 3200m. This dataset is indexed by the residential address point identifier, supporting linkage with attributes from the main address indicator dataset.
+
+<details>
+  <summary>
+    Click to view code
+  </summary>
+  
 ```sql
-COMMENT ON TABLE li_2018_aos_jsonb IS $$JSON list of identifiers and distances of areas of open space for residential address points identified as having areas of open space accessible within 3200m. This dataset is indexed by the residential address point identifier, supporting linkage with attributes from the main address indicator dataset.$$;
+CREATE TABLE li_2018_aos_jsonb
+(
+gnaf_pid text PRIMARY KEY,
+attributes jsonb,
+locale Text
+);
+
+-- copy in data
+\copy li_2018_aos_jsonb FROM 'D:/projects/ntnl_li_2018/data/National Liveability 2018 - Final Outputs/For dissemination/hlc_ntnl_liveability_2018_od_aos_jsonb_100_record_sample.tsv';
+
+CREATE INDEX li_2018_aos_jsonb_locale_idx ON li_2018_aos_jsonb (locale);
+CREATE INDEX li_2018_aos_jsonb_aos_jsb_idx ON li_2018_aos_jsonb USING GIN (attributes);
+
+-- add comments to describe table and data
+COMMENT ON COLUMN li_2018_aos_jsonb.gnaf_pid IS $$Numeric identifier for areas of open space$$;
+COMMENT ON COLUMN li_2018_aos_jsonb.attributes IS $$JSON list of key-value attribute pairs for area of open space ID (aos_id) and distance (distance) for all areas of open space identified as being accessible within 3200 metres.  This allows for post hoc querying of open space, for example by identifying the set of areas of open space meeting some set of criteria (eg. publicly accessible area larger than 1.5 hectares, or having some amenity such as a public toilet co-located within 100m) and then querying this data to identify the residential address points having such an area of open space accessible within some relevant threshold distance (e.g. 400 metres).$$;
+COMMENT ON COLUMN li_2018_aos_jsonb.locale IS $$The study region (or city; lower case, underscores instead of spaces) where this area of open space is located$$;
 ```
+</details>
+
 
 
 ## Additional custom SQL functions
