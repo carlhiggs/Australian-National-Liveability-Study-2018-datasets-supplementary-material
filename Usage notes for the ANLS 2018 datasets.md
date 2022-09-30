@@ -31,6 +31,8 @@ Alternatively, the CSV format data files can also be loaded directly into any of
   - [Distance to closest destination in metres for residential addresses](#distance-to-closest-destination-in-metres-for-residential-addresses)
   - [Distance arrays (distance in metres to destinations within 3200m, and closest)](#distance-arrays-distance-in-metres-to-destinations-within-3200m-and-closest)
   - [GTFS transport stops headway analysis](#gtfs-transport-stops-headway-analysis)
+  - [GTFS transport stops headway analysis](#gtfs-transport-stops-headway-analysis)
+  - [JSON look-up for access to open space](#json-look-up-for-access-to-open-space)
 - [Additional custom SQL functions](#Additional-custom-SQL-functions)
 
 ## Create and connect to a new database for the Australian National Liveability Study
@@ -4345,6 +4347,7 @@ COMMENT ON COLUMN li_2018_address_dist_cl_m.dist_m_theatre_osm IS $$Distance to 
 </details>
 
 ### Distance arrays (distance in metres to destinations within 3200m, and closest)
+This full dataset is very large, hence the example demonstrates how to load a 100 record sample to allow users to understand the data before loading the full dataset.   The data was  exported from PostgreSQL as pipe-seperated values (PSV) text file instead of a CSV file due to the arrays which contain commas and otherwise require complicated quoting which makes re-import back into PostgreSQL (or other software) more complicated.
 
 <details>
   <summary>
@@ -4553,6 +4556,8 @@ COMMENT ON COLUMN li_2018_gtfs_2019.headway IS $$Headway (minutes) for day time 
 
 Areas of open space with at least partial public access, as identified using open street map, with WKT geometry for public geometry, water geometry and overall geometry as well as JSON attributes (including public area) and list of co-located amenities within 100m (including public toilets).
 
+The data was directly exported from PostgreSQL as a tab-seperated values (TSV) text file instead of a CSV file due to the JSON data structure of the attributes column which contains commas and otherwise requires complicated quoting which makes re-import back into PostgreSQL (or other software) more complicated.
+
 <details>
   <summary>
     Click to view code
@@ -4597,9 +4602,6 @@ ALTER TABLE li_2018_public_open_space DROP COLUMN wkt_public
 ALTER TABLE li_2018_public_open_space DROP COLUMN wkt_water
 ALTER TABLE li_2018_public_open_space DROP COLUMN wkt
 
-
-
-
 -- add comments to describe table and data
 COMMENT ON TABLE li_2018_public_open_space IS $$Areas of open space with at least partial public access, as identified using open street map, with WKT geometry for public geometry, water geometry and overall geometry as well as JSON attributes (including public area) and list of co-located amenities within 100m (including public toilets)$$;
 COMMENT ON COLUMN li_2018_public_open_space.aos_id IS $$Numeric identifier for areas of open space$$;
@@ -4623,6 +4625,8 @@ COMMENT ON COLUMN li_2018_public_open_space.geom IS $$ overall area of open spac
 ### JSON look-up for access to open space
 
 JSON list of identifiers and distances of areas of open space for residential address points identified as having areas of open space accessible within 3200m. This dataset is indexed by the residential address point identifier, supporting linkage with attributes from the main address indicator dataset.
+
+This full dataset is very large, hence the example demonstrates how to load a 100 record sample to allow users to understand the data before loading the full dataset.   The data was directly exported from PostgreSQL as a tab-seperated values (TSV) text file instead of a CSV file due to the JSON data structure of the attributes column which contains commas and otherwise requires complicated quoting which makes re-import back into PostgreSQL (or other software) more complicated.
 
 <details>
   <summary>
