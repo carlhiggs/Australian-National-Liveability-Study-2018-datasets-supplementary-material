@@ -4710,16 +4710,297 @@ LANGUAGE plpgsql
 RETURNS NULL ON NULL INPUT;  
 ```
 
-## Examples of basic analyses using the data
+## Examples of analyses using the data
+Postgresql is a useful way to manage this data, and can be connected to by your preferred application for analysing or otherwise using data (eg creating maps using QGIS). But it can also be used to analyse and query data: directly using queries in a psql console; by running an SQL script; or by executing parameterised SQL queries from another programming language like R or Python (as we did in the Australian National Liveability Study).
+
+Below some examples are provided for how one could query the data using SQL.  As noted above, this isn't necessary to use the data, it can be loaded into your preferred analysis tool to support your usual way of working.
+
+### Selecting the top and bottom 3-ranking suburbs for a city in terms of liveability
+In this query we round the floating point estimates for the within-city Urban Liveability Index and its 13 sub-indicators to 1 decimal place, calculated for Adelaide suburbs, and list the results in descending order limiting to the 'top 3' with regard to liveability within Adelaide.  I multiplied the sub-indicator scores relating to access to destinations by 100, so these are presented on a similar scale to the other measures; they can be interpreted as the suburb average score for dwellings having access to each of these destinations 
+
+If using psql, you can toggle 'expanded output mode' by entering `\x`.  This presents columns within a record as rows, which is convenient when you return results of a query that is too wide for a screen, like this one.
+
+```sql
+SELECT ssc_name_2016 "3 Liveable Suburbs in Adelaide",
+dwelling,
+person,
+ROUND(area_ha::numeric,1) area,
+ROUND(uli_city::numeric,1) uli_city,
+ROUND(li_community_culture_leisure::numeric*100,1) li_community_culture_leisure,
+ROUND(li_early_years::numeric*100,1) li_early_years,
+ROUND(li_education::numeric*100,1) li_education,
+ROUND(li_health_services::numeric*100,1) li_health_services,
+ROUND(li_sport_rec::numeric*100,1) li_sport_rec,
+ROUND(li_food::numeric*100,1) li_food,
+ROUND(li_convenience::numeric*100,1) li_convenience,
+ROUND(li_pt_regular_400m::numeric,1) li_pt_regular_400m,
+ROUND(li_public_os_large_400m::numeric,1) li_public_os_large_400m,
+ROUND(li_street_connectivity_1600m::numeric,1) li_street_connectivity_1600m,
+ROUND(li_dwelling_density_1600m::numeric,1) li_dwelling_density_1600m,
+ROUND(li_sa1_30_40_housing_stress::numeric,1) li_sa1_30_40_housing_stress,
+ROUND(li_sa1_sa3_local_employment::numeric,1) li_sa1_sa3_local_employment
+FROM li_2018_suburb_indicators                   
+WHERE study_region = 'Adelaide'
+ORDER BY uli_city DESC
+LIMIT 3;
+```
+
+This returns the following, which identifies Glenelg, Adelaide and North Adelaide as the top-3 most liveable suburbs (with results re-formatted as a markdown table for presentation here)
+
+*3 Liveable Suburbs in Adelaide*
+|Indicators                     | [Glenelg (SA)](https://www.google.com/maps/place/Glenelg+SA+5045/@-34.9797907,138.5051562,1857m/data=!3m2!1e3!4b1!4m5!3m4!1s0x6ab0c55408d1371b:0x5033654628eb150!8m2!3d-34.980383!4d138.5131191)  | [Adelaide](https://www.google.com/maps/place/Adelaide+SA+5000/@-34.9256374,138.583259,7434m/data=!3m2!1e3!4b1!4m5!3m4!1s0x6ab0ced7a303a4e7:0xb38d70584e1c3e53!8m2!3d-34.9285007!4d138.6007245)     | [North Adelaide](https://www.google.com/maps/place/North+Adelaide+SA+5006/@-34.9090181,138.586206,3718m/data=!3m2!1e3!4b1!4m5!3m4!1s0x6ab0c8947720fdf9:0x5033654628ebac0!8m2!3d-34.9083198!4d138.5919105)|
+|-------------------------------|--------------:|-------------:|--------------:|
+|dwelling                       | 2321          | 7835         | 3528          |
+|person                         | 3354          | 13058        | 6745          |
+|area_ha                        | 77.3          | 238.0        | 170.4         |
+|uli_city                       | 108.4         | 107.9        | 107.3         |
+|li_community_culture_leisure   | 70.8          | 84.1         | 72.0          |
+|li_early_years                 | 88.8          | 70.5         | 59.8          |
+|li_education                   | 40.1          | 54.4         | 43.9          |
+|li_health_services             | 79.5          | 68.7         | 67.8          |
+|li_sport_rec                   | 47.2          | 47.3         | 49.3          |
+|li_food                        | 61.9          | 56.0         | 73.0          |
+|li_convenience                 | 73.2          | 72.9         | 53.4          |
+|li_pt_regular_400m             | 89.1          | 78.9         | 84.0          |
+|li_public_os_large_400m        | 67.1          | 64.5         | 84.0          |
+|li_street_connectivity_1600m   | 112.7         | 142.4        | 124.2         |
+|li_dwelling_density_1600m      | 21.3          | 14.1         | 11.1          |
+|li_sa1_30_40_housing_stress    | 37.7          | 59.6         | 45.7          |
+|li_sa1_sa3_local_employment    | 21.9          | 62.0         | 54.0          |
+
+By changing the following line to retrieve records in ascending rather than descending order, we can get the corresponding bottom 3 suburb records in terms of average liveability for dwellings
+
+```sql
+ORDER BY uli_city ASC
+```
+<details>
+  <summary>
+    Click to view code with this small alteration
+  </summary>
+  
+```sql
+SELECT ssc_name_2016 "3 Lowest-ranking suburbs in Adelaide for Liveability",
+dwelling,
+person,
+ROUND(area_ha::numeric,1) area,
+ROUND(uli_city::numeric,1) uli_city,
+ROUND(li_community_culture_leisure::numeric*100,1) li_community_culture_leisure,
+ROUND(li_early_years::numeric*100,1) li_early_years,
+ROUND(li_education::numeric*100,1) li_education,
+ROUND(li_health_services::numeric*100,1) li_health_services,
+ROUND(li_sport_rec::numeric*100,1) li_sport_rec,
+ROUND(li_food::numeric*100,1) li_food,
+ROUND(li_convenience::numeric*100,1) li_convenience,
+ROUND(li_pt_regular_400m::numeric,1) li_pt_regular_400m,
+ROUND(li_public_os_large_400m::numeric,1) li_public_os_large_400m,
+ROUND(li_street_connectivity_1600m::numeric,1) li_street_connectivity_1600m,
+ROUND(li_dwelling_density_1600m::numeric,1) li_dwelling_density_1600m,
+ROUND(li_sa1_30_40_housing_stress::numeric,1) li_sa1_30_40_housing_stress,
+ROUND(li_sa1_sa3_local_employment::numeric,1) li_sa1_sa3_local_employment
+FROM li_2018_suburb_indicators                   
+WHERE study_region = 'Adelaide'
+ORDER BY uli_city ASC
+LIMIT 3;
+```
+</details>
+
+|3 Lowest-ranking suburbs in Adelaide for Liveability | [Lewiston](https://www.google.com/maps/place/Lewiston+SA+5501/@-34.6099437,138.5882209,14925m/data=!3m2!1e3!4b1!4m5!3m4!1s0x6ab0a9f8107e1d27:0x5033654628eb6c0!8m2!3d-34.6067942!4d138.5936649)   | [Ward Belt](https://www.google.com/maps/place/Ward+Belt+SA+5118/@-34.5807894,138.6628149,7465m/data=!3m2!1e3!4b1!4m5!3m4!1s0x6aba01d951745d51:0x5033654628ec410!8m2!3d-34.5833781!4d138.6761771)  | [Gawler Belt](https://www.google.com/maps/place/Gawler+Belt+SA+5118/@-34.5756427,138.7279947,1110m/data=!3m1!1e3!4m5!3m4!1s0x6ab9f8d123b75351:0x5033654628eb090!8m2!3d-34.5793104!4d138.7323129)|
+|-------------------------------|------------|------------|---------------|
+|dwelling                       | 579        | 24         | 315          |
+|person                         | 1583       | 69         | 945           |
+|area_ha                        | 899.5      | 531.4      | 936.7         |
+|uli_city                       | 83.0       | 83.4       | 84.8          |
+|li_community_culture_leisure   | 0.0        | 0.2        | 3.2           |
+|li_early_years                 | 0.0        | 0.0        | 0.8           |
+|li_education                   | 0.0        | 0.0        | 0.3           |
+|li_health_services             | 0.0        | 0.0        | 0.1           |
+|li_sport_rec                   | 0.0        | 0.3        | 16.5          |
+|li_food                        | 0.0        | 0.0        | 0.0           |
+|li_convenience                 | 0.0        | 0.0        | 0.1           |
+|li_pt_regular_400m             | 0.0        | 0.0        | 0.0           |
+|li_public_os_large_400m        | 6.5        | 0.0        | 7.3           |
+|li_street_connectivity_1600m   | 13.5       | 17.2       | 17.4          |
+|li_dwelling_density_1600m      | 5.1        | 2.6        | 3.8           |
+|li_sa1_30_40_housing_stress    | 32.2       | 25.0       | 21.5          |
+|li_sa1_sa3_local_employment    | 21.7       | 30.8       | 31.8          |
+
+After running queries like the above, you really want to check out on a map what the context really looks like --- is there a natural explanation for these results, is there missing data, or perhaps a mix of the two?  I've added in hyperlinks to satellite view on Google Maps, which confirms the semi-rural/peri-urban character of these suburbs on Adelaide's northern fringe, separated from the rest of the city by farmland (Lewiston), the Northern Expressway (Ward Belt) and the Sturt Highway (Gawler Belt).  Ward Belt is clearly still mostly rural farming land, however a brief search for the other two suburbs with considerably higher population and dwelling counts using 'Adelaide Lewiston Gawler Belt' on Google Scholar identified a geography Masters thesis from 1998 on 'Population Change in Adelaide's Peri-urban Region: Patterns, Causes and Implications' [Ford, 1998](https://digital.library.adelaide.edu.au/dspace/handle/2440/112763), which could be a good starting point if one was wanting investigate this further.
+
+The top ranking suburb for liveability was Glenelg, a beach side suburb with approximately double the population of Lewiston in an area less than 1/10th the size.  Housing affordability stress (the percentage of persons in the lowest 40% of income spending more than 30% of household income on rent or mortgage) was slightly higher in Glenelg, and opportunities for local employment were comparable, however many-to-most Glenelg residents had access to a range of social infrastructre destinations, well-serviced public transport, as well as large areas of public open space, supported by a relatively well-connected street network.  The absence of walkable access to these amenities in Lewiston is an aspect of the cost of living on the urban fringe in terms of both money and time which the 30:40 measure of housing affordability stress doesn't account for.
+
+### Summarising address level access to public transport in Melbourne
+When evaluating access to destinations within recommended distances, like public transport with regular day time weekday service within a walkable distance of 400 m, for address points we calculated this as either a binary indicator (0 or 1) or a continuous indicator (0 to 1), inflecting around a score of 0.5 where a destination was accessible at the given threshold distance.  The latter were used in particular for sub-indicators included in composite indicator scores, as this method of rating access maximises the variation and is arguably more accurate for individual circumstances, with the formula and rationale given in [Higgs et al (2019)](https://doi.org/10.1186/s12942-019-0178-).  Briefly, if a bus stop were accessible at 390 m or 410 m, its intuitive that if you were interested in this level of access being an individual's built environment exposure these distances should score similarly being only arbitrarily different; using a continuous score this is the case (both approximately score 0.5) but using a binary indicator with a threshold of 400 metres the resulting score is at polar extremes (1 or 0, respectively).  For an epidemiological study, the continuous score or even the underlying distance itself may be most relevant to use.  However, for a policy statistic binary indicators are arguably more useful as when aggregated by taking the average they give the proportion of the units being studied having access; multiplied by 100, its the percentage.  As scores are averaged across larger areas, binary scores and continuous scores for access measured in this way converage to become approximately similar --- but percentages calculated using binary scores are easier to explain and more intuitive to understand than 'access scores' which yield pseudo-percentages.  In the context of public transport, the indicator li_pt_regular_400m (a component of the urban liveability index, as implied by its prefix 'li') is a continuous score (or soft threshold0 measure for being within 400 m of public transport with an average weekday service frequency of 30 minutes or less between 7am and 7pm within 400 metres; the binary score (or hard threshold) measure is the indicator trans_07.
+
+So, let's calculate a basic percentage of address points as the average of the proportion of Melbourne address points with access to regular public transport multiplied by 100, with this rounded to 1 decimal place.  This is not how we calculated area summaries in our national study (we presented these as weighted averages with regard to dwellings, or for some projects, persons); we'll introduce how to do this further below.  We'll also calculate a range of other useful statistics for considering the distribution of indicator results, in addition to this  (SD.
+
+```sql
+SELECT 
+   ROUND(AVG(100*trans_07)::numeric,1) "mean (ie. % with access)",
+   ROUND(STDDEV(100*trans_07)::numeric,1) sd,
+   ROUND(MIN(trans_07)::numeric,1) min,
+   ROUND(PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY 100*trans_07)::numeric,1) AS p25,
+   ROUND(PERCENTILE_CONT(0.50) WITHIN GROUP (ORDER BY 100*trans_07)::numeric,1) AS p50,
+   ROUND(PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY 100*trans_07)::numeric,1) AS p75,
+   ROUND(MAX(100*trans_07)::numeric,1) max
+FROM li_2018_address_indicators
+WHERE study_region = 'Melbourne';
+```
+
+| mean (ie. % with access) |  sd  | min | p25 | p50  | p75  | max  |
+|-------------------------:|-----:|----:|----:|-----:|-----:|-----:|
+|                     44.6 | 49.7 | 0.0 | 0.0 | 0.0 | 100.0 | 100.0|
+   
+So we see that while a minority of urban residential address locations that we measured across the city do have access to public transport with regular weekday service frequency (44.6%), most don't.  But looking at the percentile distribution isn't hugely informative when using a binary indicator --- all address points strictly scored either 0 or 1 for access within 400 m.
+
+If we re-calculate this same measure using the li_pt_regular_400m soft threshold indicator (a component in the urban liveability index)...
+
+```sql
+SELECT 
+   ROUND(AVG(100*li_pt_regular_400m)::numeric,1) "mean (ie. % with access)",
+   ROUND(STDDEV(100*li_pt_regular_400m)::numeric,1) sd,
+   ROUND(MIN(li_pt_regular_400m)::numeric,1) min,
+   ROUND(PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY 100*li_pt_regular_400m)::numeric,1) AS p25,
+   ROUND(PERCENTILE_CONT(0.50) WITHIN GROUP (ORDER BY 100*li_pt_regular_400m)::numeric,1) AS p50,
+   ROUND(PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY 100*li_pt_regular_400m)::numeric,1) AS p75,
+   ROUND(MAX(100*li_pt_regular_400m)::numeric,1) max
+FROM li_2018_address_indicators
+WHERE study_region = 'Melbourne';
+```
+
+| mean (ie. % with access) |  sd  | min | p25 | p50  | p75  | max  |
+|-------------------------:|-----:|----:|----:|-----:|-----:|-----:|
+|                     42.8 | 40.5 | 0.0 | 0.2 | 33.7 | 88.1 | 99.3 |
+
+ then we get a more informative distribution that is 'percentage-like'.  But while it makes more sense to look at, when you go to explain what this is, its in terms of effective access scores and a score based on a sigmoid curve ... its just not so straight forward to communicate to a non-specialised audience.  So --- each of these indicators has its role to play in different contexts.
+ 
+But these are percentages of address points, what if you wanted percentage of dwellings (which has been provided in the area level datasets), or percentage of persons (which wasn't provided)?  We'll look at that now.
+
+The basic formula for a weighted average is the sum of weights multipled by value of interest, divided by the sum of weights.  The reason to calculate an area average weighting for dwellings or people is, if those are the units you are interested in but you didn't or weren't able to directly measure them. This was the case in the Australian National Liveability Study, where we were able to discern address points and restrict these to small areas (Mesh Blocks) with dwellings to estimate exposures for where people could potentially live, although these are highly correlated with where people and dwellings are located they are a bit distinct (ie. we measured address points where dwellings were and where people could be, but not dwellings or people directly).   A weighted average allows you to correct for this to get closer to an estimate for what you're really interested in (e.g. people and dwellings).
+
+So to do this in our study, we first took the Mesh Block average of address points.  Then, we were able to aggregate to larger scales using the Mesh Block dwelling or person counts as a weight, using code like this:
+
+```sql
+SELECT
+study_region,
+SUM(dwelling) dwelling,
+SUM(person) person,
+(CASE             
+    -- if there are no units (dwellings or persons) the indicator is null
+    WHEN COALESCE(SUM(dwelling),0) = 0
+        THEN NULL
+    -- else, calculate the value of the unit weighted indicator
+    ELSE                             
+       (SUM(dwelling*trans_07::numeric)/SUM(dwelling))::numeric
+    END) AS "percentage with access regular public transport"
+FROM li_2018_mb_indicators
+WHERE study_region = 'Melbourne'
+GROUP BY study_region;
+```
+
+| study_region | dwelling | person  | percentage with access regular public transport |
+|-------------:|---------:|--------:|------------------------------------------------:|
+| Melbourne    |  1786894 | 4351584 |                             51.1                |
+
+So, we estimated that just over half of Melbourne dwellings have access to public transport with regular weekday day time service (in Spring 2018, outside school holidays).  This is slightly higher than our earlier naive estimate for 'unique urban addresses in Mesh Blocks with dwellings'.
+
+You can confirm that this is the same result that you would get from the city level aggregate dataset by running 
+
+```sql
+SELECT trans_07 FROM li_2018_city_indicators WHERE study_region = 'Melbourne';
+```
+
+To do calculate the percentage of people having access instead of dwellings, we replace the variable 'dwelling' with 'person', and we'd still expect to get something similar to the above as these concepts are highly related:
+
+```sql
+SELECT
+study_region,
+SUM(dwelling) dwelling,
+SUM(person) person,
+(CASE             
+    -- if there are no units (dwellings or persons) the indicator is null
+    WHEN COALESCE(SUM(person),0) = 0
+        THEN NULL
+    -- else, calculate the value of the unit weighted indicator
+    ELSE                             
+       (SUM(person*trans_07::numeric)/SUM(person))::numeric
+    END) AS "percentage with access regular public transport"
+FROM li_2018_mb_indicators
+WHERE study_region = 'Melbourne'
+GROUP BY study_region;
+```
+
+| study_region | dwelling | person  | percentage with access regular public transport |
+|-------------:|---------:|--------:|------------------------------------------------:|
+| Melbourne    |  1786894 | 4351584 |                             48.1                |
+
+So, while 51.1% of dwellings had access to regularly serviced public transport, in terms of population its only 48.1%.  One plausible explanation that could be explored is that perhaps this is because household size is larger away from inner suburbs  where  housing is more expensive but are serviced by a mix of trams and trains in addition to buses.
 
 ### Using the destination array to query the closest destinations
 Note that the code for loading the array dataset above references the 100 record sample test file; for meaningfull results when using this dataset it will be required to load the 11.2GB dataset.  However, the smaller dataset provides a convenient subset for testing queries while getting to know how the data structure works.
 
+So if this were the full dataset of array indicators loaded, you could calculate the mean and standard deviation for distance to closest supermarket like this:
+
 ```sql
 SELECT study_region, 
+COUNT(*),
 ROUND(AVG(array_min(dist_m_supermarket)),0) mean_distance_m,
 ROUND(stddev(array_min(dist_m_supermarket)),0) sd_distance_m
 FROM li_2018_address_distances_3200m_cl 
 GROUP BY study_region;
 ```
 
+Of course, this doesn't return true results when trialling our random sample of address points
+
+|       study_region       | count | mean_distance_m | sd_distance_m|
+|-------------------------:|------:|----------------:|-------------:|
+| Perth                    |     8 |             893 |           597|
+| Canberra                 |     1 |            1080 |              |
+| Adelaide                 |    13 |            2025 |          1347|
+| Sydney                   |    19 |            1687 |          1341|
+| Newcastle - Maitland     |     1 |             953 |              |
+| Townsville               |     3 |            1148 |          1062|
+| Toowoomba                |     2 |            1372 |           286|
+| Brisbane                 |    17 |            1488 |          1614|
+| Wollongong               |     2 |             930 |           716|
+| Launceston               |     1 |            1926 |              |
+| Geelong                  |     1 |             574 |              |
+| Mackay                   |     1 |             691 |              |
+| Sunshine Coast           |     1 |            5426 |              |
+| Gold Coast - Tweed Heads |     2 |            1207 |          1392|
+| Melbourne                |    28 |            1173 |           712|
+
+What we can do with the 100 record sample though is look at one individual record, and look how its data is structured and see how it relates to the main estimates for access to destinations for that address in the address destination and indicator databases.
+
+```sql
+SELECT 
+    gnaf_pid, 
+    dist_m_supermarket,
+    dist_m_supermarket_osm
+FROM li_2018_address_distances_3200m_cl 
+LIMIT 1;
+```
+
+So displaying this result in extended display mode (/x), this returns the following: 
+
+```
+-[ RECORD 1 ]----------+--------------------------------------------------------------------------------------
+gnaf_pid               | GAVIC419575561
+dist_m_supermarket     | {427,640,669,1107,1569,1669,2377,2451,2519,2649,2680,2718,2874,2903,2983,3085}
+dist_m_supermarket_osm | {415,419,422,583,648,726,1102,1158,1459,1673,2004,2468,2747,2760,2882,2882,3004,3045}
+```
+
+For this particular address point, the estimated distance to the closest major chain supermarket was 427 metres; however a supermarket identified using OpenStreetMap-derived data was 415 m away, so that would be the estimate used for distance to closest supermarket for this address point. 
+
+To calculate this using the custom functions provided above, we could run
+
+```sql
+SELECT 
+    LEAST(
+        array_min(dist_m_supermarket),
+        array_min(dist_m_supermarket_osm)
+        ) 
+FROM li_2018_address_distances_3200m_cl 
+WHERE gnaf_pid = 'GAVIC419575561';
+```
+
+This gives the result of 415 m as the closest supermarket, considered across web-scraped major chain supermarkets and OpenStreetMap derived supermarkets.
