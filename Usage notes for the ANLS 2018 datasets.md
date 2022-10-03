@@ -4980,7 +4980,7 @@ FROM li_2018_address_distances_3200m_cl
 LIMIT 1;
 ```
 
-So displaying this result in extended display mode (/x), this returns the following: 
+So displaying this result in extended display mode (/x), this returns the following which represents all the destinations of the types queried accessible within 3200m, or the closest if there is none within 3200m. 
 
 ```
 -[ RECORD 1 ]----------+--------------------------------------------------------------------------------------
