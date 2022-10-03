@@ -34,7 +34,10 @@ Alternatively, the CSV format data files can also be loaded directly into any of
   - [GTFS transport stops headway analysis](#gtfs-transport-stops-headway-analysis)
   - [JSON look-up for access to open space](#json-look-up-for-access-to-open-space)
 - [Additional custom SQL functions](#Additional-custom-SQL-functions)
-
+- [Examples of analyses using the data](Examples-of-analyses-using-the-data)
+  - [Selecting the top and bottom 3-ranking suburbs for a city in terms of liveability](selecting-the-top-and-bottom-3-ranking-suburbs-for-a-city-in-terms-of-liveability_
+  - [Summarising address level access to public transport in Melbourne](summarising-address-level-access-to-public-transport-in-melbourne)
+  - [Using the destination array to query the closest destinations](using-the-destination-array-to-query-the-closest-destinations)
 ## Create and connect to a new database for the Australian National Liveability Study
 First, a new database called anls_2018 is created and then connected to he PostGIS extension may optionally be created; this would allow the residential address indicator coordinates to be interpreted as a Point geometry datatype, and link up the area aggregate indicators with their corresponding boundary geometries from the Australian Statistical Geography Standard retrieved from the Australian Bureau of Statistics for mapping.  
 
