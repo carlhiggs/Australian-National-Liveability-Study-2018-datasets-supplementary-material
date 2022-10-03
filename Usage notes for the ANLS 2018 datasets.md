@@ -5010,7 +5010,7 @@ This gives the result of 415 m as the closest supermarket, considered across web
 
 To get the count of supermarkets, we can't pool the major chain and OpenStreetMap-derived supermarket datasets as this would be expected to result in a large degree of double counting.   What can be done however, is to evaluate the count of supermarkets using the two datasets seperately and then take the one with the greatest value under the assumption that both are approximately correct, but the one with the larger count is a more complete representation for that particular location.  To do this (as we did), involves the following:
 
-```
+```sql
 SELECT 
     count_in_threshold(dist_m_supermarket,1600) "major chain supermarkets",
     count_in_threshold(dist_m_supermarket_osm,1600) "openstreetmap supermarkets",
@@ -5027,3 +5027,9 @@ WHERE gnaf_pid = 'GAVIC419575561';
 |                        5 |                          9 |            9 |
 
 This query indicates that there are 9 supermarkets located within 1600 metres of this address point, with this being evaluated based on usage of the OpenStreetMap-derived supermarket data, which appeared to be a more comprehensive representation of the offerings in this neighbourhood.
+
+The same result is achieved by retrieving the indicator 'food_12', for "Count of supermarkets within 1600 m (OSM or 2017 in-house)":
+
+```sql
+SELECT food_12 FROM li_2018_address_indicators WHERE gnaf_pid = 'GAVIC419575561';
+```
