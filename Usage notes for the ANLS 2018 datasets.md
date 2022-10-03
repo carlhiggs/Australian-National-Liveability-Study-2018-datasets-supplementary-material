@@ -35,7 +35,7 @@ Alternatively, the CSV format data files can also be loaded directly into any of
   - [JSON look-up for access to open space](#json-look-up-for-access-to-open-space)
 - [Additional custom SQL functions](#Additional-custom-SQL-functions)
 - [Examples of analyses using the data](Examples-of-analyses-using-the-data)
-  - [Selecting the top and bottom 3-ranking suburbs for a city in terms of liveability](selecting-the-top-and-bottom-3-ranking-suburbs-for-a-city-in-terms-of-liveability_
+  - [Selecting the top and bottom 3-ranking suburbs for a city in terms of liveability](selecting-the-top-and-bottom-3-ranking-suburbs-for-a-city-in-terms-of-liveability)
   - [Summarising address level access to public transport in Melbourne](summarising-address-level-access-to-public-transport-in-melbourne)
   - [Using the destination array to query the closest destinations](using-the-destination-array-to-query-the-closest-destinations)
 ## Create and connect to a new database for the Australian National Liveability Study
@@ -5033,3 +5033,6 @@ The same result is achieved by retrieving the indicator 'food_12', for "Count of
 ```sql
 SELECT food_12 FROM li_2018_address_indicators WHERE gnaf_pid = 'GAVIC419575561';
 ```
+
+
+
