@@ -4570,7 +4570,7 @@ The data was directly exported from PostgreSQL as a tab-seperated values (TSV) t
 ```sql
 CREATE TABLE li_2018_public_open_space
 (
-aos_id bigint PRIMARY KEY,
+aos_id bigint,
 attributes jsonb,
 numgeom bigint,
 aos_ha_public double precision,
@@ -4588,7 +4588,7 @@ wkt text
 
 -- copy in data
 \copy li_2018_public_open_space FROM 'D:/projects/ntnl_li_2018/data/National Liveability 2018 - Final Outputs/For dissemination/hlc_ntnl_liveability_2018_aos_public_osm.tsv';
-CREATE INDEX li_2018_public_open_space_locale_idx ON li_2018_public_open_space (locale);
+ALTER TABLE li_2018_public_open_space ADD PRIMARY KEY (aos_id,locale);
 CREATE INDEX li_2018_public_open_space_aos_jsb_idx ON li_2018_public_open_space USING GIN (attributes);
 CREATE INDEX li_2018_public_open_space_co_location_idx ON li_2018_public_open_space USING GIN (co_location_100m);
 
@@ -4602,9 +4602,9 @@ CREATE INDEX li_2018_water_open_space_geom_water_idx ON li_2018_public_open_spac
 ALTER TABLE li_2018_public_open_space ADD COLUMN geom geometry(Geometry, 7845);
 UPDATE li_2018_public_open_space SET geom = ST_GeomFromText(wkt, 7845);
 CREATE INDEX li_2018_public_open_space_geom_idx ON li_2018_public_open_space USING GIST (geom);
-ALTER TABLE li_2018_public_open_space DROP COLUMN wkt_public
-ALTER TABLE li_2018_public_open_space DROP COLUMN wkt_water
-ALTER TABLE li_2018_public_open_space DROP COLUMN wkt
+ALTER TABLE li_2018_public_open_space DROP COLUMN wkt_public;
+ALTER TABLE li_2018_public_open_space DROP COLUMN wkt_water;
+ALTER TABLE li_2018_public_open_space DROP COLUMN wkt;
 
 -- add comments to describe table and data
 COMMENT ON TABLE li_2018_public_open_space IS $$Areas of open space with at least partial public access, as identified using open street map, with WKT geometry for public geometry, water geometry and overall geometry as well as JSON attributes (including public area) and list of co-located amenities within 100m (including public toilets)$$;
@@ -5024,7 +5024,7 @@ WHERE gnaf_pid = 'GAVIC419575561';
 ```
 
 | major chain supermarkets | openstreetmap supermarkets | supermarkets |
-|-------------------------:|---------------------------:|--------------|
+|-------------------------:|---------------------------:|-------------:|
 |                        5 |                          9 |            9 |
 
 This query indicates that there are 9 supermarkets located within 1600 metres of this address point, with this being evaluated based on usage of the OpenStreetMap-derived supermarket data, which appeared to be a more comprehensive representation of the offerings in this neighbourhood.
@@ -5035,5 +5035,195 @@ The same result is achieved by retrieving the indicator 'food_12', for "Count of
 SELECT food_12 FROM li_2018_address_indicators WHERE gnaf_pid = 'GAVIC419575561';
 ```
 
+### Using the areas of open space array data to query public open space access
 
+When developing our study, we designed it to support others using using our data linked with geocoded survey participants to construct their own indicators from our measures.  This was done for the Australian Early Development Census dataset in particular, for which the researchers were interested in a large number of permutations of indicators relating to distance, size, and features of parks.   So, we developed an approach to allow for post hoc querying of the database of areas of open space to identify those spaces meeting criterion.
 
+This is a bit of a complex process, so its good to understand how the data structure works.
+
+Using psql, you can describe the public open space table by entering `\d li_2018_public_open_space`, which if you've loaded it in using the above directions should return the following information:
+
+```
+anls_2018=# \d li_2018_public_open_space
+                   Table "public.li_2018_public_open_space"
+      Column       |          Type           | Collation | Nullable | Default
+-------------------+-------------------------+-----------+----------+---------
+ aos_id            | bigint                  |           | not null |
+ attributes        | jsonb                   |           |          |
+ numgeom           | bigint                  |           |          |
+ aos_ha_public     | double precision        |           |          |
+ aos_ha_not_public | double precision        |           |          |
+ aos_ha            | double precision        |           |          |
+ aos_ha_water      | double precision        |           |          |
+ has_water_feature | boolean                 |           |          |
+ water_percent     | numeric                 |           |          |
+ locale            | text                    |           | not null |
+ co_location_100m  | jsonb                   |           |          |
+ geom_public       | geometry(Geometry,7845) |           |          |
+ geom_water        | geometry(Geometry,7845) |           |          |
+ geom              | geometry(Geometry,7845) |           |          |
+Indexes:
+    "li_2018_public_open_space_pkey" PRIMARY KEY, btree (aos_id, locale)
+    "li_2018_public_open_space_aos_jsb_idx" gin (attributes)
+    "li_2018_public_open_space_co_location_idx" gin (co_location_100m)
+    "li_2018_public_open_space_geom_idx" gist (geom)
+    "li_2018_public_open_space_geom_public_idx" gist (geom_public)
+    "li_2018_water_open_space_geom_water_idx" gist (geom_water)
+```
+
+These are records of areas of open space, indexed uniquely by a combination of 'aos_id' (which is unique within each city), and 'locale' which is the city name.  Areas of open space are a collection of contiguous open spaces identified from OpenStreetMap which have been identified to have characteristics related to 'open space', and this particular dataset has been restricted to those areas identified as having some amount of publicly accessible area.   These may be parks, squares, plazas or other natural spaces or areas with sporting/recreation facilities which appear to be publicly accessible; these are not strictly 'green spaces'.   Supplementary analysis with satellite imagery data relating them to NDVI or vegetation percentage could possibly be used to derive a dataset of publicly accessible green spaces; we haven't done this here.  The aos_ha_public field contains the area in hectares of the portion of each area of contiguous open space identified as being publicly accessible, and can be used for queries like for 'public open space larger than 1.5 hectares'.  The attributes and specific tags of open spaces within each area of open space are contained within the 'attributes' field in JSON format. Tags were used to identify features in areas of open space associated with 'blue space', and this dataset could also be queried to identify access to blue space.   In addition an analysis was done identifying other points of interest including public toilets and other destinations within 100 m of each area of open space, and so in addition to size and features of open spaces, they can also be queried relating to presence or count of nearby accessible amenities.  Geometry fields for the overall area of open space, and the portions identified as being publicly accessible or associated with water features have also been provided and may be used for spatial analyses and mapping.
+
+Let's look at a single record for an area of open space, showing how we can view the JSON attribute and co-location data in a readable format.   I've restricted this to an area of open space comprised of fewer than four individual but contiguous open spaces so the result is easier to read when included below:
+
+```sql
+SELECT
+    aos_id,
+    locale city,
+    jsonb_pretty(attributes) attributes,
+    aos_ha_public,
+    water_percent,
+    jsonb_pretty(co_location_100m) co_location_100m
+FROM li_2018_public_open_space
+WHERE numgeom < 4
+LIMIT 1;
+`
+ aos_id |   city   |                        attributes                        |  aos_ha_public   | water_percent |   co_location_100m
+--------+----------+----------------------------------------------------------+------------------+---------------+----------------------
+   7069 | adelaide | [                                                       +| 272.945592510754 |           100 | [                   +
+        |          |     {                                                   +|                  |               |     "viewpoint_osm",+
+        |          |         "os_id": 53,                                    +|                  |               |     "toilets"       +
+        |          |         "area_ha": 272.945592510754,                    +|                  |               | ]
+        |          |         "natural": "water",                             +|                  |               |
+        |          |         "in_school": false,                             +|                  |               |
+        |          |         "is_school": false,                             +|                  |               |
+        |          |         "roundness": 0.11163868357276,                  +|                  |               |
+        |          |         "tags_line": [                                  +|                  |               |
+        |          |             {                                           +|                  |               |
+        |          |                 "waterway": "dam"                       +|                  |               |
+        |          |             },                                          +|                  |               |
+        |          |             {                                           +|                  |               |
+        |          |                 "waterway": "river"                     +|                  |               |
+        |          |             }                                           +|                  |               |
+        |          |         ],                                              +|                  |               |
+        |          |         "public_access": true,                          +|                  |               |
+        |          |         "water_feature": true,                          +|                  |               |
+        |          |         "within_public": false,                         +|                  |               |
+        |          |         "linear_feature": true,                         +|                  |               |
+        |          |         "min_bounding_circle_area": 24449015.6794857,   +|                  |               |
+        |          |         "acceptable_linear_feature": false,             +|                  |               |
+        |          |         "min_bounding_circle_diameter": 5579.37752737447+|                  |               |
+        |          |     }                                                   +|                  |               |
+        |          | ]                                                        |                  |               |
+```
+
+So from this we can see that this open space has been tagged as a natural water feature, specifically a river/dam of 273 hectares in area, and it has a viewpoint and toilet located somewhere within 100 m Euclidean (crow flies) distance of its boundary, or within it (unlikely given its a dam).  There are an additional set of morphological characteristics, about the shape of the feature, as large water ways present some specific challenges when evaluating contiguous area (see [Description of method of identifying public open space using OpenStreetMap](https://github.com/carlhiggs/Australian-National-Liveability-Study-2018-datasets-supplementary-material/blob/main/Identifying%20public%20open%20space%20using%20OpenStreetMap.md#description-of-method-of-identifying-public-open-space-using-openstreetmap)).  The assumption for features like this is that you can walk around them, that they are in fact publicly accessible, and that this is a meaningful type of public open space.  In this case, I loaded up the public open space dataset in QGIS and selected this record to locate it, and based on the tagging information and the view on a satellite this appears to be the case (see Millbrook Reservoir [here](https://www.google.com/maps/place/Millbrook+Reservoir), and according to Google reviews 'it's a great place!'; 'a bit low on water', 'lovely place to visit').  But it is about 7km east of Adelaide's urban area (we included areas up to 10km outside of this when doing analysis as these are still accessible), so not really interesting as a public open space within walkable distance of an urban address.
+
+We imported the 100 random sample of data from the li_2018_aos_jsonb dataset which contains estimates for distance to each open space for address points, so let's look at that as a start for looking into how we query accessible open spaces:
+
+SELECT gnaf_pid, jsonb_pretty(attributes) FROM li_2018_aos_jsonb LIMIT 1;
+
+</details>
+
+The results for this are pretty full on; this particular address in Queensland has access to 127 identified areas of open space within 3200m walking distance. So, I'll just paste a subset so you cna get the idea:
+
+```
+    gnaf_pid    |       jsonb_pretty
+----------------+--------------------------
+ GAQLD155543323 | [                       +
+                |     {                   +
+                |         "aos_id": 9482, +
+                |         "distance": 1683+
+                |     },                  +
+                |     {                   +
+                |         "aos_id": 9483, +
+                |         "distance": 1419+
+                |     },                  +
+                |     {                   +
+                |         "aos_id": 9485, +
+                |         "distance": 1388+
+                |     },                  +
+                ...  (123 records omitted!)                       
+                |     {                   +
+                |         "aos_id": 9481, +
+                |         "distance": 1019+
+                |     }                   +
+                | ]
+(1 row)
+```
+
+However, if we use a slightly more complicated query to restrict to areas of open space within 400m, there are just two recorded within that distance:
+
+SELECT gnaf_pid,
+	        (obj->>'aos_id')::int AS aos_id,
+	        (obj->>'distance')::int AS distance
+FROM li_2018_aos_jsonb,
+    jsonb_array_elements(attributes) obj
+WHERE gnaf_pid = 'GAQLD155543323'
+  AND (obj->>'distance')::int < 400;
+
+|    gnaf_pid    | aos_id | distance |
+|---------------:|-------:|---------:|
+| GAQLD155543323 |   8043 |      188 |
+| GAQLD155543323 |   8047 |       71 |
+
+Now, let's try a query for our 100 sample points to find all those with access to an areas of open space of area 1.5 hectares or larger with access to a toilet:
+
+```sql
+SELECT 
+    o.gnaf_pid,
+    o.locale,
+    COUNT(o.*),
+    array_agg(o.aos_id) large_aos_with_toilet_within_400m
+FROM
+	(SELECT gnaf_pid,
+            locale,
+	        (obj->>'aos_id')::int AS aos_id,
+	        (obj->>'distance')::int AS distance
+	FROM li_2018_aos_jsonb,
+	    jsonb_array_elements(attributes) obj) o 
+	LEFT JOIN li_2018_public_open_space pos 
+           ON o.aos_id = pos.aos_id 
+          AND o.locale=pos.locale
+WHERE pos.aos_id IS NOT NULL
+  AND aos_ha_public >= 1.5 
+  AND co_location_100m ? 'toilets'
+  AND distance < 400
+GROUP BY o.gnaf_pid,o.locale;
+```
+
+|    gnaf_pid    |       locale       | count | large_aos_with_toilet_within_400m |
+|----------------|--------------------|------:|-----------------------------------|
+| GANSW704022201 | syd                |     1 | {4852}                            |
+| GANSW704073149 | newcastle_maitland |     1 | {2387}                            |
+| GANSW704449374 | syd                |     2 | {5655,5650}                       |
+| GANSW704693488 | syd                |     1 | {7591}                            |
+| GANSW705009126 | syd                |     1 | {4125}                            |
+| GANSW705030923 | newcastle_maitland |     1 | {1456}                            |
+| GANSW705812628 | syd                |     1 | {2190}                            |
+| GANSW710758685 | syd                |     2 | {12732,12731}                     |
+| GANSW712462212 | wollongong         |     2 | {496,521}                         |
+| GANSW715394401 | newcastle_maitland |     2 | {2187,2387}                       |
+| GANSW716872025 | syd                |     1 | {3625}                            |
+| GAQLD155036687 | bris               |     2 | {1381,1383}                       |
+| GAQLD156728035 | bris               |     1 | {4712}                            |
+| GAQLD157781890 | bris               |     1 | {8934}                            |
+| GAQLD157815302 | bris               |     1 | {6893}                            |
+| GAQLD162340538 | bris               |     1 | {3891}                            |
+| GASA_415505615 | adelaide           |     1 | {2121}                            |
+| GATAS702296754 | hobart             |     1 | {301}                             |
+| GAVIC411542514 | melb               |     2 | {6521,6522}                       |
+| GAVIC420546097 | melb               |     1 | {5110}                            |
+| GAVIC420954909 | melb               |     2 | {9531,9525}                       |
+| GAVIC423801845 | albury_wodonga     |     1 | {1113}                            |
+| GAWA_146560420 | perth              |     1 | {4341}                            |
+| GAWA_147174310 | perth              |     1 | {4002}                            |
+| GAWA_147300989 | perth              |     1 | {4252}                            |
+| GAWA_147777655 | perth              |     2 | {9297,9172}                       |
+
+So, based on this query of our random sample of 100 address points taken from 21 cities, 26 of these have access within 400m walk to at least one area of open space with a publicly accessible area of at least 1.5 hectares and a toilet.
+
+In QGIS I identified this first record in Sydney by querying the attributes of the li_2018_public_open_space table with the [advanced expression](https://docs.qgis.org/3.22/en/docs/pyqgis_developer_cookbook/expressions.html) `("aos_id" = 4852) AND ("locale"='syd')` and having identified the location, I then found this using [Google Maps](https://www.google.com/maps/place/33%C2%B054'07.3%22S+150%C2%B059'51.7%22E/@-33.902037,150.9945219,941m).
+
+![Example of an area of public open space identified in Sydney using QGIS]('Example of an area of public open space identified in Sydney using QGIS'?raw=true "Example of an area of public open space identified in Sydney using QGIS")
+
+This particular area of open space is formed as a combination of Manuka Reserve and Carysfield Park in the suburb of Bass Hill in Sydney, New South Wales.  By looking at this on the above web map, it seems that ideally this area of open space may have also included an additional BMX track which is next to these two parks, which is apparently also used by children (reviews are mixed "Nice for skating. Kids like this place", but also "A desolate waste land that was once a bmx track"!); in any case, this was an apparent omission in our analysis identifying openstreetmap areas of open space, and highlights one of the limitations of this approach --- its possible that the dataset of areas of (public) open space fails to identify some locations, and its also possible that some locations identified could be misclassified.  This is a risk with all data, regardless of source, and we describe the approach we took to mitigating this risk and validating our open space data in the technical validation section of our data descriptor manuscript.   And in this case, the omission of this particular BMX track (of dubious quality, apparently) is unlikely to have impacted results in a meaningful way.
