@@ -38,6 +38,8 @@ Alternatively, the CSV format data files can also be loaded directly into any of
   - [Selecting the top and bottom 3-ranking suburbs for a city in terms of liveability](#selecting-the-top-and-bottom-3-ranking-suburbs-for-a-city-in-terms-of-liveability)
   - [Summarising address level access to public transport in Melbourne](#summarising-address-level-access-to-public-transport-in-melbourne)
   - [Using the destination array to query the closest destinations](#using-the-destination-array-to-query-the-closest-destinations)
+  - [Using the areas of open space array data to query public open space access](#using-the-areas-of-open-space-array-data-to-query-public-open-space-access)
+- [Summary](#summary)
 
 ## Create and connect to a new database for the Australian National Liveability Study
 First, a new database called anls_2018 is created and then connected to he PostGIS extension may optionally be created; this would allow the residential address indicator coordinates to be interpreted as a Point geometry datatype, and link up the area aggregate indicators with their corresponding boundary geometries from the Australian Statistical Geography Standard retrieved from the Australian Bureau of Statistics for mapping.  
@@ -5227,3 +5229,7 @@ In QGIS I identified this first record in Sydney by querying the attributes of t
 ![Example of an area of public open space identified in Sydney using QGIS](./Example%20of%20an%20area%20of%20public%20open%20space%20identified%20in%20Sydney%20using%20QGIS.jpg?raw=true "Example of an area of public open space identified in Sydney using QGIS")
 
 This particular area of open space is formed as a combination of Manuka Reserve and Carysfield Park in the suburb of Bass Hill in Sydney, New South Wales.  By looking at this on the above web map, it seems that ideally this area of open space may have also included an additional BMX track which is next to these two parks, which is apparently also used by children (reviews are mixed "Nice for skating. Kids like this place", but also "A desolate waste land that was once a bmx track"!); in any case, this was an apparent omission in our analysis identifying openstreetmap areas of open space, and highlights one of the limitations of this approach --- its possible that the dataset of areas of (public) open space fails to identify some locations, and its also possible that some locations identified could be misclassified.  This is a risk with all data, regardless of source, and we describe the approach we took to mitigating this risk and validating our open space data in the technical validation section of our data descriptor manuscript.   And in this case, the omission of this particular BMX track (of dubious quality, apparently) is unlikely to have impacted results in a meaningful way.
+
+## Summary
+
+The above examples provide some examples of how to load, access and analyse the data, and hopefully provide some starting points for this large dataset of built environment measures and indicators of liveability and sustainability that we hope will prove useful for others.
